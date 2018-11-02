@@ -4,7 +4,26 @@ using System.Text;
 
 namespace LWT.Model
 {
-    class Class
+   public class Class
     {
+        /// <summary>
+        /// 主键id
+        /// </summary>
+        public int Id { get; set; }
+
+        /// <summary>
+        /// 类目名称
+        /// </summary>
+        public string ClassName { get; set; }
+
+        /// <summary>
+        /// 父级Id
+        /// </summary>
+        public int Pid { get; set; }
+
+        /// <summary>
+        /// 状态
+        /// </summary>
+        public int State { get; set; }
     }
 }
