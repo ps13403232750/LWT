@@ -25,11 +25,11 @@ namespace LWT.Client.Models
         /// <summary>
         /// 总额度
         /// </summary>
-        public string TotalAmount { get; set; }
+        public decimal TotalAmount { get; set; }
         /// <summary>
         /// 申请额度
         /// </summary>
-        public string ApplyAmount { get; set; }
+        public decimal ApplyAmount { get; set; }
         /// <summary>
         /// 审核状态
         /// </summary>
@@ -37,6 +37,6 @@ namespace LWT.Client.Models
         /// <summary>
         /// 审批额度
         /// </summary>
-        public string ApproveLimit { get; set; }
+        public decimal ApproveLimit { get; set; }
     }
 }
