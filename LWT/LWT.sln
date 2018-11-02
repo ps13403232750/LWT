@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2048
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LWT.Client", "LWT.Client\LWT.Client.csproj", "{D77F490D-EE43-48DE-B47A-38021C83F80E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LWT.Common", "LWT.Common\LWT.Common.csproj", "{5914FF23-F50B-4576-BE33-DE2B2B11E4A4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LWT.Model", "LWT.Model\LWT.Model.csproj", "{8DD99298-43E1-43CA-8A28-CD25292B32D0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D77F490D-EE43-48DE-B47A-38021C83F80E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D77F490D-EE43-48DE-B47A-38021C83F80E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D77F490D-EE43-48DE-B47A-38021C83F80E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D77F490D-EE43-48DE-B47A-38021C83F80E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5914FF23-F50B-4576-BE33-DE2B2B11E4A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5914FF23-F50B-4576-BE33-DE2B2B11E4A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5914FF23-F50B-4576-BE33-DE2B2B11E4A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5914FF23-F50B-4576-BE33-DE2B2B11E4A4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8DD99298-43E1-43CA-8A28-CD25292B32D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8DD99298-43E1-43CA-8A28-CD25292B32D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8DD99298-43E1-43CA-8A28-CD25292B32D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8DD99298-43E1-43CA-8A28-CD25292B32D0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6ACC8B23-A1D3-429C-8914-1545047BF8E1}
+	EndGlobalSection
+EndGlobal
