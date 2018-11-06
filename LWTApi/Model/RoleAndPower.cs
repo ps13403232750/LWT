@@ -4,24 +4,12 @@ using System.Text;
 
 namespace Model
 {
-   public class Users
+   public class RoleAndPower
     {
-
         /// <summary>
-        /// 主键id
+        /// 权限id
         /// </summary>
         public int Id { get; set; }
-
-   
-        /// <summary>
-        /// 用户名称
-        /// </summary>
-        public string UserName { get; set; }
-
-        /// <summary>
-        /// 用户密码
-        /// </summary>
-        public string UserPwd { get; set; }
 
         /// <summary>
         /// 角色id

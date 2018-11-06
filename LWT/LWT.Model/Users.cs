@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Model
+namespace LWT.Model
 {
    public class Users
     {
@@ -12,7 +12,6 @@ namespace Model
         /// </summary>
         public int Id { get; set; }
 
-   
         /// <summary>
         /// 用户名称
         /// </summary>
@@ -27,6 +26,5 @@ namespace Model
         /// 角色id
         /// </summary>
         public int RoleId { get; set; }
-
     }
 }

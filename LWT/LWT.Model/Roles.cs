@@ -1,22 +1,24 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Text;
 
 namespace LWT.Model
 {
-    public class Area
+   public class Roles
     {
         /// <summary>
-        /// 主键ID
+        /// 主键id
         /// </summary>
         public int Id { get; set; }
 
         /// <summary>
-        /// 地域名称
+        /// 角色名称
         /// </summary>
-        public string AreaName { get; set; }
+        public string RoleName { get; set; }
 
         /// <summary>
-        /// 父级Id
+        /// 状态
         /// </summary>
-        public string FatherId { get; set; }
+        public int Status { get; set; }
     }
 }

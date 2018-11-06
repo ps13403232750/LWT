@@ -4,29 +4,26 @@ using System.Text;
 
 namespace Model
 {
-   public class Users
+   public class Class
     {
-
         /// <summary>
         /// 主键id
         /// </summary>
         public int Id { get; set; }
 
-   
         /// <summary>
-        /// 用户名称
+        /// 类目名称
         /// </summary>
-        public string UserName { get; set; }
+        public string ClassName { get; set; }
 
         /// <summary>
-        /// 用户密码
+        /// 父级Id
         /// </summary>
-        public string UserPwd { get; set; }
+        public int Pid { get; set; }
 
         /// <summary>
-        /// 角色id
+        /// 状态
         /// </summary>
-        public int RoleId { get; set; }
-
+        public int State { get; set; }
     }
 }

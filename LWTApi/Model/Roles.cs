@@ -4,29 +4,21 @@ using System.Text;
 
 namespace Model
 {
-   public class Users
+   public class Roles
     {
-
         /// <summary>
         /// 主键id
         /// </summary>
         public int Id { get; set; }
 
-   
         /// <summary>
-        /// 用户名称
+        /// 角色名称
         /// </summary>
-        public string UserName { get; set; }
+        public string RoleName { get; set; }
 
         /// <summary>
-        /// 用户密码
+        /// 状态
         /// </summary>
-        public string UserPwd { get; set; }
-
-        /// <summary>
-        /// 角色id
-        /// </summary>
-        public int RoleId { get; set; }
-
+        public int Status { get; set; }
     }
 }
