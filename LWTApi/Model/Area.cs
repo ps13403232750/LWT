@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace LWT.Model
+namespace Model
 {
     public class Area
     {

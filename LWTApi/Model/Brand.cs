@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace LWT.Model
+namespace Model
 {
     public class Brand
     {
