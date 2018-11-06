@@ -1,8 +1,10 @@
-﻿using System;
+﻿using Model;
+using System;
 
 namespace IServices
 {
-    public class IUserServices
+    public interface IUserServices
     {
+        int Add(Users user);
     }
 }

@@ -4,17 +4,27 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 
+using IServices;
+using Model;
+
 namespace LWTApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
     public class ValuesController : ControllerBase
     {
+        private IUserServices UserServices;
+
+        public ValuesController(IUserServices userServices)
+        {
+            UserServices = userServices;
+        }
+
         // GET api/values
         [HttpGet]
-        public ActionResult<IEnumerable<string>> Get()
+        public ActionResult<string> Get()
         {
-            return new string[] { "value1", "value2" };
+            return UserServices.Add(new Users()).ToString();
         }
 
         // GET api/values/5
@@ -25,9 +35,12 @@ namespace LWTApi.Controllers
         }
 
         // POST api/values
+        [Route("AddUser")]
         [HttpPost]
-        public void Post([FromBody] string value)
+        public int AddUser(Users user)
         {
+            var i = UserServices.Add(user);
+            return i;
         }
 
         // PUT api/values/5
