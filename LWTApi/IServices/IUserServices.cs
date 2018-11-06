@@ -2,7 +2,7 @@
 
 namespace IServices
 {
-    public class Class1
+    public class IUserServices
     {
     }
 }
