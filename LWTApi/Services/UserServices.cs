@@ -11,7 +11,6 @@ namespace Services
     {
 
         SimpleClient<Power> Sdb = new SimpleClient<Power>(GetInstance());
-        SimpleClient<PurChase> purchase = new SimpleClient<PurChase>(GetInstance());
         SimpleClient<Brand> brand = new SimpleClient<Brand>(GetInstance());
         SimpleClient<Roles> roles = new SimpleClient<Roles>(GetInstance());
         SimpleClient<RoleAndPower> roleandpower = new SimpleClient<RoleAndPower>(GetInstance());
@@ -30,12 +29,16 @@ namespace Services
         /// <returns></returns>
         public int Add(PurChase purchase)
         {
+            var dbset = BaseDB.GetInstance();
+            var result = dbset.Insertable(purchase);
             return 1;
         }
 
         public int AddBrand(Brand brand)
         {
-            throw new NotImplementedException();
+            var dbset = BaseDB.GetInstance();
+            var result = dbset.Insertable(brand);
+            return 1;
         }
 
         /// <summary>

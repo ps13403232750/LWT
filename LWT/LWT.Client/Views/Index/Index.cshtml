@@ -2,7 +2,7 @@
 @{
     Layout = null;
 }
-
+@model List<LWT.Model.Power>
 <!DOCTYPE html>
 
 <html>
@@ -59,16 +59,27 @@
     </header>
     <aside class="Hui-aside">
         <div class="menu_dropdown bk_2">
-                <dl id="menu-admin">
-                    <dt><i class="Hui-iconfont">&#xe62d;</i>商家管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
-                    <dd>
-                        <ul>
-                            <li><a data-href="/Merchant/GetShopList" data-title="我的店铺" href="javascript:void(0)">我的店铺</a></li>
-                            <li><a data-href="/Merchant/GetShopOrderList" data-title="查看订单" href="javascript:void(0)">查看订单</a></li>
-                            <li><a data-href="/Merchant/Add" data-title="申请店铺" href="javascript:void(0)">申请店铺</a></li>
-                        </ul>
-                    </dd>
-                </dl>
+            @foreach (var item in Model)
+            {
+                if (@item.Pid == 0)
+                {
+                    <dl id="menu-admin">
+                        <dt><i class="Hui-iconfont">&#xe62d;</i>@item.PowerName<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+                        <dd>
+                            <ul>
+                                @foreach (var item1 in Model)
+                                {
+                                    if (@item1.Pid == @item.id)
+                                    {
+                                        <li><a data-href="@item.Url" data-title="@item1.PowerName" href="javascript:void(0)">@item1.PowerName</a></li>
+                                    }
+                                }
+                            </ul>
+                        </dd>
+                    </dl>
+                }
+            }
+
         </div>
     </aside>
     <div class="dislpayArrow hidden-xs"><a class="pngfix" href="javascript:void(0);" onClick="displaynavbar(this)"></a></div>
