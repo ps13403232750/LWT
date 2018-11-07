@@ -15,4 +15,16 @@
     <None Include="wwwroot\Content\lib\ueditor\1.4.3\net\net.sln" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Reference Include="ServiceStack">
+      <HintPath>wwwroot\lib\dll\ServiceStack.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.Interfaces">
+      <HintPath>wwwroot\lib\dll\ServiceStack.Interfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.ServiceInterface">
+      <HintPath>wwwroot\lib\dll\ServiceStack.ServiceInterface.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>
