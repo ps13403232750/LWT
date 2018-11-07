@@ -4,6 +4,9 @@ using System.Text;
 
 namespace Model
 {
+    /// <summary>
+    /// 采购商结算列表
+    /// </summary>
    public class PurChaseSettle
     {
         /// <summary>

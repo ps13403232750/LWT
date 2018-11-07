@@ -11,6 +11,9 @@ namespace Services
     {
         SimpleClient<ManageLimit> ML = new SimpleClient<ManageLimit>(GetInstance());
         SimpleClient<PurChaseNumber> CN = new SimpleClient<PurChaseNumber>(GetInstance());
+        SimpleClient<PurChasePay> CP = new SimpleClient<PurChasePay>(GetInstance());
+        SimpleClient<PurChaseSettle> CS = new SimpleClient<PurChaseSettle>(GetInstance());
+
         /// <summary>
         /// 额度表显示
         /// </summary>
@@ -19,6 +22,7 @@ namespace Services
         {
             return ML.GetList();
         }
+
         /// <summary>
         /// 结算次数
         /// </summary>
@@ -26,6 +30,24 @@ namespace Services
         public List<PurChaseNumber>GetPurChaseNumber()
         {
             return CN.GetList();
+        }
+
+        /// <summary>
+        /// 采购付款结算列表
+        /// </summary>
+        /// <returns></returns>
+        public List<PurChasePay> GetPurChasePay()
+        {
+            return CP.GetList();
+        }
+
+        /// <summary>
+        /// 采购结算列表
+        /// </summary>
+        /// <returns></returns>
+        public List<PurChaseSettle> GetPurChaseSettle()
+        {
+            return CS.GetList();
         }
     }
 }
