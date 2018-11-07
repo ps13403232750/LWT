@@ -15,7 +15,8 @@ namespace Services
         /// <returns></returns>
         public List<ManageLimit> GetManageLimits()
         {
-            throw new NotImplementedException();
+            var list = SqlSugarHelper<ManageLimit>.FindAll();
+            return list;
         }
 
         /// <summary>
@@ -33,7 +34,8 @@ namespace Services
         /// <returns></returns>
         public List<PurChasePay> GetPurChasePay()
         {
-            throw new NotImplementedException();
+            var list = SqlSugarHelper<PurChasePay>.FindAll();
+            return list;
         }
 
         /// <summary>
@@ -42,7 +44,8 @@ namespace Services
         /// <returns></returns>
         public List<PurChaseSettle> GetPurChaseSettle()
         {
-            throw new NotImplementedException();
+            var list = SqlSugarHelper<PurChaseSettle>.FindAll();
+            return list;
         }
     }
 }
