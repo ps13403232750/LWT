@@ -9,19 +9,11 @@ namespace Services
 {
     public class UserServices :BaseDB, IUserServices
     {
-
-        SimpleClient<Power> Sdb = new SimpleClient<Power>(GetInstance());
-        SimpleClient<Brand> brand = new SimpleClient<Brand>(GetInstance());
-        SimpleClient<Roles> roles = new SimpleClient<Roles>(GetInstance());
-        SimpleClient<RoleAndPower> roleandpower = new SimpleClient<RoleAndPower>(GetInstance());
-        SimpleClient<Supplier> supplier = new SimpleClient<Supplier>(GetInstance());
         
-
         
         public int Add(Users user)
         {
-            var dbset = BaseDB.GetInstance();
-            var quary = dbset.Insertable(user);
+            var i = SqlSugarHelper<Users>.Insert(user);
             return 1;
         }
 
@@ -32,15 +24,13 @@ namespace Services
         /// <returns></returns>
         public int Add(PurChase purchase)
         {
-            var dbset = BaseDB.GetInstance();
-            var result = dbset.Insertable(purchase);
+            var i = SqlSugarHelper<PurChase>.Insert(purchase);
             return 1;
         }
 
         public int AddBrand(Brand brand)
         {
-            var dbset = BaseDB.GetInstance();
-            var result = dbset.Insertable(brand);
+            var i = SqlSugarHelper<Brand>.Insert(brand);
             return 1;
         }
 
@@ -105,7 +95,8 @@ namespace Services
         /// <returns></returns>
         public List<Power> GetPowerMessage()
         {
-            return Sdb.GetList();
+            var list = SqlSugarHelper<Power>.FindAll();
+            return list;
         }
     }
 }
