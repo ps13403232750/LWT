@@ -43,6 +43,17 @@ namespace LWTApi.Controllers
             return settleServices.GetManageLimits().ToList();
         }
 
+        /// <summary>
+        ///采购结算类表显示 
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("[action]")]
+        public ActionResult<List<PurChaseSettle>> GetPurChaseSettle()
+        {
+            return settleServices.GetPurChaseSettle().ToList();
+        }
+
         // GET api/values
         [HttpGet]
         public ActionResult<string> Get()
