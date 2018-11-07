@@ -14,10 +14,10 @@ namespace LWTApi.Controllers
     [ApiController]
     public class ValuesController : ControllerBase
     {
-        private IUserServices UserServices;
-        public ValuesController(IUserServices userServices)
+        private IUserServices userServices;
+        public ValuesController(IUserServices _userServices)
         {
-            UserServices = userServices;
+            userServices = _userServices;
         }
 
         /// <summary>
@@ -28,14 +28,14 @@ namespace LWTApi.Controllers
         [Route("[action]")]
         public ActionResult<List<Power>> GetPower()
         {
-            return UserServices.GetPowerMessage().ToList();
+            return userServices.GetPowerMessage().ToList();
         }
 
         // GET api/values
         [HttpGet]
         public ActionResult<string> Get()
         {
-            return UserServices.Add(new Users()).ToString();
+            return userServices.Add(new Users()).ToString();
         }
 
         // GET api/values/5
@@ -50,7 +50,7 @@ namespace LWTApi.Controllers
         [HttpPost]
         public int AddUser(Users user)
         {
-            var i = UserServices.Add(user);
+            var i = userServices.Add(user);
             return i;
         }
 

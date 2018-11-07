@@ -4,6 +4,9 @@ using System.Text;
 
 namespace LWT.Model
 {
+    /// <summary>
+    /// 结算列表
+    /// </summary>
    public class PurChaseSettle
     {
         /// <summary>

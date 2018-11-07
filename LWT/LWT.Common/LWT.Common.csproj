@@ -7,6 +7,16 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNet.WebApi.Client" Version="5.2.6" />
     <PackageReference Include="System.Net.Http" Version="4.3.4" />
+
+    <Reference Include="ServiceStack">
+      <HintPath>..\LWT.Client\wwwroot\lib\dll\ServiceStack.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.Interfaces">
+      <HintPath>..\LWT.Client\wwwroot\lib\dll\ServiceStack.Interfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.ServiceInterface">
+      <HintPath>..\LWT.Client\wwwroot\lib\dll\ServiceStack.ServiceInterface.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>

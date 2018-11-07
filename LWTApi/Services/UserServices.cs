@@ -15,6 +15,9 @@ namespace Services
         SimpleClient<Roles> roles = new SimpleClient<Roles>(GetInstance());
         SimpleClient<RoleAndPower> roleandpower = new SimpleClient<RoleAndPower>(GetInstance());
         SimpleClient<Supplier> supplier = new SimpleClient<Supplier>(GetInstance());
+        
+
+        
         public int Add(Users user)
         {
             var dbset = BaseDB.GetInstance();
