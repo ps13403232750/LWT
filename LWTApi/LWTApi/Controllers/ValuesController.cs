@@ -15,6 +15,7 @@ namespace LWTApi.Controllers
     public class ValuesController : ControllerBase
     {
         private IUserServices userServices;
+        private ISettleServices settleServices;
         public ValuesController(IUserServices _userServices)
         {
             userServices = _userServices;
@@ -29,6 +30,17 @@ namespace LWTApi.Controllers
         public ActionResult<List<Power>> GetPower()
         {
             return userServices.GetPowerMessage().ToList();
+        }
+
+        /// <summary>
+        ///额度管理表显示 
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("[action]")]
+        public ActionResult<List<ManageLimit>> GetManageLimits()
+        {
+            return settleServices.GetManageLimits().ToList();
         }
 
         // GET api/values
