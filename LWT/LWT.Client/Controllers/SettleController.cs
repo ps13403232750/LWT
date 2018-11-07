@@ -12,7 +12,7 @@ namespace LWT.Client.Controllers
         /// 额度管理表
         /// </summary>
         /// <returns></returns>
-        public IActionResult Index()
+        public IActionResult GetManageLimit()
         {
             return View();
         }
