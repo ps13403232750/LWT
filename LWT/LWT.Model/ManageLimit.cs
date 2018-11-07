@@ -4,6 +4,9 @@ using System.Text;
 
 namespace LWT.Model
 {
+    /// <summary>
+    /// 额度管理表
+    /// </summary>
    public class ManageLimit
     {
         /// <summary>
