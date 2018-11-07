@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.Text;
 
-namespace LWTApi
+namespace Services
 {
-    public class Config
+   public class Config
     {
         public static string ConnectionString = "Data Source=169.254.195.158/orcl;User ID=scott;Password=tiger";
     }

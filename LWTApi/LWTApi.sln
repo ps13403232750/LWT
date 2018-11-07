@@ -3,15 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28010.2048
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LWTApi", "LWTApi\LWTApi.csproj", "{42DE0BC5-93F2-4CD2-AC95-64D230BCB15B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LWTApi", "LWTApi\LWTApi.csproj", "{42DE0BC5-93F2-4CD2-AC95-64D230BCB15B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services", "Services\Services.csproj", "{F44878F6-9142-423D-A11F-7C968FE0D437}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Services", "Services\Services.csproj", "{F44878F6-9142-423D-A11F-7C968FE0D437}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IServices", "IServices\IServices.csproj", "{26F989A8-71FD-4C10-9693-53E8440F4103}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IServices", "IServices\IServices.csproj", "{26F989A8-71FD-4C10-9693-53E8440F4103}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Model", "Model\Model.csproj", "{07B06013-55A4-4596-9937-0D28C714CBA8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Model", "Model\Model.csproj", "{07B06013-55A4-4596-9937-0D28C714CBA8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csproj", "{434D4BF0-D223-4579-8FC2-564A1C18A123}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Common", "Common\Common.csproj", "{434D4BF0-D223-4579-8FC2-564A1C18A123}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SqlSugarBaseDb", "SqlSugerCore\SqlSugarBaseDb.csproj", "{416FEC15-7AB9-4BAA-AC50-A3AF793F2DB5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{434D4BF0-D223-4579-8FC2-564A1C18A123}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{434D4BF0-D223-4579-8FC2-564A1C18A123}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{434D4BF0-D223-4579-8FC2-564A1C18A123}.Release|Any CPU.Build.0 = Release|Any CPU
+		{416FEC15-7AB9-4BAA-AC50-A3AF793F2DB5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{416FEC15-7AB9-4BAA-AC50-A3AF793F2DB5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{416FEC15-7AB9-4BAA-AC50-A3AF793F2DB5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{416FEC15-7AB9-4BAA-AC50-A3AF793F2DB5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

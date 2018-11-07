@@ -10,14 +10,25 @@ using Model;
 namespace LWTApi.Controllers
 {
     [Route("api/[controller]")]
+
     [ApiController]
     public class ValuesController : ControllerBase
     {
         private IUserServices UserServices;
-
         public ValuesController(IUserServices userServices)
         {
             UserServices = userServices;
+        }
+
+        /// <summary>
+        /// 权限列表信息显示
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("[action]")]
+        public ActionResult<List<Power>> GetPower()
+        {
+            return UserServices.GetPowerMessage().ToList();
         }
 
         // GET api/values
