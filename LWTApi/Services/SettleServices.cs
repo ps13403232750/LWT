@@ -7,7 +7,7 @@ using Model;
 using IServices;
 namespace Services
 {
-   public  class SettleServices: BaseDB,ISettleServices
+    public class SettleServices : BaseDB, ISettleServices
     {
         SimpleClient<ManageLimit> ML = new SimpleClient<ManageLimit>(GetInstance());
         SimpleClient<PurChaseNumber> CN = new SimpleClient<PurChaseNumber>(GetInstance());
@@ -27,7 +27,7 @@ namespace Services
         /// 结算次数
         /// </summary>
         /// <returns></returns>
-        public List<PurChaseNumber>GetPurChaseNumber()
+        public List<PurChaseNumber> GetPurChaseNumber()
         {
             return CN.GetList();
         }
