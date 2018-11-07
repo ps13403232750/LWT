@@ -23,8 +23,8 @@ namespace LWTApi.Controllers
         [Route("[action]")]
         public ActionResult<List<Goods>> GetGoods()
         {
-            return _supplierServices.GetGoods().ToList();
+            return _supplierServices.Goods().ToList();
         }
-
+        
     }
 }

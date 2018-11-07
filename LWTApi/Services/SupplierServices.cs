@@ -7,14 +7,20 @@ using IServices;
 using SqlSugar;
 namespace Services
 {
-   public class SupplierServices: BaseDB,ISupplierServices
+    public class SupplierServices : BaseDB, ISupplierServices
     {
-        SimpleClient<Goods> goods = new SimpleClient<Goods>(GetInstance());
 
         /// <summary>
         /// 获取商品表数据
         /// </summary>
         /// <returns></returns>
-        public List<Goods> GetGoods() => goods.GetList();
+        public List<Goods> Goods()
+        {
+            var db = BaseDB.GetInstance();
+            return db.Queryable<Goods>().ToList();
+        }
+
+
+
     }
 }

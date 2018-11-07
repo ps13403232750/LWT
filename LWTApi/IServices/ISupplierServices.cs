@@ -11,6 +11,6 @@ namespace IServices
         /// 获取商品列表
         /// </summary>
         /// <returns></returns>
-        List<Goods> GetGoods();
+        List<Goods> Goods();
     }
 }
