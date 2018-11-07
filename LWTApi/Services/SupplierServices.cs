@@ -16,8 +16,8 @@ namespace Services
         /// <returns></returns>
         public List<Goods> Goods()
         {
-            var db = BaseDB.GetInstance();
-            return db.Queryable<Goods>().ToList();
+            var List = SqlSugarHelper<Goods>.FindAll();
+            return List;
         }
 
 

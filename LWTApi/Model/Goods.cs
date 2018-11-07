@@ -42,7 +42,7 @@ namespace Model
         /// <summary>
         /// 规格属性
         /// </summary>
-        public int Attribute { get; set; }
+        public string Attribute { get; set; }
 
         /// <summary>
         /// 价格
