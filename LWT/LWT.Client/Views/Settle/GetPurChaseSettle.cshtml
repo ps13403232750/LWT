@@ -2,7 +2,7 @@
 @{
     Layout = null;
 }
-
+@model List<LWT.Model.PurChaseSettle>
 <!DOCTYPE html>
 
 <html>
@@ -11,5 +11,27 @@
     <title>GetPurChaseSettle</title>
 </head>
 <body>
+    <h1>采购结算列表</h1>
+    <table>
+        <tr>
+            <th>序号</th>
+            <th>采购商名称</th>
+            <th>结算类型</th>
+            <th>结算周期</th>
+            <th>状态</th>
+            <th>操作</th>
+        </tr>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>@item.Id</td>
+            <td>@item.BuyerName</td>
+            <td>@item.SettlementType</td>
+            <td>@item.SettlementDays</td>
+            <td>@item.SettlementState</td>
+            <td><a href="#">查看</a></td>
+        </tr>
+        }
+    </table>
 </body>
 </html>

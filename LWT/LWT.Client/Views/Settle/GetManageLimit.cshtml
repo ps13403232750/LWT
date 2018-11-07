@@ -16,6 +16,29 @@
             <input type="type" name="BuyerName" value="" placeholder="请输入企业名称" /><button style="background-color:#4cff00;color:white">查询</button>
             <div style="width:250px;padding-left:320px;background-color:cornflowerblue;padding-top:-30px;">  <span>审核状态<input type="type" name="State" value="" placeholder="选择审核状态" /></span></div>
         </div>
+        <table>
+            <tr>
+                <th> </th>
+                <th> </th>
+                <th> </th>
+                <th> </th>
+                <th> </th>
+                <th> </th>
+                <th> </th>
+            </tr>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td> </td>
+                    <td> </td>
+                    <td> </td>
+                    <td> </td>
+                    <td> </td>
+                    <td> </td>
+                    <td> </td>
+                </tr>
+            }
+        </table>
     </div>
 </body>
 </html>

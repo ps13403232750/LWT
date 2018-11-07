@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
 
+using LWT.Model;
+using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 namespace LWT.Client.Controllers
 {
     public class SettleController : Controller
@@ -23,7 +25,8 @@ namespace LWT.Client.Controllers
         /// <returns></returns>
         public IActionResult GetPurChaseSettle()
         {
-            return View();
+            string getPurChaseSettle =Common.Client.GetApi("get", "Values/GetPurChaseSettle",null);
+            return View(JsonConvert.DeserializeObject<List<PurChaseSettle>>(getPurChaseSettle));
         }
     }
 }
