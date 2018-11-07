@@ -2,11 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-using Model;
-namespace Services
+namespace IServices
 {
-   public  class Settle
+    class ISettle
     {
-       
     }
 }
