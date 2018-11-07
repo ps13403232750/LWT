@@ -4,6 +4,9 @@ using System.Text;
 
 namespace Model
 {
+    /// <summary>
+    /// 商品表
+    /// </summary>
    public class Goods
     {
         /// <summary>
