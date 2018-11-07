@@ -16,7 +16,7 @@ namespace LWT.Common
             HttpResponseMessage response = null;
             using (HttpClient client = new HttpClient())
             {
-                client.BaseAddress = new Uri("http://localhost:18534/api/");
+                client.BaseAddress = new Uri("http://localhost:60259/api/");
                 switch (verb.ToLower())
                 {
                     case "get":
