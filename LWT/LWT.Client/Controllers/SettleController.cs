@@ -13,12 +13,12 @@ namespace LWT.Client.Controllers
         /// </summary>
         /// <returns></returns>
         public IActionResult GetManageLimit()
-        {
+        {   
             return View();
         }
 
         /// <summary>
-        /// 额度管理表
+        /// 采购结算列表
         /// </summary>
         /// <returns></returns>
         public IActionResult GetPurChaseSettle()
