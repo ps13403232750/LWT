@@ -9,18 +9,13 @@ namespace Services
 {
     public class SettleServices : BaseDB, ISettleServices
     {
-        SimpleClient<ManageLimit> ML = new SimpleClient<ManageLimit>(GetInstance());
-        SimpleClient<PurChaseNumber> CN = new SimpleClient<PurChaseNumber>(GetInstance());
-        SimpleClient<PurChasePay> CP = new SimpleClient<PurChasePay>(GetInstance());
-        SimpleClient<PurChaseSettle> CS = new SimpleClient<PurChaseSettle>(GetInstance());
-
         /// <summary>
         /// 额度表显示
         /// </summary>
         /// <returns></returns>
         public List<ManageLimit> GetManageLimits()
         {
-            return ML.GetList();
+            throw new NotImplementedException();
         }
 
         /// <summary>
@@ -29,7 +24,7 @@ namespace Services
         /// <returns></returns>
         public List<PurChaseNumber> GetPurChaseNumber()
         {
-            return CN.GetList();
+            throw new NotImplementedException();
         }
 
         /// <summary>
@@ -38,7 +33,7 @@ namespace Services
         /// <returns></returns>
         public List<PurChasePay> GetPurChasePay()
         {
-            return CP.GetList();
+            throw new NotImplementedException();
         }
 
         /// <summary>
@@ -47,7 +42,7 @@ namespace Services
         /// <returns></returns>
         public List<PurChaseSettle> GetPurChaseSettle()
         {
-            return CS.GetList();
+            throw new NotImplementedException();
         }
     }
 }
