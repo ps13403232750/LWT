@@ -24,10 +24,10 @@ namespace Services
         /// </summary>
         /// <param name="Id"></param>
         /// <returns></returns>
-        public int UpdateGoods(int Id, int State)
+        public bool UpdateGoods(int Id, int State)
         {
             var result = GoodsDb.Update(it => new Goods() { State = State }, it => it.Id == Id);
-            return Convert.ToInt32(result);
+            return result;
         }
     }
 }
