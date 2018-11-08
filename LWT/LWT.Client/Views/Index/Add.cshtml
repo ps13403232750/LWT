@@ -26,7 +26,7 @@
             </tr>
             <tr>
                 <td align="right">确认密码：</td>
-                <td><input id="pwd" type="text"/></td>
+                <td><input id="pwd" type="text" /></td>
             </tr>
             <tr>
                 <td align="right">分配角色：</td>
@@ -43,7 +43,6 @@
         </table>
     </div>
     <script>
-        axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
         var app = new Vue({
             el: '#app',
             data: {
@@ -58,17 +57,18 @@
                     .then(response => (that.select = response.data))
             },
             methods: {
-                adduser: function ()
-                {
-                    var that = this;
-                    axios.post('/Index/Add', {
-                        UserName: "fggg",
-                    }).then(function (res) {
-                        console.log(res.data)
-                        if (res.data > 0) {
-                            alert('添加成功！');
-                        }
-                    })
+                adduser: function () {
+                    alert(1);
+                    var params = new URLSearchParams();
+                    params.append('Id', '0');     
+                    params.append('UserName', 'admin');
+                    params.append('UserPwd', '123');
+                    params.append('RoleId', '1');
+                    axios({
+                        method: 'post',
+                        url: '/Index/Add',
+                        data: params
+                    });
                 },
                 BackLogin: function () { }
             }

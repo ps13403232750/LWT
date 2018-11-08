@@ -29,11 +29,10 @@ namespace LWT.Client.Controllers
         /// <returns></returns>
         public IActionResult Add()
         {
-            GetRoles();
             return View();
         }
         [HttpPost]
-        public int Add(string UserName)
+        public int Add(Users user)
         {
             var data = Common.Client.GetApi("Post","Values/Add");
             return int.Parse(data);
@@ -63,14 +62,7 @@ namespace LWT.Client.Controllers
         {
             string sql = Common.Client.GetApi("Get", "Values/GetRoles");
             return sql;
-            //var data = from s in list
-            //           select new SelectListItem
-            //           {
-            //               Text = s.RoleName,
-            //               Value = s.Id.ToString()
-            //           };
-            //ViewBag.roles = data.ToList();
-                       
+           
         }
 
 
