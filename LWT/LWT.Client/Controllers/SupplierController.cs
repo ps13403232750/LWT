@@ -23,13 +23,21 @@ namespace LWT.Client.Controllers
            // ViewBag.goods = GetGoods();
             return View();
         }
-        //获取商品表数据
+
+        /// <summary>
+        /// 获取商品表数据
+        /// </summary>
         public string GetGoods()
         {
             var result= Common.Client.GetApi("get", "Supplier/GetGoods");
             return result;
         }
         
+        /// <summary>
+        /// 审核商品信息
+        /// </summary>
+        /// <param name="Id"></param>
+        /// <returns></returns>
         public string UpdateGoods(int Id)
         {
             var result = Common.Client.GetApi("Put", "Supplier/UpdateGoods?Id="+Id);
