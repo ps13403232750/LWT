@@ -2,7 +2,7 @@
 @{
     Layout = null;
 }
-
+@model List<LWT.Model.ManageLimit>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,10 +14,9 @@
     <div>
         <table>
             <tr>
-                <td><span>企业采购:</span></td>
-            </tr>
+                <td><span>企业采购:</span></td>             
             <tr>
-                <td><span>已分配额度:</span></td>
+                <td><span>已分配额度:</span></td>       
             </tr>
             <tr>
                 <td><span>申请增加额度:</span></td>
@@ -29,7 +28,7 @@
                 <td><span>附加文件:</span></td>
             </tr>
             <tr>
-                <td><button>提交</button><input id="Button1" type="button" value="返回" onclick="location.href='/Settle/GetManageLimit/'"/></td>
+                <td><button>提交</button><input id="Button1" type="button" value="返回" onclick="location.href='/Settle/GetManageLimit/'" /></td>
             </tr>
         </table>
     </div>
