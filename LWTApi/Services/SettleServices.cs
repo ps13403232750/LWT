@@ -13,7 +13,7 @@ namespace Services
         /// 额度表显示
         /// </summary>
         /// <returns></returns>
-        public List<ManageLimit> GetManageLimits()
+        public List<ManageLimit> GetManageLimit()
         {
             var list = SqlSugarHelper<ManageLimit>.FindAll();
             return list;
@@ -26,6 +26,16 @@ namespace Services
         public List<PurChaseNumber> GetPurChaseNumber()
         {
             throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// 结算详情
+        /// </summary>
+        /// <returns></returns>
+        public List<PurChaseNumber> ThinPurState()
+        {
+            var list = SqlSugarHelper<PurChaseNumber>.FindAll();
+            return list;
         }
 
         /// <summary>
@@ -58,7 +68,7 @@ namespace Services
         {         
             ManageLimit ml = new ManageLimit();
             ml.Id = id;
-            ml.BuyerState = states;
+            ml.State = states;
             var reslut = SqlSugarHelper<ManageLimit>.Update(ml);
             //var i = SqlSugarHelper<ManageLimit>.Update(id, states);
             return Convert.ToInt32(reslut);

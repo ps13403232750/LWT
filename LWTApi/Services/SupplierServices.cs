@@ -26,8 +26,13 @@ namespace Services
         /// <returns></returns>
         public bool UpdateGoods(int Id, int State)
         {
+<<<<<<< HEAD
             var result = GoodsDb.Update(it => new Goods() { State = State }, it => it.Id == Id);
             return result;
+=======
+            var result = GetSimpleInstance<Goods>().Update(it => new Goods() { State = State }, it => it.Id == Id);
+            return Convert.ToInt32(result);
+>>>>>>> d22afad3913962c21401aa4cd4e455468a61952f
         }
     }
 }
