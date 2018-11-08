@@ -28,5 +28,6 @@ namespace LWT.Client.Controllers
             var result= Common.Client.GetApi("get", "Supplier/GetGoods");
             return result;
         }
+
     }
 }

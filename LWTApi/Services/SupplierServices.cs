@@ -24,21 +24,10 @@ namespace Services
         /// </summary>
         /// <param name="Id"></param>
         /// <returns></returns>
-        public int UpdateGoods(int Id,int State)
+        public int UpdateGoods(int Id, int State)
         {
-            Goods goods = new Goods();
-            goods.Id = Id;
-            goods.State = State;
-            var reslut = SqlSugarHelper<Goods>.Update(goods);
-            return Convert.ToInt32( reslut);
-            //using (var db=BaseDB.GetInstance())
-            //{
-            //    Goods goods = new Goods();
-            //    goods.Id = Id;
-            //    goods.State = State;
-            //   var resut= db.Updateable<Goods>(  goods );
-            //    return resut;
-            //}
+            var result = GoodsDb.Update(it => new Goods() { State = State }, it => it.Id == Id);
+            return Convert.ToInt32(result);
         }
     }
 }
