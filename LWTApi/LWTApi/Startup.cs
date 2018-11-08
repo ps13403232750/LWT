@@ -30,6 +30,7 @@ namespace LWTApi
         {
             //供应商
             services.AddScoped<ISupplierServices, SupplierServices>();
+            services.AddScoped<ISettleServices, SettleServices>();
             services.AddScoped<IUserServices,UserServices>();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }

@@ -26,6 +26,9 @@ namespace LWTApi.Controllers
             var list = _supplierServices.Goods().ToList();
             return list;
         }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 34e552793c2370fd7d085cd8ee7f755bb14e484d
     }
 }

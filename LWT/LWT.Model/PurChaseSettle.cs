@@ -22,17 +22,17 @@ namespace LWT.Model
         /// <summary>
         /// 结算类型
         /// </summary>
-        public string SettlementType { get; set; }
+        public string SettleMeny { get; set; }
 
         /// <summary>
         /// 结算周期
         /// </summary>
-        public string SettlementDays { get; set; }
+        public string SettleDays { get; set; }
 
         /// <summary>
         /// 状态
         /// </summary>
-        public int SettlementState { get; set; }
+        public int SettleState { get; set; }
     }
 
 }

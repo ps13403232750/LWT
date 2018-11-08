@@ -34,7 +34,7 @@ namespace IServices
         /// </summary>
         /// <param name="classe"></param>
         /// <returns></returns>
-        List<Class> GetClass(Class classe);
+        List<Class> GetClass();
 
         /// <summary>
         /// 注册用户
@@ -61,7 +61,7 @@ namespace IServices
         /// 获取品牌信息
         /// </summary>
         /// <returns></returns>
-        Brand GetBrand();
+        List<Brand> GetBrand();
 
         /// <summary>
         /// 添加品牌信息
@@ -69,6 +69,12 @@ namespace IServices
         /// <param name="brand"></param>
         /// <returns></returns>
         int AddBrand(Brand brand);
+
+        /// <summary>
+        /// 获取用户角色信息
+        /// </summary>
+        /// <returns></returns>
+        List<Roles> GetRoles();
 
     }
 }

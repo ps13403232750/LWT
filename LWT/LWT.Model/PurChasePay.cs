@@ -42,6 +42,6 @@ namespace LWT.Model
         /// <summary>
         /// 操作时间
         /// </summary>
-        public DateTime createTime { get; set; }
+        public DateTime CreateTime { get; set; }
     }
 }

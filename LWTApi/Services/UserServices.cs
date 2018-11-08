@@ -10,11 +10,15 @@ namespace Services
     public class UserServices :BaseDB, IUserServices
     {
         
-        
+        /// <summary>
+        /// 添加用户
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns></returns>
         public int Add(Users user)
         {
             var i = SqlSugarHelper<Users>.Insert(user);
-            return 1;
+            return i;
         }
 
         /// <summary>
@@ -25,13 +29,18 @@ namespace Services
         public int Add(PurChase purchase)
         {
             var i = SqlSugarHelper<PurChase>.Insert(purchase);
-            return 1;
+            return i;
         }
 
+        /// <summary>
+        /// 添加品牌
+        /// </summary>
+        /// <param name="brand"></param>
+        /// <returns></returns>
         public int AddBrand(Brand brand)
         {
             var i = SqlSugarHelper<Brand>.Insert(brand);
-            return 1;
+            return i;
         }
 
         /// <summary>
@@ -41,7 +50,8 @@ namespace Services
         /// <returns></returns>
         public int AddRole(Roles roles)
         {
-            throw new NotImplementedException();
+            var i = SqlSugarHelper<Roles>.Insert(roles);
+            return i;
         }
 
         /// <summary>
@@ -49,9 +59,10 @@ namespace Services
         /// </summary>
         /// <param name="roleAndPower"></param>
         /// <returns></returns>
-        public int AddRoleAndPower(RoleAndPower roleAndPower)
+        public int AddRoleAndPower(RoleAndPower roleandpower)
         {
-            throw new NotImplementedException();
+            var i = SqlSugarHelper<RoleAndPower>.Insert(roleandpower);
+            return i;
         }
 
         /// <summary>
@@ -61,7 +72,8 @@ namespace Services
         /// <returns></returns>
         public int AddSupplier(Supplier supplier)
         {
-            throw new NotImplementedException();
+            var i = SqlSugarHelper<Supplier>.Insert(supplier);
+            return i;
         }
 
         /// <summary>
@@ -71,12 +83,8 @@ namespace Services
         /// <returns></returns>
         public int AddUser(Users users)
         {
-            throw new NotImplementedException();
-        }
-
-        public Brand GetBrand()
-        {
-            throw new NotImplementedException();
+            var i = SqlSugarHelper<Users>.Insert(users);
+            return i;
         }
 
         /// <summary>
@@ -84,18 +92,39 @@ namespace Services
         /// </summary>
         /// <param name="classe"></param>
         /// <returns></returns>
-        public List<Class> GetClass(Class classe)
+        public List<Class> GetClass()
         {
-            throw new NotImplementedException();
+            var list = SqlSugarHelper<Class>.FindAll();
+            return list;
         }
 
         /// <summary>
-        /// 获取权限列表信息
+        /// 采购结算列表
         /// </summary>
         /// <returns></returns>
         public List<Power> GetPowerMessage()
         {
             var list = SqlSugarHelper<Power>.FindAll();
+            return list;
+        }
+
+        /// <summary>
+        /// 获取用户角色的所有信息
+        /// </summary>
+        /// <returns></returns>
+        public List<Roles> GetRoles()
+        {
+            var list = SqlSugarHelper<Roles>.FindAll();
+            return list;
+        }
+
+        /// <summary>
+        /// 获取品牌的信息
+        /// </summary>
+        /// <returns></returns>
+        public List<Brand> GetBrand()
+        {
+            var list = SqlSugarHelper<Brand>.FindAll();
             return list;
         }
     }
