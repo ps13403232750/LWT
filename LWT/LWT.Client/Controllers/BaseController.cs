@@ -15,7 +15,7 @@ namespace LWT.Client.Controllers
         {
             get
             {
-                return RedisHelper.Get<UserData>(_loginInfo.Id.ToString()); ;
+                return RedisHelper.Get<UserData>("1"); 
             }
         }
     }
