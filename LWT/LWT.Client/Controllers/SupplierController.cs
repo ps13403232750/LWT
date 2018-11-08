@@ -13,8 +13,21 @@ namespace LWT.Client.Controllers
     {
         public IActionResult Index()
         {
-            var getgoods = Common.Client.GetApi("get", "Supplier/GetGoods");
+           // ViewBag.goods= Common.Client.GetApi("get", "Supplier/GetGoods");
+            var getgoods= Common.Client.GetApi("get", "Supplier/GetGoods");
+            
             return View(JsonConvert.DeserializeObject<List<Goods>>(getgoods));
+        }
+        public IActionResult ReviewOfGoods()
+        {
+            
+            ViewBag.goods = GetGoods();
+            return View();
+        }
+        public string GetGoods()
+        {
+            var result= Common.Client.GetApi("get", "Supplier/GetGoods");
+            return result;
         }
     }
 }

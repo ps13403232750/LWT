@@ -25,7 +25,7 @@ namespace Model
         public string Img { get; set; }
 
         /// <summary>
-        /// 类目
+        /// 类目 
         /// </summary>
         public string Category { get; set; }
 
