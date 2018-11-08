@@ -30,8 +30,9 @@
                 <td> 状态 </td>
                 <td> 是否启用 </td>
                 <td> 操作 </td>
-            </tr>
-            <tr v-for="item in info" v-bind:key="item.id" >
+            </tr>           
+            <tr v-for="item in info" v-bind:key="item.id">
+
                 <td>{{item.id}}</td>
                 <td>{{item.name}}</td>
                 <td>{{item.img}}</td>
@@ -41,27 +42,13 @@
                 <td>{{item.attribute}}</td>
                 <td>{{item.price}}</td>
                 <td>{{item.inventory}}</td>
-                <td>{{item.state}}</td>
+                <template v-if="item.state==0">
+                    <td>待审核</td>
+                </template>
                 <td>{{item.isable}}</td>
                 <td><a href="#">操作</a></td>
-            </tr>
-            @*@foreach (var item in vi)
-        {
-            <tr>
-                <td>@item.Id</td>
-                <td>@item.Name</td>
-                <td>@item.Img</td>
-                <td>@item.Category</td>
-                <td>@item.Band</td>
-                <td>@item.Color</td>
-                <td>@item.Attribute</td>
-                <td>@item.Price</td>
-                <td>@item.Inventory</td>
-                <td>@item.State</td>
-                <td>@item.Isable</td>
-                <td><a href="#">操作</a></td>
-            </tr>
-        }*@
+
+            </tr>           
         </table>
     </div>
 </body>
@@ -75,9 +62,9 @@
         mounted: function () {
             var that = this;
             axios.get('/Supplier/GetGoods').then(function (res) {
-                that.info = res.data;
+                console.log(res);
+                that.info = res.data;               
             }
-
             );
         }
     })

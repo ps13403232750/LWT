@@ -18,10 +18,9 @@ namespace LWT.Client.Controllers
             
             return View(JsonConvert.DeserializeObject<List<Goods>>(getgoods));
         }
-        public IActionResult ReviewOfGoods()
-        {
+        public IActionResult ReviewOfGoods()        {
             
-            ViewBag.goods = GetGoods();
+           // ViewBag.goods = GetGoods();
             return View();
         }
         public string GetGoods()
