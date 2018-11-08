@@ -1,0 +1,85 @@
+﻿
+@{
+    Layout = null;
+}
+@model List<LWT.Model.Goods>
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ReviewOfGoods</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+<body>
+    <div id="app">
+        <table>
+            <tr>
+                <td> 编号 </td>
+                <td> 商品名称 </td>
+                <td> 商品图片 </td>
+                <td> 类目 </td>
+                <td> 品牌 </td>
+                <td> 颜色 </td>
+                <td> 规格属性 </td>
+                <td> 价格 </td>
+                <td> 库存量 </td>
+                <td> 状态 </td>
+                <td> 是否启用 </td>
+                <td> 操作 </td>
+            </tr>
+            <tr v-for="item in info" v-bind:key="item.id" >
+                <td>{{item.id}}</td>
+                <td>{{item.name}}</td>
+                <td>{{item.img}}</td>
+                <td>{{item.category}}</td>
+                <td>{{item.band}}</td>
+                <td>{{item.color}}</td>
+                <td>{{item.attribute}}</td>
+                <td>{{item.price}}</td>
+                <td>{{item.inventory}}</td>
+                <td>{{item.state}}</td>
+                <td>{{item.isable}}</td>
+                <td><a href="#">操作</a></td>
+            </tr>
+            @*@foreach (var item in vi)
+        {
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.Name</td>
+                <td>@item.Img</td>
+                <td>@item.Category</td>
+                <td>@item.Band</td>
+                <td>@item.Color</td>
+                <td>@item.Attribute</td>
+                <td>@item.Price</td>
+                <td>@item.Inventory</td>
+                <td>@item.State</td>
+                <td>@item.Isable</td>
+                <td><a href="#">操作</a></td>
+            </tr>
+        }*@
+        </table>
+    </div>
+</body>
+</html>
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            info: null,
+        },
+        mounted: function () {
+            var that = this;
+            axios.get('/Supplier/GetGoods').then(function (res) {
+                that.info = res.data;
+            }
+
+            );
+        }
+    })
+
+</script>

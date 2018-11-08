@@ -25,7 +25,7 @@ namespace Model
         public string Img { get; set; }
 
         /// <summary>
-        /// 类目
+        /// 类目 
         /// </summary>
         public string Category { get; set; }
 
@@ -42,7 +42,7 @@ namespace Model
         /// <summary>
         /// 规格属性
         /// </summary>
-        public int Attribute { get; set; }
+        public string Attribute { get; set; }
 
         /// <summary>
         /// 价格

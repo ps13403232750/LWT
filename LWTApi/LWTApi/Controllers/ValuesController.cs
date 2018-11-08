@@ -48,7 +48,7 @@ namespace LWTApi.Controllers
         /// <param name="user"></param>
         /// <returns></returns>
         // POST api/values
-        [Route("AddUser")]
+        [Route("[action]")]
         [HttpPost]
         public int AddUser(Users user)
         {
@@ -56,16 +56,7 @@ namespace LWTApi.Controllers
             return i;
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
-        // GET api/values
-        [HttpGet]
-        public ActionResult<string> Get()
-        {
-            return userServices.Add(new Users()).ToString();
-        }
+       
 
 
     }
