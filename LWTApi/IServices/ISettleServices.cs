@@ -5,7 +5,7 @@ using System.Text;
 using Model;
 namespace IServices
 {
-   public  interface ISettleServices
+   public interface ISettleServices
     {
         /// <summary>
         /// 额度管理表
