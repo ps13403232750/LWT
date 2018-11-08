@@ -32,6 +32,16 @@ namespace LWTApi
             services.AddScoped<ISupplierServices, SupplierServices>();
             services.AddScoped<ISettleServices, SettleServices>();
             services.AddScoped<IUserServices,UserServices>();
+            services.AddCors(options =>
+            {
+                options.AddPolicy("anyCors", builder =>
+                {
+                    builder.AllowAnyOrigin()//允许任何来源的主机访问
+                    .AllowAnyMethod()
+                    .AllowAnyHeader()
+                    .AllowCredentials();//指定处理Cookie
+                });
+            });
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 
