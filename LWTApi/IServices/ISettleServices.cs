@@ -11,7 +11,7 @@ namespace IServices
         /// 额度管理表
         /// </summary>
         /// <returns></returns>
-        List<ManageLimit> GetManageLimits();
+        List<ManageLimit> GetManageLimit();
 
         /// <summary>
         /// 结算次数

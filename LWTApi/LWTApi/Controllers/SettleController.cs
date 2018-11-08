@@ -24,9 +24,9 @@ namespace LWTApi.Controllers
         /// <returns></returns>
         [HttpGet]
         [Route("[action]")]
-        public ActionResult<List<ManageLimit>> GetManageLimits()
+        public ActionResult<List<ManageLimit>> GetManageLimit()
         {
-            return settleServices.GetManageLimits().ToList();
+            return settleServices.GetManageLimit().ToList();
         }
 
         /// <summary>

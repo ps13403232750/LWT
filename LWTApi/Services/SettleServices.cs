@@ -13,7 +13,7 @@ namespace Services
         /// 额度表显示
         /// </summary>
         /// <returns></returns>
-        public List<ManageLimit> GetManageLimits()
+        public List<ManageLimit> GetManageLimit()
         {
             var list = SqlSugarHelper<ManageLimit>.FindAll();
             return list;
