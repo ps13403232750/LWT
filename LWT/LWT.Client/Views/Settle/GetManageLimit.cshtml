@@ -13,8 +13,8 @@
 <body>
     <div style="text-align:center;">
         <input type="type" name="BuyerName" value="" placeholder="请输入企业名称" /><button style="background-color:#4cff00;color:white">查询</button>
-         <span>审核状态<input type="type" name="State" value="" placeholder="选择审核状态" /></span>
-        <table>
+        <span>审核状态<input type="type" name="State" value="" placeholder="选择审核状态" /></span>
+        <table class="table table-border">
             <tr>
                 <th>序号</th>
                 <th>企业名称</th>
@@ -34,10 +34,17 @@
                 <td>@item.ApplyAmount </td>
                 <td>@item.State</td>
                 <td>@item.AppRoveLimit </td>
-                <td><a href="#">查看</a> </td>
+                <td><a href="/Settle/ThinMaLimite/">查看</a> </td>
+                <td style="text-align:center;"><span class="label label-info "><a href="#" onclick="show('聚聚', '/Settle/ThinMaLimite/', 800, 600)">查看</a></span></td>
             </tr>
             }
         </table>
     </div>
 </body>
 </html>
+<script type="text/javascript" src="/lib/laypage/1.2/laypage.js"></script>
+<script type="text/javascript">
+    function show(title, url, w, d) {
+        layer_show(title, url, w, d)
+    }
+</script>

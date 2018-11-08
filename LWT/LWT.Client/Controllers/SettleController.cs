@@ -42,5 +42,16 @@ namespace LWT.Client.Controllers
             var list = JsonConvert.DeserializeObject<List<PurChaseNumber>>(thinPurState);
             return View(list);
         }
+
+        /// <summary>
+        /// 额度详情
+        /// </summary>
+        /// <returns></returns>
+        public IActionResult ThinMaLimite()
+        {
+            string thinMaLimite = Common.Client.GetApi("get", "Settle/ThinMaLimite");
+            var list = JsonConvert.DeserializeObject<List<PurChaseNumber>>(thinMaLimite);
+            return View(list);
+        }
     }
 }
