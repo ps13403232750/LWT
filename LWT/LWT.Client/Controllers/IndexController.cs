@@ -32,11 +32,13 @@ namespace LWT.Client.Controllers
             GetRoles();
             return View();
         }
-        [HttpPost]
-        public int Add(string UserName)
+        
+        public int Adddo(string userName)
         {
-            var data = Common.Client.GetApi("Post","Values/Add");
-            return int.Parse(data);
+            //var data = Common.Client.GetApi("Post","Values/Add");
+            //return int.Parse(data);
+
+            return 1;
         }
 
         /// <summary>

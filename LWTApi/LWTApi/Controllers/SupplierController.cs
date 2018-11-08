@@ -28,6 +28,7 @@ namespace LWTApi.Controllers
             var list = _supplierServices.Goods().ToList();
             return list;
         }
+
         [HttpPut]
         [Route("[action]")]
         public ActionResult <bool> UpdateGoods(int Id, int State=1)
@@ -35,5 +36,6 @@ namespace LWTApi.Controllers
             var list = _supplierServices.UpdateGoods(Id, State);
             return list;
         }
+
     }
 }
