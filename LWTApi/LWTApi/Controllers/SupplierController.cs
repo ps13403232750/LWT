@@ -21,6 +21,11 @@ namespace LWTApi.Controllers
         {
             _supplierServices = supplierServices;
         }
+
+        /// <summary>
+        /// 获取商品信息
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         [Route("[action]")]
         public ActionResult<List<Goods>> GetGoods()
@@ -28,6 +33,13 @@ namespace LWTApi.Controllers
             var list = _supplierServices.Goods().ToList();
             return list;
         }
+
+        /// <summary>
+        /// 审核提交的商品信息
+        /// </summary>
+        /// <param name="Id"></param>
+        /// <param name="State"></param>
+        /// <returns></returns>
         [HttpPut]
         [Route("[action]")]
         public ActionResult <bool> UpdateGoods(int Id, int State=1)
