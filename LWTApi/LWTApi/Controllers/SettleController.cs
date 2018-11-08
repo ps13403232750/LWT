@@ -58,7 +58,7 @@ namespace LWTApi.Controllers
         /// <returns></returns>
         [HttpGet]
         [Route("[action]")]
-        public ActionResult<List<PurChaseNumber>> ThinMaLimite()
+        public ActionResult<List<ManageLimit>> ThinMaLimite()
         {
             return settleServices.ThinMaLimite().ToList();
         }

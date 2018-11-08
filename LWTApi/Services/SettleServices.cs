@@ -62,9 +62,9 @@ namespace Services
         /// 额度详情
         /// </summary>
         /// <returns></returns>
-        public List<PurChaseNumber> ThinMaLimite()
+        public List<ManageLimit> ThinMaLimite()
         {
-            var list = SqlSugarHelper<PurChaseNumber>.FindAll();
+            var list = SqlSugarHelper<ManageLimit>.FindAll();
             return list;
         }
 
