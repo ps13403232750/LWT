@@ -31,7 +31,7 @@
             <tr>
                 <td align="right">分配角色：</td>
                 <td>
-                    <select id="Select1" v-model="RoleId">
+                    <select id="Select1">
                         <option v-for="item in select" :value="item.roleId">{{item.roleName}}</option>
                     </select>
                 </td>
@@ -43,7 +43,7 @@
         </table>
     </div>
     <script>
-        axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
+
         var app = new Vue({
             el: '#app',
             data: {
