@@ -73,11 +73,7 @@
             });
         },
         update: function (res) {
-            alert(1)
-            var that = this;
-            axios.put('http://localhost:60259/api/Supplier/UpdateGoods', {
-                Id: res,
-                State:1
+            axios.put('http://localhost:60259/api/Supplier/UpdateGoods?Id='+res, {
             }).then(function (res) {
                 console.log(res);
             });
