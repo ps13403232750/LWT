@@ -40,6 +40,10 @@ namespace LWTApi.Controllers
             return settleServices.GetPurChaseSettle().ToList();
         }
 
+        //public ActionResult UpdateSettle(int id,int states)
+        //{
+            
+        //}
 
     }
 }
