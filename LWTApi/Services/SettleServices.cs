@@ -49,13 +49,19 @@ namespace Services
         }
 
         /// <summary>
-        /// 额度审批状态
+        ///额度审核状态
         /// </summary>
+        /// <param name="id"></param>
+        /// <param name="states"></param>
         /// <returns></returns>
-        //public int UpdateSettle(int id,int states)
-        //{
-        //    var i = SqlSugarHelper<ManageLimit>.Update(id, states);
-        //    return 1; 
-        //}
+        public int UpdateSettle(int id, int states)
+        {         
+            ManageLimit ml = new ManageLimit();
+            ml.Id = id;
+            ml.BuyerState = states;
+            var reslut = SqlSugarHelper<ManageLimit>.Update(ml);
+            //var i = SqlSugarHelper<ManageLimit>.Update(id, states);
+            return Convert.ToInt32(reslut);
+        }
     }
 }

@@ -14,7 +14,7 @@ namespace LWTApi.Controllers
     public class SettleController : ControllerBase
     {
         private ISettleServices settleServices;
-        public  SettleController (ISettleServices _settleServices)
+        public SettleController(ISettleServices _settleServices)
         {
             settleServices = _settleServices;
         }
@@ -40,10 +40,16 @@ namespace LWTApi.Controllers
             return settleServices.GetPurChaseSettle().ToList();
         }
 
-        //public ActionResult UpdateSettle(int id,int states)
-        //{
-            
-        //}
-
+        /// <summary>
+        /// 额度审核状态
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="states"></param>
+        /// <returns></returns>
+        public ActionResult<int> UpdateSettle(int id, int states)
+        {
+            var list = settleServices.UpdateSettle(id, states);
+            return Convert.ToInt32(list);
+        }
     }
 }
