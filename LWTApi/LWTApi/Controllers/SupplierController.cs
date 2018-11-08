@@ -7,10 +7,12 @@ using Microsoft.AspNetCore.Mvc;
 using Model;
 using IServices;
 using SqlSugar;
+using Microsoft.AspNetCore.Cors;
+
 namespace LWTApi.Controllers
 {
     [Route("api/[controller]")]
-
+    [EnableCors("anyCors")]
     [ApiController]
     public class SupplierController : Controller
     {
@@ -26,9 +28,6 @@ namespace LWTApi.Controllers
             var list = _supplierServices.Goods().ToList();
             return list;
         }
-<<<<<<< HEAD
 
-=======
->>>>>>> 34e552793c2370fd7d085cd8ee7f755bb14e484d
     }
 }
