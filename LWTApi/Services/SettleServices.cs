@@ -29,6 +29,16 @@ namespace Services
         }
 
         /// <summary>
+        /// 结算详情
+        /// </summary>
+        /// <returns></returns>
+        public List<PurChaseNumber> ThinPurState()
+        {
+            var list = SqlSugarHelper<PurChaseNumber>.FindAll();
+            return list;
+        }
+
+        /// <summary>
         /// 采购付款结算列表
         /// </summary>
         /// <returns></returns>

@@ -5,7 +5,7 @@ using System.Text;
 namespace LWT.Model
 {
     /// <summary>
-    /// 结算列表
+    /// 采购商列表
     /// </summary>
    public class PurChaseSettle
     {
