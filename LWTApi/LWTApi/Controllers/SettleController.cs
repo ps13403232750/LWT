@@ -18,6 +18,7 @@ namespace LWTApi.Controllers
         {
             settleServices = _settleServices;
         }
+
         /// <summary>
         ///额度管理表显示 
         /// </summary>
@@ -39,8 +40,7 @@ namespace LWTApi.Controllers
         {
             return settleServices.GetPurChaseSettle().ToList();
         }
-
-        
+  
         /// <summary>
         /////采购结算列表显示 
         /// </summary>
@@ -51,6 +51,7 @@ namespace LWTApi.Controllers
         {
             return settleServices.ThinPurState().ToList();
         }
+
         /// <summary>
         /// 额度审核状态
         /// </summary>
