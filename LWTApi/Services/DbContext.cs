@@ -1,25 +1,15 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Text;
+
 using Model;
 using SqlSugar;
-
 namespace Services
 {
-    public class BaseDB
+   public class DbContext
     {
-        public static SqlSugarClient GetInstance()
-        {
-            SqlSugarClient db = new SqlSugarClient(new ConnectionConfig() { ConnectionString = Config.ConnectionString, DbType = DbType.Oracle, IsAutoCloseConnection = true });
-            db.Ado.IsEnableLogEvent = true;
-            db.Ado.LogEventStarting = (sql, pars) =>
-            {
-                Console.WriteLine(sql + "\r\n" + db.Utilities.SerializeObject(pars.ToDictionary(it => it.ParameterName, it => it.Value)));
-                Console.WriteLine();
-            };
-            return db;
-        }
-
-        public BaseDB()
+        public DbContext()
         {
             Db = new SqlSugarClient(new ConnectionConfig()
             {
@@ -39,5 +29,5 @@ namespace Services
         }
         public SqlSugarClient Db;//用来处理事务多表查询和复杂的操作
         public SimpleClient<Goods> GoodsDb { get { return new SimpleClient<Goods>(Db); } }//用来处理Goods表的常用操作
-        }
+    }
 }

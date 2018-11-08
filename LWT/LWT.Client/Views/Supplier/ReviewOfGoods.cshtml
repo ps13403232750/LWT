@@ -45,8 +45,13 @@
                 <template v-if="item.state==0">
                     <td>待审核</td>
                 </template>
+                <template v-else-if="item.state==1">
+                    <td>审核通过</td>
+                </template>
                 <td>{{item.isable}}</td>
-                <td><a href="#">操作</a></td>
+                <td>
+                    <a href="javascript:;" v-on:click="update(item.Id,$event)">update</a>
+                </td>
             </tr>
         </table>
     </div>
@@ -57,13 +62,25 @@
         el: '#app',
         data: {
             info: null,
+            Id: 0,
+            State:1,
+            num:0
         },
         mounted: function () {
             var that = this;
             axios.get('http://localhost:60259/api/Supplier/GetGoods').then(function (res) {
                 that.info = res.data;
-            }
-            );
+            });
+        },
+        update: function (res) {
+            alert(1)
+            var that = this;
+            axios.put('http://localhost:60259/api/Supplier/UpdateGoods', {
+                Id: res,
+                State:1
+            }).then(function (res) {
+                console.log(res);
+            });
         }
     })
 

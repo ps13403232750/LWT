@@ -30,7 +30,7 @@ namespace LWTApi.Controllers
         }
         [HttpPut]
         [Route("[action]")]
-        public ActionResult <int> UpdateGoods(int Id, int State)
+        public ActionResult <int> UpdateGoods(int Id, int State=1)
         {
             var list = _supplierServices.UpdateGoods(Id, State);
             return list;
