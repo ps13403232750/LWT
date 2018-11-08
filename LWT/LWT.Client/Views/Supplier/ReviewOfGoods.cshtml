@@ -50,7 +50,7 @@
                 </template>
                 <td>{{item.isable}}</td>
                 <td>
-                    <a href="javascript:;" v-on:click="edituser(item.id)"> Edit </a>
+                    <a href="javascript:;" v-on:click="edituser(item.id,)"> Edit </a>
                 </td>
             </tr>
         </table>
@@ -66,28 +66,30 @@
             State: 1,
             num: 0
         },
+        //获取加载时数据
         mounted: function () {
             var that = this;
             axios.get('http://localhost:60259/api/Supplier/GetGoods').then(function (res) {
                 that.info = res.data;
             });
         },
-        edituser: function (res) {
-            alert(2);
-            axios({
-                method: 'put',
-                baseURL: '/api',
-                url: '/Supplier/UpdateGoods'
-            }).then(
-                res => {
-                    console.log(res.data);
-                }).catch(
-                    err => {
-                        console.log(err);
+        methods: {
+            //修改事件
+            edituser: function (res) {
+                axios({   
+                    method: 'put',
+                    url: '/Supplier/UpdateGoods?Id=' + res,
+                }).then(function (result) {
+                    //监控API返回结果result
+                    console.log(result);
+                    //根据返回结果给出修改成功提示
+                    if (result.data == true) {
+                        alert(2)
                     }
-                )
+                })
+                    
+            }
         }
-        
     })
 
 </script>
