@@ -66,6 +66,7 @@
             State: 1,
             num: 0
         },
+        //获取加载时数据
         mounted: function () {
             var that = this;
             axios.get('http://localhost:60259/api/Supplier/GetGoods').then(function (res) {
@@ -73,12 +74,15 @@
             });
         },
         methods: {
+            //修改事件
             edituser: function (res) {
                 axios({   
                     method: 'put',
                     url: '/Supplier/UpdateGoods?Id=' + res,
                 }).then(function (result) {
+                    //监控API返回结果result
                     console.log(result);
+                    //根据返回结果给出修改成功提示
                     if (result.data == true) {
                         alert(2)
                     }
