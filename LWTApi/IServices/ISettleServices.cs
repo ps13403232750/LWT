@@ -11,13 +11,19 @@ namespace IServices
         /// 额度管理表
         /// </summary>
         /// <returns></returns>
-        List<ManageLimit> GetManageLimits();
+        List<ManageLimit> GetManageLimit();
 
         /// <summary>
         /// 结算次数
         /// </summary>
         /// <returns></returns>
         List<PurChaseNumber> GetPurChaseNumber();
+
+        /// <summary>
+        /// 详情
+        /// </summary>
+        /// <returns></returns>
+        List<PurChaseNumber> ThinPurState();
 
         /// <summary>
         /// 采购结算列表
@@ -30,5 +36,13 @@ namespace IServices
         /// </summary>
         /// <returns></returns>
         List<PurChaseSettle> GetPurChaseSettle();
+
+        /// <summary>
+        /// 修改审批状态
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="states"></param>
+        /// <returns></returns>
+        int UpdateSettle(int id, int states);
     }
 }

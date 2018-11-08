@@ -12,5 +12,12 @@ namespace IServices
         /// </summary>
         /// <returns></returns>
         List<Goods> Goods();
+
+        /// <summary>
+        /// 审批商品
+        /// </summary>
+        /// <param name="Id"></param>
+        /// <returns></returns>
+        int UpdateGoods(int Id, int State);
     }
 }

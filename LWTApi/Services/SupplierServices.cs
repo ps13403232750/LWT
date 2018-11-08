@@ -9,7 +9,6 @@ namespace Services
 {
     public class SupplierServices : BaseDB, ISupplierServices
     {
-
         /// <summary>
         /// 获取商品表数据
         /// </summary>
@@ -20,7 +19,15 @@ namespace Services
             return List;
         }
 
-
-
+        /// <summary>
+        /// 审核商品
+        /// </summary>
+        /// <param name="Id"></param>
+        /// <returns></returns>
+        public int UpdateGoods(int Id, int State)
+        {
+            var result = GetSimpleInstance<Goods>().Update(it => new Goods() { State = State }, it => it.Id == Id);
+            return Convert.ToInt32(result);
+        }
     }
 }

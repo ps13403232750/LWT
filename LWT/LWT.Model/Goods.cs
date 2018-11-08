@@ -44,7 +44,7 @@ namespace LWT.Model
         /// <summary>
         /// 价格
         /// </summary>
-        public int Price { get; set; }
+        public float Price { get; set; }
 
         /// <summary>
         /// 库存量

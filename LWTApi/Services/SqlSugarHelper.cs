@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SqlSugar;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
@@ -166,9 +167,11 @@ namespace Services
             using (var db = BaseDB.GetInstance())
             {
                 var i = db.Deleteable<T>().In(ids).ExecuteCommand();
+
                 return i > 0;
             }
         }
+        
 
         /// <summary>  
         /// 带条件的分页查询  

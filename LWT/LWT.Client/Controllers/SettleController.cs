@@ -15,8 +15,10 @@ namespace LWT.Client.Controllers
         /// </summary>
         /// <returns></returns>
         public IActionResult GetManageLimit()
-        {   
-            return View();
+        {
+            string getManageLimit = Common.Client.GetApi("get", "Settle/GetManageLimit");
+            var list = JsonConvert.DeserializeObject<List<ManageLimit>>(getManageLimit);
+            return View(list);
         }
 
         /// <summary>
@@ -25,8 +27,19 @@ namespace LWT.Client.Controllers
         /// <returns></returns>
         public IActionResult GetPurChaseSettle()
         {
-            string getPurChaseSettle =Common.Client.GetApi("get", "Values/GetPurChaseSettle");
+            string getPurChaseSettle =Common.Client.GetApi("get", "Settle/GetPurChaseSettle");
             var list = JsonConvert.DeserializeObject<List<PurChaseSettle>>(getPurChaseSettle);
+            return View(list);
+        }
+
+        /// <summary>
+        /// 采购结算列表详情显示
+        /// </summary>
+        /// <returns></returns>
+        public IActionResult ThinPurState()
+        {
+            string thinPurState = Common.Client.GetApi("get", "Settle/ThinPurState");
+            var list = JsonConvert.DeserializeObject<List<PurChaseNumber>>(thinPurState);
             return View(list);
         }
     }
