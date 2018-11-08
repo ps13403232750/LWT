@@ -50,7 +50,7 @@
                 </template>
                 <td>{{item.isable}}</td>
                 <td>
-                    <a href="javascript:;" v-on:click="edituser(item.id,$event)"> Edit </a>
+                    <a href="javascript:;" v-on:click="edituser(item.id)"> Edit </a>
                 </td>
             </tr>
         </table>
@@ -63,8 +63,8 @@
         data: {
             info: null,
             Id: 0,
-            State:1,
-            num:0
+            State: 1,
+            num: 0
         },
         mounted: function () {
             var that = this;
@@ -73,13 +73,21 @@
             });
         },
         edituser: function (res) {
-            axios.put('http://localhost:60259/api/Supplier/UpdateGoods?Id='+res).then(function (result) {
-                console.log(result);
-                if (result == true) {
-                    alert('修改成功');
-                }
-            });
+            alert(2);
+            axios({
+                method: 'put',
+                baseURL: '/api',
+                url: '/Supplier/UpdateGoods'
+            }).then(
+                res => {
+                    console.log(res.data);
+                }).catch(
+                    err => {
+                        console.log(err);
+                    }
+                )
         }
+        
     })
 
 </script>

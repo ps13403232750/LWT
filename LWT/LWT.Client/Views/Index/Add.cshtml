@@ -43,7 +43,6 @@
         </table>
     </div>
     <script>
-        axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
         var app = new Vue({
             el: '#app',
             data: {
@@ -59,22 +58,17 @@
             },
             methods: {
                 adduser: function () {
-                    var that = this;
-                    axios.get('/Index/Add', { userName: "123" }).then(function (res) {
-                        console.log(res.data)
-                        if (res.data > 0) {
-                            alert('添加成功！');
-                        }
-                    })
-
-                    //$.ajax({
-                    //    type: "get",
-                    //    url: "/Index/Adddo/",
-                    //    //url: "/Index/Add/?userName=123",
-                    //    data: { userName: '123'},
-                    //    success: function (obj) {
-                    //    }
-                    //})
+                    alert(1);
+                    var params = new URLSearchParams();
+                    params.append('Id', '0');     
+                    params.append('UserName', 'admin');
+                    params.append('UserPwd', '123');
+                    params.append('RoleId', '1');
+                    axios({
+                        method: 'post',
+                        url: '/Index/Add',
+                        data: params
+                    });
                 },
                 BackLogin: function () { }
             }
