@@ -22,7 +22,7 @@ namespace LWT.Model
         /// <summary>
         /// 结算年数
         /// </summary>
-        public DateTime Years { get; set; }
+        public int Years { get; set; }
 
         /// <summary>
         /// 结算次数

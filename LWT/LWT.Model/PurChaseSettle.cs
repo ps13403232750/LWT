@@ -5,7 +5,7 @@ using System.Text;
 namespace LWT.Model
 {
     /// <summary>
-    /// 结算列表
+    /// 采购商列表
     /// </summary>
    public class PurChaseSettle
     {
@@ -32,7 +32,7 @@ namespace LWT.Model
         /// <summary>
         /// 状态
         /// </summary>
-        public int SettleState { get; set; }
+        public int State { get; set; }
     }
 
 }

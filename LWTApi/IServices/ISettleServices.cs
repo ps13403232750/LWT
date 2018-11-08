@@ -11,13 +11,19 @@ namespace IServices
         /// 额度管理表
         /// </summary>
         /// <returns></returns>
-        List<ManageLimit> GetManageLimits();
+        List<ManageLimit> GetManageLimit();
 
         /// <summary>
         /// 结算次数
         /// </summary>
         /// <returns></returns>
         List<PurChaseNumber> GetPurChaseNumber();
+
+        /// <summary>
+        /// 详情
+        /// </summary>
+        /// <returns></returns>
+        List<PurChaseNumber> ThinPurState();
 
         /// <summary>
         /// 采购结算列表

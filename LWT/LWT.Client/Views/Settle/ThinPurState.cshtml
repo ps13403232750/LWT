@@ -1,0 +1,50 @@
+﻿
+@{
+    Layout = null;
+}
+@model List<LWT.Model.PurChaseNumber>
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>采购商对账详情</title>
+</head>
+<body>
+    <style>
+        li {
+            list-style-type: none;
+        }
+    </style>
+    <ul>
+        <li><button>2017年</button><button>2016年</button></li>
+    </ul>
+    <ul>
+        <li>第四次结算</li>
+        <li>第三次结算  </li>
+        <li>第二次结算 </li>
+        <li>第一次结算 </li>
+    </ul>
+    <h2 style="color:blue">    发送对账单</h2>
+    <table class="table table-border">
+        <tr>
+            <th>订单编号</th>
+            <th>创建时间</th>
+            <th>状态</th>
+            <th>商品</th>
+            <th>订单金额</th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.SettleNumber</td>
+                <td>@item.BuyerName</td>
+                <td>@item.SettleState</td>
+                <td>@item.SettleState</td>
+                <td>@item.BuyerName</td>
+            </tr>
+
+        }
+    </table>
+</body>
+</html>

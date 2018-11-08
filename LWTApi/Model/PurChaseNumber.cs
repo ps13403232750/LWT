@@ -22,7 +22,7 @@ namespace Model
         /// <summary>
         /// 结算年数
         /// </summary>
-        public DateTime Years { get; set; }
+        public int Years { get; set; }
 
         /// <summary>
         /// 结算次数
@@ -32,6 +32,6 @@ namespace Model
         /// <summary>
         /// 结算状态
         /// </summary>
-        public int SettleState { get; set; }
+        public int State { get; set; }
     }
 }

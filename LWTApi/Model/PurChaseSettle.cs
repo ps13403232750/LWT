@@ -32,7 +32,7 @@ namespace Model
         /// <summary>
         /// 状态
         /// </summary>
-        public int SettleState { get; set; }
+        public int State { get; set; }
     }
 
 }
