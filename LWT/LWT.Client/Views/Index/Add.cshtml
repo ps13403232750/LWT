@@ -26,7 +26,7 @@
             </tr>
             <tr>
                 <td align="right">确认密码：</td>
-                <td><input id="pwd" type="text"/></td>
+                <td><input id="pwd" type="text" /></td>
             </tr>
             <tr>
                 <td align="right">分配角色：</td>
@@ -58,17 +58,23 @@
                     .then(response => (that.select = response.data))
             },
             methods: {
-                adduser: function ()
-                {
+                adduser: function () {
                     var that = this;
-                    axios.post('/Index/Add', {
-                        UserName: "fggg",
-                    }).then(function (res) {
+                    axios.get('/Index/Adddo', { userName: "123" }).then(function (res) {
                         console.log(res.data)
                         if (res.data > 0) {
                             alert('添加成功！');
                         }
                     })
+
+                    //$.ajax({
+                    //    type: "get",
+                    //    url: "/Index/Adddo/",
+                    //    //url: "/Index/Add/?userName=123",
+                    //    data: { userName: '123'},
+                    //    success: function (obj) {
+                    //    }
+                    //})
                 },
                 BackLogin: function () { }
             }
