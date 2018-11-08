@@ -34,7 +34,7 @@ namespace Model
         /// <summary>
         /// 运营商审核状态
         /// </summary>
-        public int BuyerState { get; set; }
+        public int State { get; set; }
 
         /// <summary>
         /// 审批额度

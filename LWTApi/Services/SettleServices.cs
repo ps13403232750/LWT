@@ -68,7 +68,7 @@ namespace Services
         {         
             ManageLimit ml = new ManageLimit();
             ml.Id = id;
-            ml.BuyerState = states;
+            ml.State = states;
             var reslut = SqlSugarHelper<ManageLimit>.Update(ml);
             //var i = SqlSugarHelper<ManageLimit>.Update(id, states);
             return Convert.ToInt32(reslut);
