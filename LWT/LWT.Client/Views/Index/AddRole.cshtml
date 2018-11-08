@@ -1,0 +1,79 @@
+﻿
+@{
+    Layout = null;
+}
+@model List<LWT.Model.Power>
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>AddRole</title>
+    <script src="~/js/jquery-1.10.2.js"></script>
+    <script>
+        $(function () {
+            $("[name=ck_father]").click(function () {
+                if ($(this).prop("checked")) {
+                    $("[name='ck_Child_" + $(this).val() + "']").prop("hidden", "")
+                    $("[name='ck_Child_" + $(this).val() + "']").next().prop("hidden", "")
+                   
+                }
+                else {
+                    $("[name='ck_Child_" + $(this).val() + "']").prop("hidden", "hidden")
+                    $("[name='ck_Child_" + $(this).val() + "']").next().prop("hidden", "hidden")
+                }
+                $("[name='ck_Child_" + $(this).val() + "']").prop("checked", $(this).prop("checked"))
+            })
+        })
+    </script>
+</head>
+<body>
+    <table>
+        <tr>
+            <td align="right">角色名称：</td>
+            <td><input id="Text1" type="text" /></td>
+        </tr>
+        <tr>
+            <td align="right">分配角色：</td>
+            <td>
+                <div>
+                    <table>
+                        <tr>
+                            <td align="right">全部角色：</td>
+                            <td>
+                                <table>
+                                    @foreach (var item in Model)
+                                    {
+                                        if (item.Pid == 0)
+                                        {
+                                            <tr>
+                                                <td>
+                                                    <input id="Checkbox1" name="ck_father" type="checkbox" data-name="ck_father_@item.id" value="@item.id" />
+                                                    <span>@item.PowerName</span>
+                                                </td>
+                                                <td>
+                                                    @foreach (var item1 in Model)
+                                                    {
+                                                        if (item1.Pid == item.id)
+                                                        {
+                                                            <input id="Checkbox1" hidden="hidden" name="ck_Child_@item.id" type="checkbox" data-father="@item1.Pid" data-name="ck_child" value="@item1.id" />
+                                                            <span hidden="hidden">@item1.PowerName</span>
+                                                        }
+                                                    }
+                                                </td>
+                                            </tr>
+                                        }
+                                    }
+
+
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </td>
+        </tr>
+        <tr><td><input id="Button1" type="button" value="保存" /></td><td><input id="Button1" type="button" value="返回" /></td></tr>
+    </table>
+</body>
+</html>

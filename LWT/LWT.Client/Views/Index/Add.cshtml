@@ -1,0 +1,78 @@
+﻿
+@{
+    Layout = null;
+}
+@model LWT.Model.Users
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <script src="~/js/jquery-1.10.2.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <title>Add</title>
+</head>
+<body>
+    <div>
+        <table id="app">
+            <tr>
+                <td align="right">账号名称：</td>
+                <td><input id="name" type="text" v-model="UserName" /></td>
+            </tr>
+            <tr>
+                <td align="right">账号密码：</td>
+                <td><input id="pwd" type="text" v-model="UserPwd" /></td>
+            </tr>
+            <tr>
+                <td align="right">确认密码：</td>
+                <td><input id="pwd" type="text"/></td>
+            </tr>
+            <tr>
+                <td align="right">分配角色：</td>
+                <td>
+                    <select id="Select1" v-model="RoleId">
+                        <option v-for="item in select" :value="item.roleId">{{item.roleName}}</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><input id="Button1" v-on:click="adduser" type="button" value="注册" /><input id="Button1" v-on:click="BackLogin" type="button" value="登录" /></td>
+            </tr>
+        </table>
+    </div>
+    <script>
+        axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
+        var app = new Vue({
+            el: '#app',
+            data: {
+                UserName: "",
+                UserPwd: "",
+                RoleId: 0,
+                select: null
+            },
+            mounted: function () {
+                var that = this;
+                axios.get('/Index/GetRoles')
+                    .then(response => (that.select = response.data))
+            },
+            methods: {
+                adduser: function ()
+                {
+                    var that = this;
+                    axios.post('/Index/Add', {
+                        UserName: "fggg",
+                    }).then(function (res) {
+                        console.log(res.data)
+                        if (res.data > 0) {
+                            alert('添加成功！');
+                        }
+                    })
+                },
+                BackLogin: function () { }
+            }
+        })
+    </script>
+</body>
+</html>
