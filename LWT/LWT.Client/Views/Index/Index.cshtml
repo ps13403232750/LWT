@@ -64,14 +64,30 @@
                 if (@item.Pid == 0)
                 {
                     <dl id="menu-admin">
-                        <dt><i class="Hui-iconfont">&#xe62d;</i>@item.PowerName<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+                        <dt> <i class="Hui-iconfont">&#xe62d;</i>@item.PowerName<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
                         <dd>
                             <ul>
                                 @foreach (var item1 in Model)
                                 {
                                     if (@item1.Pid == @item.id)
                                     {
-                                        <li><a data-href="@item.Url" data-title="@item1.PowerName" href="javascript:void(0)">@item1.PowerName</a></li>
+                                <li>
+                                    <div><a data-href="@item.Url" data-title="@item1.PowerName" href="javascript:void(0)">@item1.PowerName</a></div>
+                                    <ul>
+                                        @foreach (var item2 in Model)
+                                        {
+                                            if (@item2.Pid == @item1.id)
+                                            {
+                                                <li>
+                                                    <div><a data-href="@item.Url" data-title="@item2.PowerName" href="javascript:void(0)">@item2.PowerName</a></div>
+
+                                                </li>
+
+                                            }
+                                        }
+                                    </ul>
+                                </li>
+                                       
                                     }
                                 }
                             </ul>

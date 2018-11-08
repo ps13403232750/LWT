@@ -12,6 +12,10 @@ namespace LWT.Client.Controllers
 {
     public class IndexController : Controller
     {
+        /// <summary>
+        /// 主页面权限列表信息
+        /// </summary>
+        /// <returns></returns>
         public IActionResult Index()
         {
             string getpower = Common.Client.GetApi("get","Values/GetPower");

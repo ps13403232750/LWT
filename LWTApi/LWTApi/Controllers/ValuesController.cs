@@ -31,20 +31,22 @@ namespace LWTApi.Controllers
             return userServices.GetPowerMessage().ToList();
         }
 
-        // GET api/values
+        /// <summary>
+        /// 获取用户角色信息
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
-        public ActionResult<string> Get()
+        [Route("[action]")]
+        public ActionResult<List<Roles>> GetRoles()
         {
-            return userServices.Add(new Users()).ToString();
+            return userServices.GetRoles().ToList();
         }
 
-        // GET api/values/5
-        [HttpGet("{id}")]
-        public ActionResult<string> Get(int id)
-        {
-            return "value";
-        }
-
+        /// <summary>
+        /// 添加用户信息
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns></returns>
         // POST api/values
         [Route("AddUser")]
         [HttpPost]
@@ -54,16 +56,17 @@ namespace LWTApi.Controllers
             return i;
         }
 
-        // PUT api/values/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        // GET api/values
+        [HttpGet]
+        public ActionResult<string> Get()
         {
+            return userServices.Add(new Users()).ToString();
         }
 
-        // DELETE api/values/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }
+
     }
 }
