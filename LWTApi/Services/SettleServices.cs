@@ -59,6 +59,16 @@ namespace Services
         }
 
         /// <summary>
+        /// 采购结算列表
+        /// </summary>
+        /// <returns></returns>
+        public List<PurChaseNumber> ThinMaLimite()
+        {
+            var list = SqlSugarHelper<PurChaseNumber>.FindAll();
+            return list;
+        }
+
+        /// <summary>
         ///额度审核状态
         /// </summary>
         /// <param name="id"></param>

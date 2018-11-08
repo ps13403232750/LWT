@@ -20,6 +20,12 @@ namespace IServices
         List<PurChaseNumber> GetPurChaseNumber();
 
         /// <summary>
+        /// 额度详情
+        /// </summary>
+        /// <returns></returns>
+        List<PurChaseNumber> ThinMaLimite();
+
+        /// <summary>
         /// 详情
         /// </summary>
         /// <returns></returns>

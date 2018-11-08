@@ -53,6 +53,17 @@ namespace LWTApi.Controllers
         }
 
         /// <summary>
+        /////额度详情
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("[action]")]
+        public ActionResult<List<PurChaseNumber>> ThinMaLimite()
+        {
+            return settleServices.ThinMaLimite().ToList();
+        }
+
+        /// <summary>
         /// 额度审核状态
         /// </summary>
         /// <param name="id"></param>
