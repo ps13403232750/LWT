@@ -18,6 +18,6 @@ namespace IServices
         /// </summary>
         /// <param name="Id"></param>
         /// <returns></returns>
-        int UpdateGoods(int Id, int State);
+        bool UpdateGoods(int Id, int State);
     }
 }
