@@ -28,9 +28,12 @@ namespace LWTApi.Controllers
             var list = _supplierServices.Goods().ToList();
             return list;
         }
-<<<<<<< HEAD
-=======
-
->>>>>>> 6a2b4cc2e97d689484881e2455d258b0140d7f5a
+        [HttpPut]
+        [Route("[action]")]
+        public ActionResult <int> UpdateGoods(int Id, int State)
+        {
+            var list = _supplierServices.UpdateGoods(Id, State);
+            return list;
+        }
     }
 }

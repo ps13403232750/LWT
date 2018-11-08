@@ -30,7 +30,7 @@
                 <td> 状态 </td>
                 <td> 是否启用 </td>
                 <td> 操作 </td>
-            </tr>           
+            </tr>
             <tr v-for="item in info" v-bind:key="item.id">
 
                 <td>{{item.id}}</td>
@@ -47,13 +47,7 @@
                 </template>
                 <td>{{item.isable}}</td>
                 <td><a href="#">操作</a></td>
-<<<<<<< HEAD
-
-            </tr>           
-=======
             </tr>
-           
->>>>>>> 6a2b4cc2e97d689484881e2455d258b0140d7f5a
         </table>
     </div>
 </body>
@@ -66,14 +60,8 @@
         },
         mounted: function () {
             var that = this;
-<<<<<<< HEAD
-            axios.get('/Supplier/GetGoods').then(function (res) {
-                console.log(res);
-                that.info = res.data;               
-=======
             axios.get('http://localhost:60259/api/Supplier/GetGoods').then(function (res) {
                 that.info = res.data;
->>>>>>> 6a2b4cc2e97d689484881e2455d258b0140d7f5a
             }
             );
         }
