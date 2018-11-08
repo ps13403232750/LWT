@@ -14,6 +14,10 @@ namespace LWTApi.Controllers
     public class SettleController : ControllerBase
     {
         private ISettleServices settleServices;
+        public  SettleController (ISettleServices _settleServices)
+        {
+            settleServices = _settleServices;
+        }
         /// <summary>
         ///额度管理表显示 
         /// </summary>
@@ -35,5 +39,7 @@ namespace LWTApi.Controllers
         {
             return settleServices.GetPurChaseSettle().ToList();
         }
+
+
     }
 }

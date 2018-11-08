@@ -47,5 +47,19 @@ namespace Services
             var list = SqlSugarHelper<PurChaseSettle>.FindAll();
             return list;
         }
+
+        /// <summary>
+        /// 额度审批状态
+        /// </summary>
+        /// <returns></returns>
+        public int UpdateSettle(int id,int states)
+        {
+            var i = SqlSugarHelper<ManageLimit>.Update(id, states);
+            if (states == 0)
+            {
+
+            }
+           return 
+        }
     }
 }

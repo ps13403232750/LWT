@@ -15,8 +15,10 @@ namespace LWT.Client.Controllers
         /// </summary>
         /// <returns></returns>
         public IActionResult GetManageLimit()
-        {   
-            return View();
+        {
+            string getManageLimit = Common.Client.GetApi("get", "Values/GetManageLimit");
+            var list = JsonConvert.DeserializeObject<List<ManageLimit>>(getManageLimit);
+            return View(list);
         }
 
         /// <summary>

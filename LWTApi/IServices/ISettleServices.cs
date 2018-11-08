@@ -30,5 +30,13 @@ namespace IServices
         /// </summary>
         /// <returns></returns>
         List<PurChaseSettle> GetPurChaseSettle();
+
+        /// <summary>
+        /// 修改审批状态
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="states"></param>
+        /// <returns></returns>
+        int UpdateSettle(int id, int states);
     }
 }
