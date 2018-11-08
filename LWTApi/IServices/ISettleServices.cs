@@ -23,7 +23,7 @@ namespace IServices
         /// 额度详情
         /// </summary>
         /// <returns></returns>
-        List<PurChaseNumber> ThinMaLimite();
+        List<ManageLimit> ThinMaLimite();
 
         /// <summary>
         /// 详情

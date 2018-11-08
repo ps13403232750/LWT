@@ -59,17 +59,17 @@ namespace Services
         }
 
         /// <summary>
-        /// 采购结算列表
+        /// 额度详情
         /// </summary>
         /// <returns></returns>
-        public List<PurChaseNumber> ThinMaLimite()
+        public List<ManageLimit> ThinMaLimite()
         {
-            var list = SqlSugarHelper<PurChaseNumber>.FindAll();
+            var list = SqlSugarHelper<ManageLimit>.FindAll();
             return list;
         }
 
         /// <summary>
-        ///额度审核状态
+        ///额度修改状态
         /// </summary>
         /// <param name="id"></param>
         /// <param name="states"></param>

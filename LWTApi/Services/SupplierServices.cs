@@ -26,9 +26,10 @@ namespace Services
         /// <returns></returns>
         public bool UpdateGoods(int Id, int State)
         {
-            //别删，我留着还有用，谢谢
+            //别删我,我还有用，谢谢
             //var result = GoodsDb.Update(it => new Goods() { State = State }, it => it.Id == Id);
             //return result;
+            
             var result = GetSimpleInstance<Goods>().Update(it => new Goods() { State = State }, it => it.Id == Id);
             return result;
         }

@@ -9,11 +9,19 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>GetManageLimit</title>
+    <link href="~/Content/lib/Bootstrap/bootstrap.min.css" rel="stylesheet" />
 </head>
 <body>
-    <div style="text-align:center;">
-        <input type="type" name="BuyerName" value="" placeholder="请输入企业名称" /><button style="background-color:#4cff00;color:white">查询</button>
-        <span>审核状态<input type="type" name="State" value="" placeholder="选择审核状态" /></span>
+    <div>
+        <input name="BuyerName" value="" placeholder="请输入企业名称" /><button style="background-color:#4cff00;color:white">查询</button>
+        <span>
+            <span>审批状态:</span><select id="State" name="values">
+                <option>选择审核状态</option>
+                <option value="0">未审批</option>
+                <option value="1">已审批</option>
+                <option value="2">未通过</option>
+            </select>
+        </span>
         <table class="table table-border">
             <tr>
                 <th>序号</th>
@@ -23,20 +31,23 @@
                 <th>申请额度</th>
                 <th>运营商审核装状态</th>
                 <th>审批额度</th>
+                <th>操作</th>
             </tr>
             @foreach (var item in Model)
             {
-            <tr>
-                <td>@item.Id</td>
-                <td>@item.BuyerName</td>
-                <td>@item.SettLemeny</td>
-                <td>@item.TotalAmount</td>
-                <td>@item.ApplyAmount </td>
-                <td>@item.State</td>
-                <td>@item.AppRoveLimit </td>
-                <td><a href="/Settle/ThinMaLimite/">查看</a> </td>
-                <td style="text-align:center;"><span class="label label-info "><a href="#" onclick="show('额度', '/Settle/ThinMaLimite/', 800, 600)">查看</a></span></td>
-            </tr>
+                <tr>
+                    <td>@item.Id</td>
+                    <td>@item.BuyerName</td>
+                    <td>@item.SettLemeny</td>
+                    <td>@item.TotalAmount</td>
+                    <td>@item.ApplyAmount </td>
+                    <td>@item.State</td>
+                    <td>@item.AppRoveLimit </td>
+                    <td>
+                        <a href="/Settle/ThinMaLimite/">查看</a>
+                        <span class="label label-info "><a href="#" onclick="show('额度', '/Settle/ThinMaLimite/', 800, 600)">查看</a></span>
+                    </td>
+                </tr>
             }
         </table>
     </div>

@@ -9,10 +9,10 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>ReviewOfGoods</title>
-
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="~/js/vue.js"></script>
+    <script src="~/js/axios.js"></script>
+    @*<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>*@
 </head>
 <body>
     <div id="app">
@@ -50,7 +50,7 @@
                 </template>
                 <td>{{item.isable}}</td>
                 <td>
-                    <a href="javascript:;" v-on:click="edituser(item.id,$event)"> Edit </a>
+                    <a href="javascript:;" v-on:click="edituser(item.id,)"> Edit </a>
                 </td>
             </tr>
         </table>
@@ -63,22 +63,32 @@
         data: {
             info: null,
             Id: 0,
-            State:1,
-            num:0
+            State: 1,
+            num: 0
         },
+        //获取加载时数据
         mounted: function () {
             var that = this;
             axios.get('http://localhost:60259/api/Supplier/GetGoods').then(function (res) {
                 that.info = res.data;
             });
         },
-        edituser: function (res) {
-            axios.put('http://localhost:60259/api/Supplier/UpdateGoods?Id='+res).then(function (result) {
-                console.log(result);
-                if (result == true) {
-                    alert('修改成功');
-                }
-            });
+        methods: {
+            //修改事件
+            edituser: function (res) {
+                axios({   
+                    method: 'put',
+                    url: '/Supplier/UpdateGoods?Id=' + res,
+                }).then(function (result) {
+                    //监控API返回结果result
+                    console.log(result);
+                    //根据返回结果给出修改成功提示
+                    if (result.data == true) {
+                        alert(2)
+                    }
+                })
+                    
+            }
         }
     })
 

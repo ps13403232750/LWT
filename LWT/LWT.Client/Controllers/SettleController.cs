@@ -50,8 +50,28 @@ namespace LWT.Client.Controllers
         public IActionResult ThinMaLimite()
         {
             string thinMaLimite = Common.Client.GetApi("get", "Settle/ThinMaLimite");
-            var list = JsonConvert.DeserializeObject<List<PurChaseNumber>>(thinMaLimite);
+            var list = JsonConvert.DeserializeObject<List<ManageLimit>>(thinMaLimite);
             return View(list);
+        }
+
+        /// <summary>
+        /// 修改额度审批状态
+        /// </summary>
+        /// <returns></returns>
+        public IActionResult UpdateState(int id,int state)
+        {
+            string updateState = Common.Client.GetApi("post", "Settle/UpdateState");
+            var list = JsonConvert.DeserializeObject<List<ManageLimit>>(updateState);
+            return View(list);
+        }
+
+        /// <summary>
+        /// 获取额度表审批状态的下拉
+        /// </summary>
+        public string GetState()
+        {
+            string result = Common.Client.GetApi("Get", "Settle/GetState");
+            return result;
         }
     }
 }
