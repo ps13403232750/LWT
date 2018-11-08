@@ -9,7 +9,7 @@ namespace Model
         /// <summary>
         /// 主键id
         /// </summary>
-        public int Id { get; set; }
+        public int RoleId { get; set; }
 
         /// <summary>
         /// 角色名称
