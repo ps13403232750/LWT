@@ -33,7 +33,7 @@ namespace LWT.Client.Controllers
             return View();
         }
         [HttpPost]
-        public int Add(string UserName)
+        public int Add(string UserName,string UserPwd)
         {
             var data = Common.Client.GetApi("Post","Values/Add");
             return int.Parse(data);

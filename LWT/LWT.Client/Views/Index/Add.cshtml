@@ -43,7 +43,7 @@
         </table>
     </div>
     <script>
-        axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
+        
         var app = new Vue({
             el: '#app',
             data: {
@@ -61,14 +61,15 @@
                 adduser: function ()
                 {
                     var that = this;
-                    axios.post('/Index/Add', {
-                        UserName: "fggg",
-                    }).then(function (res) {
-                        console.log(res.data)
-                        if (res.data > 0) {
-                            alert('添加成功！');
-                        }
-                    })
+                    var params = new URLSearchParams();
+                    params.append('UserName', 'asd');
+                    params.append('UserPwd', 'Asd'); //你要传给后台的参数值 key/value
+                   
+                    axios({
+                        method: 'post',
+                        url: '/Index/Add',
+                        data: params
+                    });
                 },
                 BackLogin: function () { }
             }
