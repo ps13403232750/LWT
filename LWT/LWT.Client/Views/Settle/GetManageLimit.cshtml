@@ -15,10 +15,11 @@
     <div>
         <input name="BuyerName" value="" placeholder="请输入企业名称" /><button style="background-color:#4cff00;color:white">查询</button>
         <span>
-            审核状态<select id="Select1">
+            <span>审批状态:</span><select id="State" name="values">
                 <option>选择审核状态</option>
-                <option>已审核</option>
-                <option>未审核</option>
+                <option value="0">未审批</option>
+                <option value="1">已审批</option>
+                <option value="2">未通过</option>
             </select>
         </span>
         <table class="table table-border">
