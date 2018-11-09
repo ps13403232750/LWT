@@ -59,8 +59,6 @@
             methods: {
                 adduser: function () {
                     var that = this;
-                    alert(1);
-                   
                     var params = new URLSearchParams();
                     params.append('Id', '0');
                     params.append('UserName', $("#name").val());
@@ -70,6 +68,8 @@
                         method: 'post',
                         url: '/Index/Add',
                         data: params
+                    }).then(function (res) {
+                        alert(res.data);
                     });
                 },
                 BackLogin: function () { }
