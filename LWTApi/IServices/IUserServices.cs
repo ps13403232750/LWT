@@ -20,7 +20,7 @@ namespace IServices
         /// </summary>
         /// <param name="purchase"></param>
         /// <returns></returns>
-        int Add(PurChase purchase);
+        int Add(Purchase purchase);
 
         /// <summary>
         /// 供应商入驻
@@ -34,7 +34,7 @@ namespace IServices
         /// </summary>
         /// <param name="classe"></param>
         /// <returns></returns>
-        List<Class> GetClass();
+        List<Category> GetCategory();
 
         /// <summary>
         /// 注册用户
@@ -55,7 +55,7 @@ namespace IServices
         /// </summary>
         /// <param name="roleAndPower"></param>
         /// <returns></returns>
-        int AddRoleAndPower(RoleAndPower roleAndPower);
+        int AddRoleAndPower(int name, string ids);
 
         /// <summary>
         /// 获取品牌信息
@@ -75,6 +75,12 @@ namespace IServices
         /// </summary>
         /// <returns></returns>
         List<Roles> GetRoles();
+
+        /// <summary>
+        /// 获取用户注册的信息名称
+        /// </summary>
+        /// <returns></returns>
+        List<Users> GetUsers();
 
     }
 }

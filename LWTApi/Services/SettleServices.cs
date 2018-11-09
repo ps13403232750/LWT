@@ -13,9 +13,9 @@ namespace Services
         /// 额度表显示
         /// </summary>
         /// <returns></returns>
-        public List<ManageLimit> GetManageLimit()
+        public List<Limit> GetLimit()
         {
-            var list = SqlSugarHelper<ManageLimit>.FindAll();
+            var list = SqlSugarHelper<Limit>.FindAll();
             return list;
         }
 
@@ -23,7 +23,7 @@ namespace Services
         /// 结算次数
         /// </summary>
         /// <returns></returns>
-        public List<PurChaseNumber> GetPurChaseNumber()
+        public List<PurchaseNumber> GetPurchaseNumber()
         {
             throw new NotImplementedException();
         }
@@ -32,6 +32,7 @@ namespace Services
         /// 结算详情
         /// </summary>
         /// <returns></returns>
+
         public List<Orders> ThinPurState()
         {
             var list = SqlSugarHelper<Orders>.FindAll();
@@ -42,9 +43,9 @@ namespace Services
         /// 采购付款结算列表
         /// </summary>
         /// <returns></returns>
-        public List<PurChasePay> GetPurChasePay()
+        public List<PurchasePay> GetPurchasePay()
         {
-            var list = SqlSugarHelper<PurChasePay>.FindAll();
+            var list = SqlSugarHelper<PurchasePay>.FindAll();
             return list;
         }
 
@@ -52,9 +53,9 @@ namespace Services
         /// 采购结算列表
         /// </summary>
         /// <returns></returns>
-        public List<PurChaseSettle> GetPurChaseSettle()
+        public List<PurchaseSettle> GetPurchaseSettle()
         {
-            var list = SqlSugarHelper<PurChaseSettle>.FindAll();
+            var list = SqlSugarHelper<PurchaseSettle>.FindAll();
             return list;
         }
 
@@ -62,9 +63,9 @@ namespace Services
         /// 额度详情
         /// </summary>
         /// <returns></returns>
-        public List<ManageLimit> ThinMaLimite()
+        public List<Limit> ThinMaLimite()
         {
-            var list = SqlSugarHelper<ManageLimit>.FindAll();
+            var list = SqlSugarHelper<Limit>.FindAll();
             return list;
         }
 
@@ -76,7 +77,7 @@ namespace Services
         /// <returns></returns>
         public bool UpdateState(int id, int states)
         {
-            var result = GetSimpleInstance<ManageLimit>().Update(it => new ManageLimit() { State = states }, it => it.Id == id);
+            var result = GetSimpleInstance<Limit>().Update(it => new Limit() { State = states }, it => it.Id == id);
             return (result);
         } 
     }

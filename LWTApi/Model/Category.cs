@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Model
 {
-   public class Class
+   public class Category
     {
         /// <summary>
         /// 主键id
@@ -14,7 +14,7 @@ namespace Model
         /// <summary>
         /// 类目名称
         /// </summary>
-        public string ClassName { get; set; }
+        public string CategoryName { get; set; }
 
         /// <summary>
         /// 父级Id

@@ -38,6 +38,8 @@ namespace LWT.Client.Controllers
             return int.Parse(data);
         }
 
+      
+
         /// <summary>
         /// 根据角色添加权限
         /// </summary>
@@ -48,7 +50,7 @@ namespace LWT.Client.Controllers
             return View(JsonConvert.DeserializeObject<List<Power>>(getpower));
         }
         [HttpPost]
-        public int AddRole(RoleAndPower roleAndPower)
+        public int AddRole(int name,string ids)
         {
             var data = Common.Client.GetApi("post", "Values/AddRoleAndPower");
             return int.Parse(data);
@@ -80,6 +82,15 @@ namespace LWT.Client.Controllers
            
         }
 
+        /// <summary>
+        /// 获取所有用户的主要信息
+        /// </summary>
+        /// <returns></returns>
+        public string GetUsers()
+        {
+            string data = Common.Client.GetApi("Get", "Values/GetUsers");
+            return data;
+        }
 
         /// <summary>
         /// 获取品牌名称的下拉菜单

@@ -11,19 +11,19 @@ namespace IServices
         /// 额度管理表
         /// </summary>
         /// <returns></returns>
-        List<ManageLimit> GetManageLimit();
+        List<Limit> GetLimit();
 
         /// <summary>
         /// 结算次数
         /// </summary>
         /// <returns></returns>
-        List<PurChaseNumber> GetPurChaseNumber();
+        List<PurchaseNumber> GetPurchaseNumber();
 
         /// <summary>
         /// 额度详情
         /// </summary>
         /// <returns></returns>
-        List<ManageLimit> ThinMaLimite();
+        List<Limit> ThinMaLimite();
 
         /// <summary>
         /// 详情
@@ -35,13 +35,13 @@ namespace IServices
         /// 采购结算列表
         /// </summary>
         /// <returns></returns>
-        List<PurChasePay> GetPurChasePay();
+        List<PurchasePay> GetPurchasePay();
 
         /// <summary>
         /// 采购付款结算列表
         /// </summary>
         /// <returns></returns>
-        List<PurChaseSettle> GetPurChaseSettle();
+        List<PurchaseSettle> GetPurchaseSettle();
 
         /// <summary>
         /// 修改审批状态

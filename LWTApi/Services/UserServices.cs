@@ -24,11 +24,11 @@ namespace Services
         /// <summary>
         /// 企业采购入驻
         /// </summary>
-        /// <param name="purchase"></param>
+        /// <param name="Purchase"></param>
         /// <returns></returns>
-        public int Add(PurChase purchase)
+        public int Add(Purchase purchase)
         {
-            var i = SqlSugarHelper<PurChase>.Insert(purchase);
+            var i = SqlSugarHelper<Purchase>.Insert(purchase);
             return i;
         }
 
@@ -51,17 +51,6 @@ namespace Services
         public int AddRole(Roles roles)
         {
             var i = SqlSugarHelper<Roles>.Insert(roles);
-            return i;
-        }
-
-        /// <summary>
-        /// 根据角色添加权限
-        /// </summary>
-        /// <param name="roleAndPower"></param>
-        /// <returns></returns>
-        public int AddRoleAndPower(RoleAndPower roleandpower)
-        {
-            var i = SqlSugarHelper<RoleAndPower>.Insert(roleandpower);
             return i;
         }
 
@@ -92,9 +81,9 @@ namespace Services
         /// </summary>
         /// <param name="classe"></param>
         /// <returns></returns>
-        public List<Class> GetClass()
+        public List<Category> GetCategory()
         {
-            var list = SqlSugarHelper<Class>.FindAll();
+            var list = SqlSugarHelper<Category>.FindAll();
             return list;
         }
 
@@ -126,6 +115,26 @@ namespace Services
         {
             var list = SqlSugarHelper<Brand>.FindAll();
             return list;
+        }
+
+        /// <summary>
+        /// 获取所有用户注册信息的名称
+        /// </summary>
+        /// <returns></returns>
+        public List<Users> GetUsers()
+        {
+            var list = SqlSugarHelper<Users>.FindAll();
+            return list;
+        }
+
+        /// <summary>
+        /// 根据角色添加权限
+        /// </summary>
+        /// <param name="roleAndPower"></param>
+        /// <returns></returns>
+        public int AddRoleAndPower(int name, string ids)
+        {
+            return 1;
         }
     }
 }

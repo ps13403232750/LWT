@@ -62,7 +62,7 @@ namespace LWTApi.Controllers
         /// <returns></returns>
         [Route("[action]")]
         [HttpPost]
-        public int Add(PurChase purchase)
+        public int Add(Purchase purchase)
         {
             var i = userServices.Add(purchase);
             return i;
@@ -104,8 +104,7 @@ namespace LWTApi.Controllers
         [HttpPost]
         public int AddRoleAndPower(RoleAndPower roleandpower)
         {
-            int i = userServices.AddRoleAndPower(roleandpower);
-            return i;
+            return 1;
         }
 
         /// <summary>
@@ -128,9 +127,9 @@ namespace LWTApi.Controllers
         /// <returns></returns>
         [Route("[action]")]
         [HttpGet]
-        public List<Class> GetClass()
+        public List<Category> GetClass()
         {
-            var data = userServices.GetClass().ToList();
+            var data = userServices.GetCategory().ToList();
             return data;
         }
 
@@ -145,5 +144,15 @@ namespace LWTApi.Controllers
             return userServices.GetBrand().ToList();
         }
 
+        /// <summary>
+        /// 获取所有用户注册信息的名称
+        /// </summary>
+        /// <returns></returns>
+        [Route("[action]")]
+        [HttpGet]
+        public List<Users> GetUsers()
+        {
+            return userServices.GetUsers().ToList();
+        }
     }
 }

@@ -30,9 +30,9 @@ namespace LWTApi.Controllers
         /// <returns></returns>
         [HttpGet]
         [Route("[action]")]
-        public ActionResult<List<ManageLimit>> GetManageLimit()
+        public ActionResult<List<Limit>> GetLimit()
         {
-            var list = settleServices.GetManageLimit().ToList();
+            var list = settleServices.GetLimit().ToList();
             return list;
         }
 
@@ -42,9 +42,9 @@ namespace LWTApi.Controllers
         /// <returns></returns>
         [HttpGet]
         [Route("[action]")]
-        public ActionResult<List<PurChaseSettle>> GetPurChaseSettle()
+        public ActionResult<List<PurchaseSettle>> GetPurChaseSettle()
         {
-            return settleServices.GetPurChaseSettle().ToList();
+            return settleServices.GetPurchaseSettle().ToList();
         }
   
         /// <summary>
@@ -53,7 +53,9 @@ namespace LWTApi.Controllers
         /// <returns></returns>
         [HttpGet]
         [Route("[action]")]
+
         public ActionResult<List<Orders>> ThinPurState()
+
         {
             return settleServices.ThinPurState().ToList();
         }
@@ -64,7 +66,7 @@ namespace LWTApi.Controllers
         /// <returns></returns>
         [HttpGet]
         [Route("[action]")]
-        public ActionResult<List<ManageLimit>> ThinMaLimite()
+        public ActionResult<List<Limit>> ThinMaLimite()
         {
             return settleServices.ThinMaLimite().ToList();
         }
