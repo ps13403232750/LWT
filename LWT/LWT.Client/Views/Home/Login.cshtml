@@ -1,0 +1,61 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Login</title>
+    <script src="~/js/jquery-1.10.2.js"></script>
+    <script src="~/js/vue.js"></script>
+    <script src="~/js/axios.js"></script>
+</head>
+<body>
+    <div id="app">
+        <input id="Button1" type="button" value="ajax" onclick="login()" />
+        <input id="Button1" type="button" value="vue" v-on:click="login" />
+
+    </div>
+
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+
+            },
+            methods: {
+                login: function () {
+                    alert(2);
+                    var params = new URLSearchParams();
+                    params.append('username', 'Hello World');
+                    axios({
+                        url: "/Home/Login",
+                        method: 'post',
+                        data: params
+                    }).then(function (res) {
+                        alert(res.data)
+                    })
+
+                }
+            }
+        })
+
+
+        function login() {
+            alert(1);
+            $.ajax({
+                url: "/Home/Login",
+                type: "post",
+                data: { username: "Hello World" },
+                success: function (d) {
+                    alert(d);
+                }
+            })
+
+        }
+    </script>
+</body>
+</html>

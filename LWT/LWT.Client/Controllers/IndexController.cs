@@ -34,7 +34,7 @@ namespace LWT.Client.Controllers
         [HttpPost]
         public int Add(Users user)
         {
-            var data = Common.Client.GetApi("Post", "Values/AddUser");
+            var data = Common.Client.GetApi("Post", "Values/AddUser",user);
             return int.Parse(data);
         }
 

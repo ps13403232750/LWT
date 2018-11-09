@@ -17,7 +17,7 @@ namespace LWTApi.Controllers
         private IUserServices userServices;
         public ValuesController(IUserServices _userServices)
         {
-            userServices = _userServices;       
+            userServices = _userServices;
         }
 
         /// <summary>
@@ -47,7 +47,6 @@ namespace LWTApi.Controllers
         /// </summary>
         /// <param name="user"></param>
         /// <returns></returns>
-        // POST api/values
         [Route("[action]")]
         [HttpPost]
         public int AddUser(Users user)
@@ -146,5 +145,5 @@ namespace LWTApi.Controllers
             return userServices.GetBrand().ToList();
         }
 
-        }
+    }
 }
