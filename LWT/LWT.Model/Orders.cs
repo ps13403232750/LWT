@@ -4,7 +4,7 @@ using System.Text;
 
 namespace LWT.Model
 {
-  public class Order
+  public class Orders
     {
         /// <summary>
         /// 订单id

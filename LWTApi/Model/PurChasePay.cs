@@ -5,7 +5,7 @@ using System.Text;
 namespace Model
 {
     /// <summary>
-    /// 采购商付款结算列表
+    /// 采购结算
     /// </summary>
    public class PurChasePay
     {
@@ -23,11 +23,6 @@ namespace Model
         /// 结算方式
         /// </summary>
         public string SettleMeny { get; set; }
-
-        /// <summary>
-        /// 确认方式
-        /// </summary>
-        public string AffirmWay { get; set; }
 
         /// <summary>
         /// 结算周期

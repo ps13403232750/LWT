@@ -39,7 +39,7 @@ namespace LWT.Client.Controllers
         public IActionResult ThinPurState()
         {
             string thinPurState = Common.Client.GetApi("get", "Settle/ThinPurState");
-            var list = JsonConvert.DeserializeObject<List<PurChaseNumber>>(thinPurState);
+            var list = JsonConvert.DeserializeObject<List<Orders>>(thinPurState);
             return View(list);
         }
 
