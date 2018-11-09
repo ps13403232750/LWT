@@ -50,7 +50,7 @@ namespace LWT.Client.Controllers
         public IActionResult ThinMaLimite()
         {
             string thinMaLimite = Common.Client.GetApi("get", "Settle/ThinMaLimite");
-            var list = JsonConvert.DeserializeObject<List<PurChaseNumber>>(thinMaLimite);
+            var list = JsonConvert.DeserializeObject<List<ManageLimit>>(thinMaLimite);
             return View(list);
         }
 

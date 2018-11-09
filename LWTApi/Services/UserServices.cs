@@ -99,7 +99,7 @@ namespace Services
         }
 
         /// <summary>
-        /// 采购结算列表
+        /// 获取权限列表信息
         /// </summary>
         /// <returns></returns>
         public List<Power> GetPowerMessage()

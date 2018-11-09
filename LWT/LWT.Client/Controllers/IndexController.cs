@@ -34,7 +34,7 @@ namespace LWT.Client.Controllers
         [HttpPost]
         public int Add(Users user)
         {
-            var data = Common.Client.GetApi("Post","Values/Add");
+            var data = Common.Client.GetApi("Post", "Values/AddUser");
             return int.Parse(data);
         }
 
@@ -51,6 +51,21 @@ namespace LWT.Client.Controllers
         public int AddRole(RoleAndPower roleAndPower)
         {
             var data = Common.Client.GetApi("post", "Values/AddRoleAndPower");
+            return int.Parse(data);
+        }
+
+        /// <summary>
+        /// 添加供应商角色
+        /// </summary>
+        /// <returns></returns>
+        public IActionResult AddSupplier()
+        {
+            return View();
+        }
+
+        public int AddSupplier(Supplier supplier)
+        {
+            var data = Common.Client.GetApi("post", "Values/AddSupplier");
             return int.Parse(data);
         }
 
