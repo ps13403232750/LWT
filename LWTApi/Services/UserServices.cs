@@ -127,5 +127,25 @@ namespace Services
             var list = SqlSugarHelper<Brand>.FindAll();
             return list;
         }
+
+        /// <summary>
+        /// 获取所有用户注册信息的名称
+        /// </summary>
+        /// <returns></returns>
+        public List<Users> GetUsers()
+        {
+            var list = SqlSugarHelper<Users>.FindAll();
+            return list;
+        }
+
+        /// <summary>
+        /// 根据角色添加权限
+        /// </summary>
+        /// <param name="roleAndPower"></param>
+        /// <returns></returns>
+        public int AddRoleAndPower(int name, string ids)
+        {
+            return 1;
+        }
     }
 }

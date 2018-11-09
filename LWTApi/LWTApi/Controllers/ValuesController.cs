@@ -104,8 +104,7 @@ namespace LWTApi.Controllers
         [HttpPost]
         public int AddRoleAndPower(RoleAndPower roleandpower)
         {
-            int i = userServices.AddRoleAndPower(roleandpower);
-            return i;
+            return 1;
         }
 
         /// <summary>
@@ -145,5 +144,15 @@ namespace LWTApi.Controllers
             return userServices.GetBrand().ToList();
         }
 
+        /// <summary>
+        /// 获取所有用户注册信息的名称
+        /// </summary>
+        /// <returns></returns>
+        [Route("[action]")]
+        [HttpGet]
+        public List<Users> GetUsers()
+        {
+            return userServices.GetUsers().ToList();
+        }
     }
 }

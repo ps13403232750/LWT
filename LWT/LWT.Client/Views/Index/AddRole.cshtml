@@ -34,15 +34,19 @@
     <table class="table table-border" id="app">
         <tr>
             <td align="right">角色名称：</td>
-            <td><input id="name" type="text" /></td>
+            <td>
+                <select id="Select1">
+                    <option v-for="item in select" :value="item.roleId">{{item.roleName}}</option>
+                </select>
+            </td>
         </tr>
         <tr>
-            <td align="right">分配角色：</td>
+            <td align="right">分配权限：</td>
             <td>
                 <div>
                     &nbsp;&nbsp;&nbsp;&nbsp;
-                    <table> 
-                        <tr><td>全部角色</td></tr>
+                    <table>
+                        <tr><td>全部权限信息</td></tr>
                         <tr>
                             <td>
                                 <table class="table table-border">
@@ -73,17 +77,25 @@
                         </tr>
                     </table>
                     <table>
-                        <tr><td><input id="Button1" class="btn btn-primary" type="button" value="保存" v-on:click="AddBtn" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input id="Button1" class="btn btn-primary"  type="button" value="返回" /></td></tr>
+                        <tr><td><input id="Button1" class="btn btn-primary" type="button" value="保存" v-on:click="AddBtn" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input id="Button1" class="btn btn-primary" type="button" value="返回" /></td></tr>
                     </table>
                 </div>
             </td>
         </tr>
     </table>
     <script>
-
         var app = new Vue({
             el: '#app',
             data: {
+                UserName: "",
+                UserPwd: "",
+                RoleId: 0,
+                select: null
+            },
+            mounted: function () {
+                var that = this;
+                axios.get('/Index/GetRoles')
+                    .then(response => (that.select = response.data))
 
             },
             methods: {
@@ -94,7 +106,7 @@
                     })
                     var that = this;
                     var params = new URLSearchParams();
-                    params.append('name', $("#name").val());
+                    params.append('name', $("#Select1").val());
                     params.append('ids', list.toString());
                     axios({
                         method: 'post',
