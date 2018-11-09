@@ -8,29 +8,81 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>ThinMaLimite</title>
+    <script src="~/js/vue.js"></script>
+    <script src="~/js/axios.js"></script>
+
 </head>
 <body>
     <h1>我是额度详情哦!!!</h1>
-    <div>
+    <div id="app">
         <table>
             <tr>
-                <td><span>企业采购:</span></td>             
-            <tr>
-                <td><span>已分配额度:</span></td>       
+                <td> 序号</td>
+                <td> 企业采购</td>
+                <td> 已分配额度</td>
+                <td> 申请增加额度 </td>
+                <td> 状态 </td>
+                <td> 操作 </td>
             </tr>
-            <tr>
-                <td><span>申请增加额度:</span></td>
-            </tr>
-            <tr>
-                <td><span>申请理由:</span></td>
-            <tr>
-            <tr>
-                <td><span>附加文件:</span></td>
-            </tr>
-            <tr>
-                <td><button>提交</button><input id="Button1" type="button" value="返回" onclick="location.href='/Settle/GetManageLimit/'" /></td>
+            <tr v-for="item in info" v-bind:key="item.id">
+                <td>{{item.id}}</td>
+                <td>{{item.buyerName}}</td>
+                <td>{{item.totalAmount}}</td>
+                <td>{{item.applyAmount}}</td>
+                <template v-if="item.state==0">
+                    <td>未审核</td>
+                </template>
+                <template v-else-if="item.state==1">
+                    <td>已审核</td>
+                </template>
+                <td>{{item.isable}}</td>
+                <td>
+                    <a href="javascript:;" v-on:click="edituser(item.id)"> 提交 </a>
+                </td>
             </tr>
         </table>
     </div>
+
+    <script>
+
+        var app = new Vue({
+            el: '#app',
+            data: {
+                info: null,
+                id: 0,
+                states: 1,
+                num: 0
+            },
+            //获取加载时数据
+            mounted: function () {
+                var that = this;
+                axios.get('http://localhost:60259/api/Settle/GetManageLimit').then(function (res) {
+                    that.info = res.data;
+                    console.log(res.data)
+                });
+            },
+            methods: {
+                //修改事件
+                edituser: function (res) {
+                    var that = this;
+                    axios({
+                        url: 'http://localhost:60259/api/Settle/UpdateState',
+                        method: 'put',
+                        params: {id:res}
+                    }).then(function (result) {
+                        if (result) {
+                            alert("审核成功!");
+                            that.$options.methods.getlist(that);
+                        }
+                    })
+                },
+                getlist: function (that) {
+                    axios.get('http://localhost:60259/api/Settle/GetManageLimit').then(function (res) {
+                        that.info = res.data;
+                    });
+                }
+            }
+        })
+    </script>
 </body>
 </html>

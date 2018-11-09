@@ -15,7 +15,7 @@ namespace Services
         /// </summary>
         /// <param name="user"></param>
         /// <returns></returns>
-        public int Add(Users user)
+        public int Add(string name, string ids)
         {
             var i = SqlSugarHelper<Users>.Insert(user);
             return i;

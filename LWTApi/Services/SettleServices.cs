@@ -74,14 +74,10 @@ namespace Services
         /// <param name="id"></param>
         /// <param name="states"></param>
         /// <returns></returns>
-        public int UpdateSettle(int id, int states)
-        {         
-            ManageLimit ml = new ManageLimit();
-            ml.Id = id;
-            ml.State = states;
-            var reslut = SqlSugarHelper<ManageLimit>.Update(ml);
-            //var i = SqlSugarHelper<ManageLimit>.Update(id, states);
-            return Convert.ToInt32(reslut);
-        }
+        public bool UpdateState(int id, int states)
+        {
+            var result = GetSimpleInstance<ManageLimit>().Update(it => new ManageLimit() { State = states }, it => it.Id == id);
+            return (result);
+        } 
     }
 }

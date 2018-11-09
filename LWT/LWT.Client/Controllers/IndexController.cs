@@ -34,7 +34,7 @@ namespace LWT.Client.Controllers
         [HttpPost]
         public int Add(Users user)
         {
-            var data = Common.Client.GetApi("Post", "Values/AddUser");
+            var data = Common.Client.GetApi("Post", "Values/AddUser",user);
             return int.Parse(data);
         }
 
@@ -48,7 +48,7 @@ namespace LWT.Client.Controllers
             return View(JsonConvert.DeserializeObject<List<Power>>(getpower));
         }
         [HttpPost]
-        public int AddRole(RoleAndPower roleAndPower)
+        public int AddRole(string name,string ids)
         {
             var data = Common.Client.GetApi("post", "Values/AddRoleAndPower");
             return int.Parse(data);
