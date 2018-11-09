@@ -15,7 +15,7 @@ namespace Services
         /// </summary>
         /// <param name="user"></param>
         /// <returns></returns>
-        public int Add(string name, string ids)
+        public int Add(Users user)
         {
             var i = SqlSugarHelper<Users>.Insert(user);
             return i;
@@ -126,6 +126,11 @@ namespace Services
         {
             var list = SqlSugarHelper<Brand>.FindAll();
             return list;
+        }
+
+        public int AddRoleAndPower(string name, string ids)
+        {
+            throw new NotImplementedException();
         }
     }
 }

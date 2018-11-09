@@ -4,12 +4,10 @@ using System.Text;
 
 namespace Model
 {
-<<<<<<< HEAD:LWTApi/Model/Orders.cs
     /// <summary>
     /// 订单表
     /// </summary>
-=======
->>>>>>> 682a16cf446d1ad0f0432d91973e042bd148449a:LWTApi/Model/Orders.cs
+
   public class Orders
     {
         /// <summary>
