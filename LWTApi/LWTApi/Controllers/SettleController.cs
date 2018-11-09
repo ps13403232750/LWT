@@ -42,9 +42,9 @@ namespace LWTApi.Controllers
         /// <returns></returns>
         [HttpGet]
         [Route("[action]")]
-        public ActionResult<List<PurChaseSettle>> GetPurChaseSettle()
+        public ActionResult<List<PurchaseSettle>> GetPurChaseSettle()
         {
-            return settleServices.GetPurChaseSettle().ToList();
+            return settleServices.GetPurchaseSettle().ToList();
         }
   
         /// <summary>
@@ -53,7 +53,7 @@ namespace LWTApi.Controllers
         /// <returns></returns>
         [HttpGet]
         [Route("[action]")]
-        public ActionResult<List<PurChaseNumber>> ThinPurState()
+        public ActionResult<List<PurchaseNumber>> ThinPurState()
         {
             return settleServices.ThinPurState().ToList();
         }

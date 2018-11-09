@@ -62,7 +62,7 @@ namespace LWTApi.Controllers
         /// <returns></returns>
         [Route("[action]")]
         [HttpPost]
-        public int Add(PurChase purchase)
+        public int Add(Purchase purchase)
         {
             var i = userServices.Add(purchase);
             return i;
@@ -127,9 +127,9 @@ namespace LWTApi.Controllers
         /// <returns></returns>
         [Route("[action]")]
         [HttpGet]
-        public List<Class> GetClass()
+        public List<Category> GetClass()
         {
-            var data = userServices.GetClass().ToList();
+            var data = userServices.GetCategory().ToList();
             return data;
         }
 

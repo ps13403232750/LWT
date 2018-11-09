@@ -55,17 +55,6 @@ namespace Services
         }
 
         /// <summary>
-        /// 根据角色添加权限
-        /// </summary>
-        /// <param name="roleAndPower"></param>
-        /// <returns></returns>
-        public int AddRoleAndPower(RoleAndPower roleandpower)
-        {
-            var i = SqlSugarHelper<RoleAndPower>.Insert(roleandpower);
-            return i;
-        }
-
-        /// <summary>
         /// 供应商入驻
         /// </summary>
         /// <param name="supplier"></param>
