@@ -105,8 +105,7 @@ namespace LWTApi.Controllers
         [HttpPost]
         public int AddRoleAndPower(RoleAndPower roleandpower)
         {
-            int i = userServices.AddRoleAndPower(roleandpower);
-            return i;
+            return 1;
         }
 
         /// <summary>
