@@ -75,9 +75,9 @@ namespace Services
         /// <param name="states"></param>
         /// <returns></returns>
         public bool UpdateState(int id, int states)
-        {         
-            var result = GetSimpleInstance<ManageLimit>().Update(it => new ManageLimit() { State = states}, it => it.Id == id);
+        {
+            var result = GetSimpleInstance<ManageLimit>().Update(it => new ManageLimit() { State = states }, it => it.Id == id);
             return (result);
-        }
+        } 
     }
 }
