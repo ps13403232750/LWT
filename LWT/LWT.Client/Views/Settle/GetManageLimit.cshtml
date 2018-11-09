@@ -9,6 +9,8 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>GetManageLimit</title>
+    <script src="~/Content/lib/laypage/1.2/laypage.js"></script>
+    <script src="~/js/jquery-1.10.2.js"></script>
     <link href="~/Content/lib/Bootstrap/bootstrap.min.css" rel="stylesheet" />
 </head>
 <body>
@@ -41,7 +43,7 @@
                     <td>@item.SettLemeny</td>
                     <td>@item.TotalAmount</td>
                     <td>@item.ApplyAmount </td>
-                    <td>@(item.State == 0 ? "未审核" : item.State == 2 ? "已审核" : "未通过")</td>
+                    <td>@(item.State == 0 ? "未审核" : "已审核" )</td>
                     <td>@item.AppRoveLimit </td>
                     <td>
                         <a href="/Settle/ThinMaLimite/">查看</a>
@@ -53,7 +55,6 @@
     </div>
 </body>
 </html>
-<script src="~/Content/lib/laypage/1.2/laypage.js"></script>
 <script type="text/javascript">
     function show(title, url, w, d) {
         layer_show(title, url, w, d)
