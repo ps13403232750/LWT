@@ -9,8 +9,8 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <script src="~/js/jquery-1.10.2.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="~/js/axios.js"></script>
+    <script src="~/js/vue.js"></script>
     <title>Add</title>
 </head>
 <body>
@@ -31,7 +31,7 @@
             <tr>
                 <td align="right">分配角色：</td>
                 <td>
-                    <select id="Select1" v-model="RoleId">
+                    <select id="Select1">
                         <option v-for="item in select" :value="item.roleId">{{item.roleName}}</option>
                     </select>
                 </td>
@@ -58,12 +58,14 @@
             },
             methods: {
                 adduser: function () {
+                    var that = this;
                     alert(1);
+                   
                     var params = new URLSearchParams();
-                    params.append('Id', '0');     
-                    params.append('UserName', 'admin');
-                    params.append('UserPwd', '123');
-                    params.append('RoleId', '1');
+                    params.append('Id', '0');
+                    params.append('UserName', $("#name").val());
+                    params.append('UserPwd', $("#pwd").val());
+                    params.append('RoleId', $("#Select1").val());
                     axios({
                         method: 'post',
                         url: '/Index/Add',
