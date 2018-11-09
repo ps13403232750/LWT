@@ -49,6 +49,6 @@ namespace IServices
         /// <param name="id"></param>
         /// <param name="states"></param>
         /// <returns></returns>
-        int UpdateSettle(int id, int states);
+        bool  UpdateState(int id, int states);
     }
 }

@@ -17,8 +17,8 @@
         <span>
             <span>审批状态:</span><select id="State" name="values">
                 <option>选择审核状态</option>
-                <option value="0">未审批</option>
-                <option value="1">已审批</option>
+                <option value="0">未审核</option>
+                <option value="1">已审核</option>
                 <option value="2">未通过</option>
             </select>
         </span>
@@ -41,7 +41,7 @@
                     <td>@item.SettLemeny</td>
                     <td>@item.TotalAmount</td>
                     <td>@item.ApplyAmount </td>
-                    <td>@item.State</td>
+                    <td>@(item.State == 0 ? "未审核" : item.State == 2 ? "已审核" : "未通过")</td>
                     <td>@item.AppRoveLimit </td>
                     <td>
                         <a href="/Settle/ThinMaLimite/">查看</a>

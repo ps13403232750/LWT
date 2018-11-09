@@ -63,15 +63,17 @@ namespace LWTApi.Controllers
             return settleServices.ThinMaLimite().ToList();
         }
 
+        [HttpPut]
+        [Route("[action]")]
         /// <summary>
         /// 额度审核状态
         /// </summary>
         /// <param name="id"></param>
         /// <param name="states"></param>
         /// <returns></returns>
-        public ActionResult<int> UpdateSettle(int id, int states)
+        public ActionResult<bool> UpdateState(int id, int states=1)
         {
-            var list = settleServices.UpdateSettle(id, states);
+            var list = settleServices.UpdateState(id, states);
             return list;
         }
     }

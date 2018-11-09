@@ -57,12 +57,10 @@ namespace LWT.Client.Controllers
         /// <summary>
         /// 修改额度审批状态
         /// </summary>
-        /// <returns></returns>
-        public IActionResult UpdateState(int id,int state)
+        public string UpdateState(int id)
         {
-            string updateState = Common.Client.GetApi("post", "Settle/UpdateState");
-            var list = JsonConvert.DeserializeObject<List<ManageLimit>>(updateState);
-            return View(list);
+            var result = Common.Client.GetApi("Put", "Settle/UpdateState?Id=" + id);
+            return result;
         }
 
         /// <summary>
