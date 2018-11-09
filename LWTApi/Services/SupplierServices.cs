@@ -54,6 +54,16 @@ namespace Services
             var List = db.Queryable<OrderList>().Where(it => it.OrderNum == OrderNum).ToList();
             return List;
         }
-        
+
+        /// <summary>
+        /// 添加新商品
+        /// </summary>
+        /// <param name="goods"></param>
+        /// <returns></returns>
+        public int AddGoods(Goods goods)
+        {
+            var i = SqlSugarHelper<Goods>.Insert(goods);
+            return i;
+        }
     }
 }

@@ -32,5 +32,11 @@ namespace IServices
         /// <param name="OrderNum"></param>
         /// <returns></returns>
         List<OrderList> GetOrderList(int OrderNum);
+
+        /// <summary>
+        /// 添加新商品（新商品添加需要审批才能上架）
+        /// </summary>
+        /// <returns></returns>
+        int AddGoods(Goods goods);
     }
 }

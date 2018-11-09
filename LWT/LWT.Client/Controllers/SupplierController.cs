@@ -73,5 +73,19 @@ namespace LWT.Client.Controllers
         {
             return View();
         }
+
+        /// <summary>
+        /// 添加新商品
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="ids"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public int AddRole(Goods goods)
+        {
+            var result = Common.Client.GetApi("post", "Supplier/AddGoods");
+            return int.Parse(result);
+        }
+
     }
 }
