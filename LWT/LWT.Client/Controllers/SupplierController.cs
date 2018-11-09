@@ -11,12 +11,10 @@ namespace LWT.Client.Controllers
 {
     public class SupplierController : Controller
     {
-        
+        //显示商品视图
         public IActionResult Index()
         {
-           // ViewBag.goods= Common.Client.GetApi("get", "Supplier/GetGoods");
             var getgoods= Common.Client.GetApi("get", "Supplier/GetGoods");
-            
             return View(JsonConvert.DeserializeObject<List<Goods>>(getgoods));
         }
         
@@ -70,5 +68,10 @@ namespace LWT.Client.Controllers
             return result;
         }
 
+        //添加商品视图
+        public IActionResult AddGoods()
+        {
+            return View();
+        }
     }
 }

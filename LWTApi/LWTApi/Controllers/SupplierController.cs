@@ -71,5 +71,17 @@ namespace LWTApi.Controllers
             var list = _supplierServices.GetOrderList(OrderNum).ToList();
             return list;
         }
+
+        /// <summary>
+        /// 添加新商品
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("[action]")]
+        public int AddGoods(Goods goods)
+        {
+            var result = _supplierServices.AddGoods(goods);
+            return result;
+        }
     } 
 }
