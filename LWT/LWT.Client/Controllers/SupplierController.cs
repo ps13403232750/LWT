@@ -47,9 +47,28 @@ namespace LWT.Client.Controllers
         }
 
         //订单显示视图
-        public IActionResult OrderList()
+        public IActionResult Order()
         {
             return View();
         }
+
+        //订单从表显示视图
+        public IActionResult OrderList(int OrderNum)
+        {
+            ViewBag.OrderNum = OrderNum;
+            return View();
+        }
+
+        /// <summary>
+        /// 审核商品信息
+        /// </summary>
+        /// <param name="Id"></param>
+        /// <returns></returns>
+        public string OrderLists(int OrderNum)
+        {
+            var result = Common.Client.GetApi("Get", "Supplier/GetOrderList?OrderNum=" + OrderNum);
+            return result;
+        }
+
     }
 }

@@ -38,10 +38,22 @@ namespace Services
         /// 获取订单表数据
         /// </summary>
         /// <returns></returns>
-        public List<Order> GetOrder()
+        public List<Orders> GetOrder()
         {
-            var List = SqlSugarHelper<Order>.FindAll();
+            var List = SqlSugarHelper<Orders>.FindAll();
             return List;
         }
+
+        /// <summary>
+        /// 获取订单从表详细数据
+        /// </summary>
+        /// <returns></returns>
+        public List<OrderList> GetOrderList(int OrderNum)
+        {
+            var db = BaseDB.GetInstance();
+            var List = db.Queryable<OrderList>().Where(it => it.OrderNum == OrderNum).ToList();
+            return List;
+        }
+        
     }
 }

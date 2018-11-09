@@ -42,7 +42,7 @@ namespace LWTApi.Controllers
         /// <returns></returns>
         [HttpPut]
         [Route("[action]")]
-        public ActionResult <bool> UpdateGoods(int Id, int State=1)
+        public ActionResult<bool> UpdateGoods(int Id, int State = 1)
         {
             var list = _supplierServices.UpdateGoods(Id, State);
             return list;
@@ -54,11 +54,22 @@ namespace LWTApi.Controllers
         /// <returns></returns>
         [HttpGet]
         [Route("[action]")]
-        public ActionResult<List<Order>> GetOrder()
+        public ActionResult<List<Orders>> GetOrder()
         {
             var list = _supplierServices.GetOrder().ToList();
             return list;
         }
         
-    }
+        /// <summary>
+        /// 获取订单从表数据
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("[action]")]
+        public ActionResult<List<OrderList>> GetOrderList(int OrderNum)
+        {
+            var list = _supplierServices.GetOrderList(OrderNum).ToList();
+            return list;
+        }
+    } 
 }

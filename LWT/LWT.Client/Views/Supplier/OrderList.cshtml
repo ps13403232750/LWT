@@ -9,7 +9,45 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>OrderList</title>
+    <script src="~/js/vue.js"></script>
+    <script src="~/js/axios.js"></script>
 </head>
 <body>
+    <div id="app">
+        <table>
+            <tr>
+                <td> 编号 </td>
+                <td> 商品名称 </td>
+                <td> 所属订单 </td>
+                <td> 商品价格 </td>
+                <td> 商品数量 </td>
+                <td> 操作 </td>
+            </tr>
+            <tr v-for="item in info" v-bind:key="item.id">
+
+                <td>{{item.id}}</td>
+                <td>{{item.goodsName}}</td>
+                <td>{{item.orderNum}}</td>
+                <td>{{item.goodsPrice}}</td>
+                <td>{{item.goodsNum}}</td>
+                <td>
+                    <a href="#"> 操作 </a>
+                </td>
+            </tr>
+        </table>
+    </div>
 </body>
 </html>
+<script>
+
+    var app = new Vue({
+        el: '#app',
+        data: {
+            info: null
+        },
+        //获取加载时数据
+        mounted: function () {
+            axios.get('/Supplier/OrderLists?OrderNum='+@ViewBag.OrderNum).then(response => (this.info = response.data));
+        }
+    })
+</script>

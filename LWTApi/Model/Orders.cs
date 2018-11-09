@@ -4,7 +4,10 @@ using System.Text;
 
 namespace Model
 {
-  public class Order
+    /// <summary>
+    /// 订单表
+    /// </summary>
+  public class Orders
     {
         /// <summary>
         /// 订单id
@@ -24,7 +27,7 @@ namespace Model
         /// <summary>
         /// 订单总价
         /// </summary>
-        public int Price { get; set; }
+        public float Price { get; set; }
 
         /// <summary>
         /// 收货地址

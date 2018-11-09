@@ -24,6 +24,13 @@ namespace IServices
         /// 获取订单列表
         /// </summary>
         /// <returns></returns>
-        List<Order> GetOrder();
+        List<Orders> GetOrder();
+
+        /// <summary>
+        /// 获取订单从表详细信息
+        /// </summary>
+        /// <param name="OrderNum"></param>
+        /// <returns></returns>
+        List<OrderList> GetOrderList(int OrderNum);
     }
 }

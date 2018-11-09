@@ -21,7 +21,7 @@ namespace LWT.Model
         /// <summary>
         /// 商品价格
         /// </summary>
-        public int GoodsPrice { get; set; }
+        public float GoodsPrice { get; set; }
 
         /// <summary>
         /// 商品数量
