@@ -7,7 +7,7 @@ namespace Model
     /// <summary>
     /// 采购结算次数
     /// </summary>
-   public class PurChaseNumber
+   public class PurchaseNumber
     {
         /// <summary>
         /// 主键Id

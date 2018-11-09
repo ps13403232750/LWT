@@ -15,7 +15,7 @@ namespace Services
         /// </summary>
         /// <param name="user"></param>
         /// <returns></returns>
-        public int Add(string name, string ids)
+        public int Add(Users user)
         {
             var i = SqlSugarHelper<Users>.Insert(user);
             return i;
@@ -24,11 +24,11 @@ namespace Services
         /// <summary>
         /// 企业采购入驻
         /// </summary>
-        /// <param name="purchase"></param>
+        /// <param name="Purchase"></param>
         /// <returns></returns>
-        public int Add(PurChase purchase)
+        public int Add(Purchase purchase)
         {
-            var i = SqlSugarHelper<PurChase>.Insert(purchase);
+            var i = SqlSugarHelper<Purchase>.Insert(purchase);
             return i;
         }
 
@@ -92,9 +92,9 @@ namespace Services
         /// </summary>
         /// <param name="classe"></param>
         /// <returns></returns>
-        public List<Class> GetClass()
+        public List<Category> GetCategory()
         {
-            var list = SqlSugarHelper<Class>.FindAll();
+            var list = SqlSugarHelper<Category>.FindAll();
             return list;
         }
 
