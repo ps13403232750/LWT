@@ -4,10 +4,10 @@ using System.Text;
 
 namespace Model
 {
-   public class PurChase
+   public class Purchase
     {
         /// <summary>
-        /// 采购员id
+        /// 主键id
         /// </summary>
         public int Id { get; set; }
 

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Model
 {
-   public class ManageLimit
+   public class Limit
     {
         /// <summary>
         /// 额度id
@@ -19,10 +19,10 @@ namespace Model
         /// <summary>
         /// 结算方式
         /// </summary>
-        public string SettLemeny { get; set; }
+        public string AccountMode { get; set; }
 
         /// <summary>
-        /// 总额度额度
+        /// 总额度
         /// </summary>
         public int TotalAmount { get; set; }
 
@@ -32,13 +32,13 @@ namespace Model
         public int  ApplyAmount { get; set; }
 
         /// <summary>
-        /// 运营商审核状态
+        /// 审核状态
         /// </summary>
         public int State { get; set; }
 
         /// <summary>
         /// 审批额度
         /// </summary>
-        public int AppRoveLimit { get; set; }
+        public int ApproveAmount { get; set; }
     }
 }
