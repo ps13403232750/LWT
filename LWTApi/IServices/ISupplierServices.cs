@@ -19,5 +19,11 @@ namespace IServices
         /// <param name="Id"></param>
         /// <returns></returns>
         bool UpdateGoods(int Id, int State);
+
+        /// <summary>
+        /// 获取订单列表
+        /// </summary>
+        /// <returns></returns>
+        List<Order> GetOrder();
     }
 }

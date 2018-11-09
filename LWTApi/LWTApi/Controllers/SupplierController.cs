@@ -47,5 +47,18 @@ namespace LWTApi.Controllers
             var list = _supplierServices.UpdateGoods(Id, State);
             return list;
         }
+
+        /// <summary>
+        /// 获取订单表数据
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("[action]")]
+        public ActionResult<List<Order>> GetOrder()
+        {
+            var list = _supplierServices.GetOrder().ToList();
+            return list;
+        }
+        
     }
 }

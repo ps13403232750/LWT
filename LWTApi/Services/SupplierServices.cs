@@ -33,5 +33,15 @@ namespace Services
             var result = GetSimpleInstance<Goods>().Update(it => new Goods() { State = State }, it => it.Id == Id);
             return result;
         }
+
+        /// <summary>
+        /// 获取订单表数据
+        /// </summary>
+        /// <returns></returns>
+        public List<Order> GetOrder()
+        {
+            var List = SqlSugarHelper<Order>.FindAll();
+            return List;
+        }
     }
 }

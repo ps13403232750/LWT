@@ -11,6 +11,7 @@ namespace LWT.Client.Controllers
 {
     public class SupplierController : Controller
     {
+        
         public IActionResult Index()
         {
            // ViewBag.goods= Common.Client.GetApi("get", "Supplier/GetGoods");
@@ -18,9 +19,10 @@ namespace LWT.Client.Controllers
             
             return View(JsonConvert.DeserializeObject<List<Goods>>(getgoods));
         }
-        public IActionResult ReviewOfGoods()        {
-            
-           // ViewBag.goods = GetGoods();
+        
+        //审核商品视图
+        public IActionResult ReviewOfGoods()
+        {
             return View();
         }
 
@@ -42,6 +44,12 @@ namespace LWT.Client.Controllers
         {
             var result = Common.Client.GetApi("Put", "Supplier/UpdateGoods?Id="+Id);
             return result;
+        }
+
+        //订单显示视图
+        public IActionResult OrderList()
+        {
+            return View();
         }
     }
 }
