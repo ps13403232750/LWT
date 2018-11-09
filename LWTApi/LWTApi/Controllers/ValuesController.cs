@@ -126,6 +126,8 @@ namespace LWTApi.Controllers
         /// </summary>
         /// <param name="classe"></param>
         /// <returns></returns>
+        [Route("[action]")]
+        [HttpGet]
         public List<Class> GetClass()
         {
             var data = userServices.GetClass().ToList();
@@ -136,6 +138,8 @@ namespace LWTApi.Controllers
         /// 获取品牌的信息
         /// </summary>
         /// <returns></returns>
+        [Route("[action]")]
+        [HttpGet]
         public List<Brand> GetBrand()
         {
             return userServices.GetBrand().ToList();
