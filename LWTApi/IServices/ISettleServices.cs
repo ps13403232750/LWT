@@ -28,7 +28,7 @@ namespace IServices
         /// <summary>
         /// 详情
         /// </summary>
-        /// <returns></returns>
+        /// <returns></returns> 
         List<Orders> ThinPurState();
 
         /// <summary>
