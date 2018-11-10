@@ -4,7 +4,7 @@ using System.Text;
 
 namespace LWT.Model
 {
-   public class Limit
+   public class Category
     {
         /// <summary>
         /// 主键id
