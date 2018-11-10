@@ -77,7 +77,7 @@ namespace IServices
         List<Roles> GetRoles();
 
         /// <summary>
-        /// 获取用户注册的信息名称
+        /// 获取用户注册的信息
         /// </summary>
         /// <returns></returns>
         List<Users> GetUsers();

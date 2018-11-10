@@ -62,12 +62,13 @@ namespace LWT.Client.Controllers
         {
             return View();
         }
-
-        public int AddUsersRole(Supplier supplier)
+        [HttpPost]
+        public int AddUsersRole(Roles roles)
         {
-            var data = Common.Client.GetApi("post", "Values/AddRole", supplier);
+            var data = Common.Client.GetApi("post", "Values/AddRole", roles);
             return int.Parse(data);
         }
+
 
         /// <summary>
         /// 添加供应商角色
@@ -81,7 +82,23 @@ namespace LWT.Client.Controllers
 
         public int AddSupplier(Supplier supplier)
         {
-            var data = Common.Client.GetApi("post", "Values/AddSupplier");
+            var data = Common.Client.GetApi("post", "Values/AddSupplier",supplier);
+            return int.Parse(data);
+        }
+
+        /// <summary>
+        /// 添加供应商角色
+        /// </summary>
+        /// <returns></returns>
+        public IActionResult AddSuppliers()
+        {
+            return View();
+        }
+        [HttpPost]
+
+        public int AddSuppliers(Supplier supplier)
+        {
+            var data = Common.Client.GetApi("post", "Values/AddSupplier", supplier);
             return int.Parse(data);
         }
 
