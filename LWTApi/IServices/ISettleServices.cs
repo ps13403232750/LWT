@@ -29,7 +29,7 @@ namespace IServices
         /// 详情
         /// </summary>
         /// <returns></returns>
-        List<PurchaseNumber> ThinPurState();
+        List<Orders> ThinPurState();
 
         /// <summary>
         /// 采购结算列表

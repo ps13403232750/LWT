@@ -55,7 +55,7 @@ namespace IServices
         /// </summary>
         /// <param name="roleAndPower"></param>
         /// <returns></returns>
-        int AddRoleAndPower(int name, string ids);
+        int AddRoleAndPower(RoleAndPowerHelper roleAndPowerHelper);
 
         /// <summary>
         /// 获取品牌信息

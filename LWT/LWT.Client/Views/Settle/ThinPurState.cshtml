@@ -2,13 +2,15 @@
 @{
     Layout = null;
 }
-@model List<LWT.Model.PurChaseNumber>
+@model List<LWT.Model.Orders>
 <!DOCTYPE html>
 
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>采购商对账详情</title>
+    <link href="~/Content/lib/Bootstrap/bootstrap.min.css" rel="stylesheet" />
+
 </head>
 <body>
     <style>
@@ -25,8 +27,11 @@
         <li>第二次结算 </li>
         <li>第一次结算 </li>
     </ul>
-    <h2 style="color:blue">    发送对账单</h2>
-    <table class="table table-border">
+    <p>采购商名称 七彩北京公司 结算周期 201804/01-2019/02/01</p>
+    <p>结算类型:季度 收款总金额:$5555555.00</p>
+    <p>订单数:9898</p>
+    <h2 style="color:white;background-color:blue">    发送对账单</h2>
+    <table class="table table-border" style="width:600px;height:300px;">
         <tr>
             <th>订单编号</th>
             <th>创建时间</th>
@@ -37,11 +42,11 @@
         @foreach (var item in Model)
         {
             <tr>
-                <td>@item.SettleNumber</td>
-                <td>@item.BuyerName</td>
-                <td>@item.SettleState</td>
-                <td>@item.SettleState</td>
-                <td>@item.BuyerName</td>
+                <td>@item.OrderNum</td>
+                <td>@item.OrderTime</td>
+                <td></td>
+                <td>@item.Price</td>
+                <td></td>
             </tr>
         }
     </table>

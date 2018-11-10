@@ -133,9 +133,24 @@ namespace Services
         /// </summary>
         /// <param name="roleAndPower"></param>
         /// <returns></returns>
-        public int AddRoleAndPower(int name, string ids)
+        public int AddRoleAndPower(RoleAndPowerHelper roleAndPowerHelper)
         {
-            return 1;
+            int name = roleAndPowerHelper.Id;
+            string ids = roleAndPowerHelper.RoleId;
+            RoleAndPower roleAndPower = new RoleAndPower();
+            roleAndPower.Id = name;
+            string idss = roleAndPower.RoleId.ToString();
+            idss= ids.ToString();
+            var result = idss.Split(',');
+            int i = 0;
+            foreach (var item in result)
+            {
+                 i += SqlSugarHelper<RoleAndPower>.Insert(new RoleAndPower {
+                     Id = name,
+                     RoleId = Int32.Parse(item)            
+              });
+            }
+            return i;
         }
     }
 }

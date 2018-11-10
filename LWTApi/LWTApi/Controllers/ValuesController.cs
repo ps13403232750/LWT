@@ -103,9 +103,10 @@ namespace LWTApi.Controllers
         /// <returns></returns>
         [Route("[action]")]
         [HttpPost]
-        public int AddRoleAndPower(RoleAndPower roleandpower)
+        public int AddRoleAndPower(RoleAndPowerHelper roleAndPowerHelper)
         {
-            return 1;
+            var i = userServices.AddRoleAndPower(roleAndPowerHelper);
+            return i;
         }
 
         /// <summary>
