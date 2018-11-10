@@ -11,12 +11,15 @@
     <title>ReviewOfGoods</title>
     <script src="~/js/vue.js"></script>
     <script src="~/js/axios.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+    <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+    <link href="~/lib/bootstrap/dist/css/bootstrap-theme.css" rel="stylesheet" />
     @*<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>*@
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>*@
 </head>
 <body>
     <div id="app">
-        <table>
+        <table class="table table-border table-hover table-striped">
             <tr>
                 <td> 编号 </td>
                 <td> 商品名称 </td>
@@ -43,14 +46,14 @@
                 <td>{{item.price}}</td>
                 <td>{{item.inventory}}</td>
                 <template v-if="item.state==0">
-                    <td>待审核</td>
+                    <td style="color:#ff0000">待审核</td>
                 </template>
                 <template v-else-if="item.state==1">
-                    <td>审核通过</td>
+                    <td style="color:#00ffff">审核通过</td>
                 </template>
                 <td>{{item.isable}}</td>
                 <td>
-                    <a href="javascript:;" v-on:click="edituser(item.id)"> Edit </a>
+                    <a href="javascript:;" v-on:click="edituser(item.id)"> 通过 </a>
                 </td>
             </tr>
         </table>

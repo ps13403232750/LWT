@@ -42,7 +42,7 @@ namespace LWTApi.Controllers
         /// <returns></returns>
         [HttpGet]
         [Route("[action]")]
-        public ActionResult<List<PurchaseSettle>> GetPurChaseSettle()
+        public ActionResult<List<PurchaseSettle>> GetPurchaseSettle()
         {
             return settleServices.GetPurchaseSettle().ToList();
         }

@@ -27,7 +27,7 @@ namespace LWT.Client.Controllers
         /// <returns></returns>
         public IActionResult GetPurChaseSettle()
         {
-            string getPurChaseSettle =Common.Client.GetApi("get", "Settle/GetPurChaseSettle");
+            string getPurChaseSettle =Common.Client.GetApi("get", "Settle/GetPurchaseSettle");
             var list = JsonConvert.DeserializeObject<List<PurchaseSettle>>(getPurChaseSettle);
             return View(list);
         }
