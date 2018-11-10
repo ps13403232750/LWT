@@ -4,6 +4,9 @@ using System.Text;
 
 namespace Model
 {
+    /// <summary>
+    /// 额度管理表
+    /// </summary>
    public class Limit
     {
         /// <summary>
