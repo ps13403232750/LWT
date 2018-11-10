@@ -62,7 +62,7 @@ namespace Services
         /// <param name="predicate">条件表达式树</param>
         /// <param name="orderBy">排序</param>
         /// <returns>泛型实体集合</returns>
-        public static List<T> FindListByClause(Expression<Func<T, bool>> predicate, string orderBy)
+        public static List<T> FindByClause(Expression<Func<T, bool>> predicate, string orderBy)
         {
             using (var db = BaseDB.GetInstance())
             {

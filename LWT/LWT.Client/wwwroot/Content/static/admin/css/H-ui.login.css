@@ -40,7 +40,7 @@ body {
     bottom: 0;
     right: 0;
     z-index: 1;
-    background: #3283AC url(../images/admin-login-bg.jpg) no-repeat center
+    background: #3283AC url(../images/laowutong-bg.png) no-repeat center
 }
 
 .loginBox {
@@ -48,7 +48,7 @@ body {
     width: 617px;
     height: 330px;
     background: url(../images/admin-loginform-bg.png) no-repeat;
-    left: 50%;
+    left: 25%;
     top: 50%;
     margin-left: -309px;
     margin-top: -184px;

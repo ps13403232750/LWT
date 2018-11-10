@@ -1,0 +1,109 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>AddGoods</title>
+    <script src="~/js/jquery-1.10.2.js"></script>
+    <script src="~/js/vue.js"></script>
+    <script src="~/js/axios.js"></script>
+</head>
+<body>
+    <div id="app">
+        <table>
+            <tr>
+                <td align="right">商品名字：</td>
+                <td><input id="name" type="text" v-model="Name" /></td>
+            </tr>
+            <tr>
+                <td align="right">商品图片：</td>
+                <td><input id="pwd" type="text" v-model="Img" /></td>
+            </tr>
+            <tr>
+                <td align="right">类目：</td>
+                <td><input id="name" type="text" v-model="Category" /></td>
+            </tr>
+            <tr>
+                <td align="right">品牌：</td>
+                <td><input id="pwd" type="text" v-model="Band" /></td>
+            </tr>
+            <tr>
+                <td align="right">颜色：</td>
+                <td><input id="name" type="text" v-model="Color" /></td>
+            </tr>
+            <tr>
+                <td align="right">规格属性：</td>
+                <td><input id="pwd" type="text" v-model="Attribute" /></td>
+            </tr>
+            <tr>
+                <td align="right">价格：</td>
+                <td><input id="pwd" type="text" v-model="Price" /></td>
+            </tr>
+            <tr>
+                <td align="right">库存量：</td>
+                <td><input id="pwd" type="text" v-model="Inventory" /></td>
+            </tr>
+            <tr>
+                <td align="right">状态：</td>
+                <td><input id="pwd" type="text" v-model="State" /></td>
+            </tr>
+            <tr>
+                <td align="right">是否启用：</td>
+                <td><input id="pwd" type="text" v-model="Isable" /></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><input id="Button1" v-on:click="addgoods" type="button" value="提交" /></td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            Name         : "",
+            Img           : "",
+            Category      : "",
+            Band          : "",
+            Color           : "",
+            Attribute       : "",
+            Price         : 0,
+            Inventory   : 0,
+            State      : 0,
+            Isable    : 0
+        },
+        mounted: function () {
+        },
+        methods: {
+            addgoods: function () {
+                var that = this;
+                var params = new URLSearchParams();
+                params.append('Name',$("#name").val());
+                params.append('Img',$("#Img").val());
+                params.append('Category',$("#Category").val());
+                params.append('Band', $("#Band").val());
+                params.append('Color', $("#Color").val());
+                params.append('Attribute', $("#Attribute").val());
+                params.append('Price', $("#Price").val());
+                params.append('Inventory', $("#Inventory").val());
+                params.append('State', $("#State").val());
+                params.append('Isable', $("#Isable").val());
+                axios({
+                    method: 'post',
+                    url: '/Supplier/AddGoods',
+                    data: params
+                }).then(function (res) {
+                    alert(res.data);
+                });
+            },
+            BackLogin: function () { }
+        }
+    })
+</script>
