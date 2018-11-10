@@ -50,7 +50,7 @@
                 </template>
                 <td>{{item.isable}}</td>
                 <td>
-                    <a href="javascript:;" v-on:click="edituser(item.id,)"> Edit </a>
+                    <a href="javascript:;" v-on:click="edituser(item.id)"> Edit </a>
                 </td>
             </tr>
         </table>
@@ -73,9 +73,7 @@
                 that.info = res.data;
             });
         },
-        methods: {
-            //修改事件
-            edituser: function (res) {
+        methods: function (res) {
                 axios({   
                     method: 'put',
                     url: '/Supplier/UpdateGoods?Id=' + res,
@@ -87,8 +85,6 @@
                         alert(2)
                     }
                 })
-                    
-            }
         }
     })
 

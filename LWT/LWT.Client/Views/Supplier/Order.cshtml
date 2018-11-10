@@ -1,0 +1,67 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>OrderList</title>
+    <script src="~/js/vue.js"></script>
+    <script src="~/js/axios.js"></script>
+</head>
+<body>
+    <div id="app">
+        <table>
+            <tr>
+                <td> 编号 </td>
+                <td> 订单号 </td>
+                <td> 订货日期 </td>
+                <td> 订单总价 </td>
+                <td> 收货地址 </td>
+                <td> 采购商 </td>
+                <td> 操作 </td>
+            </tr>
+            <tr v-for="item in info" v-bind:key="item.id">
+
+                <td>{{item.id}}</td>
+                <td>{{item.orderNum}}</td>
+                <td>{{item.orderTime}}</td>
+                <td>{{item.price}}</td>
+                <td>{{item.address}}</td>
+                <td>{{item.userId}}</td>
+                <td>
+                    <a href="javascript:;" v-on:click="JumpTo(item.orderNum)"> 查看详情 </a>
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            info: null
+        },
+        //获取加载时数据
+        mounted: function () {
+            var that = this;
+            axios.get('http://localhost:60259/api/Supplier/GetOrder').then(function (res) {
+                that.info = res.data;
+            });
+        },
+        methods: {
+            //修改事件
+            JumpTo: function (res) {
+
+                location.href = '/Supplier/OrderList?OrderNum=' + res;
+                
+                }
+
+            }
+        })
+   
+</script>

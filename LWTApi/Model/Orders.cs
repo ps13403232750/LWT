@@ -4,6 +4,10 @@ using System.Text;
 
 namespace Model
 {
+    /// <summary>
+    /// 订单表
+    /// </summary>
+
   public class Orders
     {
         /// <summary>
@@ -24,7 +28,7 @@ namespace Model
         /// <summary>
         /// 订单总价
         /// </summary>
-        public int Price { get; set; }
+        public float Price { get; set; }
 
         /// <summary>
         /// 收货地址

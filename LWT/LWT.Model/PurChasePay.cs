@@ -7,7 +7,7 @@ namespace LWT.Model
     /// <summary>
     /// 采购商结算详情列表
     /// </summary>
-   public class PurChasePay
+   public class PurchasePay
     {
         /// <summary>
         /// 主键id
