@@ -21,7 +21,7 @@ namespace Model
 
         /// <summary>
         /// 结算方式
-        /// </summary>
+        /// </summaryc
         public string SettleMeny { get; set; }
 
         /// <summary>

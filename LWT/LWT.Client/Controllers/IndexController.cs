@@ -62,6 +62,7 @@ namespace LWT.Client.Controllers
         {
             return View();
         }
+        [HttpPost]
 
         public int AddSupplier(Supplier supplier)
         {
