@@ -55,7 +55,6 @@ namespace LWTApi.Controllers
         [Route("[action]")]
 
         public ActionResult<List<Orders>> ThinPurState()
-
         {
             return settleServices.ThinPurState().ToList();
         }
