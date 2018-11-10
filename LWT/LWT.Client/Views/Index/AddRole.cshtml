@@ -106,13 +106,20 @@
                     })
                     var that = this;
                     var params = new URLSearchParams();
-                    params.append('name', $("#Select1").val());
-                    params.append('ids', list.toString());
+                    params.append('Id', $("#Select1").val());
+                    params.append('RoleId', list.toString());
                     axios({
                         method: 'post',
                         url: '/index/addrole',
                         data: params
-                    });
+                    }).then(function (res) {
+                        if (res > 0) {
+                            alert("添加成功哦！");
+                        }
+                        else {
+                            alert("对不起，添加失败！");
+                        }  
+                        });
                 }
             }
         });

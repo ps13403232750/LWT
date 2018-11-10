@@ -38,8 +38,6 @@ namespace LWT.Client.Controllers
             return int.Parse(data);
         }
 
-      
-
         /// <summary>
         /// 根据角色添加权限
         /// </summary>
@@ -50,9 +48,9 @@ namespace LWT.Client.Controllers
             return View(JsonConvert.DeserializeObject<List<Power>>(getpower));
         }
         [HttpPost]
-        public int AddRole(int name,string ids)
+        public int AddRole(RoleAndPowerHelper roleAndPowerHelper)
         {
-            var data = Common.Client.GetApi("post", "Values/AddRoleAndPower");
+            var data = Common.Client.GetApi("post", "Values/AddRoleAndPower",roleAndPowerHelper);
             return int.Parse(data);
         }
 
