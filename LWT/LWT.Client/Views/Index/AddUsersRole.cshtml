@@ -1,0 +1,58 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>AddUsersRole</title>
+</head>
+<body>
+    <div>
+        <table id="app">
+            <tr>
+                <td align="right">角色名称：</td>
+                <td><input id="name" type="text" v-model="UserName" /></td>
+            </tr>
+            <tr>
+                <td align="right">状态：</td>
+                <td><input id="Radio1" type="radio" />启用<input id="Radio2" type="radio" />停用</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><input id="Button1" v-on:click="adduser" type="button" value="注册" /><input id="Button1" v-on:click="BackLogin" type="button" value="登录" /></td>
+            </tr>
+        </table>
+    </div>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                RoleName: "",
+                RoleId: 0,
+            },
+            methods: {
+                adduser: function () {
+                    var that = this;
+                    var params = new URLSearchParams();
+                    params.append('Id', '0');
+                    params.append('RoleName', $("#name").val());
+                    params.append('RoleId', $("#Radio1").val());
+                    params.append('RoleId', $("#Radio2").val());
+                    axios({
+                        method: 'post',
+                        url: '/Index/AddUsersRole',
+                        data: params
+                    }).then(function (res) {
+                        alert(res.data);
+                    });
+                },
+                BackLogin: function () { }
+            }
+        })
+    </script>
+</body>
+</html>

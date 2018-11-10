@@ -55,6 +55,21 @@ namespace LWT.Client.Controllers
         }
 
         /// <summary>
+        /// 添加角色
+        /// </summary>
+        /// <returns></returns>
+        public IActionResult AddUsersRole()
+        {
+            return View();
+        }
+
+        public int AddUsersRole(Supplier supplier)
+        {
+            var data = Common.Client.GetApi("post", "Values/AddRole", supplier);
+            return int.Parse(data);
+        }
+
+        /// <summary>
         /// 添加供应商角色
         /// </summary>
         /// <returns></returns>
