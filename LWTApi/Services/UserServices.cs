@@ -4,12 +4,13 @@ using System;
 using System.Collections.Generic;
 
 using SqlSugar;
+using Common;
 
 namespace Services
 {
-    public class UserServices :BaseDB, IUserServices
+    public class UserServices : BaseDB, IUserServices
     {
-        
+
         /// <summary>
         /// 添加用户
         /// </summary>
@@ -97,6 +98,12 @@ namespace Services
             return list;
         }
 
+        public List<Power> GetPowerPageList(PageParams pageParams)
+        {
+            var list = OraclePaging.QuickPage<Power>(pageParams);
+            return list.DataList;
+        }
+
         /// <summary>
         /// 获取用户角色的所有信息
         /// </summary>
@@ -140,15 +147,16 @@ namespace Services
             RoleAndPower roleAndPower = new RoleAndPower();
             roleAndPower.Id = name;
             string idss = roleAndPower.RoleId.ToString();
-            idss= ids.ToString();
+            idss = ids.ToString();
             var result = idss.Split(',');
             int i = 0;
             foreach (var item in result)
             {
-                 i += SqlSugarHelper<RoleAndPower>.Insert(new RoleAndPower {
-                     Id = name,
-                     RoleId = Int32.Parse(item)            
-              });
+                i += SqlSugarHelper<RoleAndPower>.Insert(new RoleAndPower
+                {
+                    Id = name,
+                    RoleId = Int32.Parse(item)
+                });
             }
             return i;
         }

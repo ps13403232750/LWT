@@ -32,6 +32,18 @@ namespace LWTApi.Controllers
         }
 
         /// <summary>
+        /// 分页权限列表信息
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("[action]")]
+        public ActionResult<List<Power>> GetPowerPaged()
+        {
+            PageParams pageParams = new PageParams() { TableName="POWER",PageSize=5};
+            return userServices.GetPowerPageList(pageParams).ToList();
+        }
+
+        /// <summary>
         /// 获取用户角色信息
         /// </summary>
         /// <returns></returns>

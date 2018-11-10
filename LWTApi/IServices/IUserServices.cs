@@ -77,10 +77,17 @@ namespace IServices
         List<Roles> GetRoles();
 
         /// <summary>
-        /// 获取用户注册的信息名称
+        /// 获取用户注册的信息
         /// </summary>
         /// <returns></returns>
         List<Users> GetUsers();
+
+        /// <summary>
+        /// 获取权限分页列表
+        /// </summary>
+        /// <param name="pageParams"></param>
+        /// <returns></returns>
+        List<Power> GetPowerPageList(PageParams pageParams);
 
     }
 }

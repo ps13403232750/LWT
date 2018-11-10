@@ -9,17 +9,21 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>AddUsersRole</title>
+    <script src="~/js/jquery-1.10.2.js"></script>
+    <script src="~/js/axios.js"></script>
+    <script src="~/js/vue.js"></script>
+    <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
 </head>
 <body>
     <div>
         <table id="app">
             <tr>
                 <td align="right">角色名称：</td>
-                <td><input id="name" type="text" v-model="UserName" /></td>
+                <td><input id="name" type="text" /></td>
             </tr>
             <tr>
                 <td align="right">状态：</td>
-                <td><input id="Radio1" type="radio" />启用<input id="Radio2" type="radio" />停用</td>
+                <td><input id="Radio1" name="yes" type="radio" value="1"/>启用<input id="Radio2" name="no" type="radio" value="0"/>停用</td>
             </tr>
             <tr>
                 <td></td>
@@ -40,17 +44,24 @@
                     var params = new URLSearchParams();
                     params.append('Id', '0');
                     params.append('RoleName', $("#name").val());
-                    params.append('RoleId', $("#Radio1").val());
-                    params.append('RoleId', $("#Radio2").val());
+                    if ($('input[name="yes"]:checked').val() !== null) {
+                        params.append('RoleId', $('input[name="yes"]:checked').val());
+                    }
+                    else if ($('input[name="no"]:checked').val() !== null) {
+                        params.append('RoleId', $('input[name="no"]:checked').val());
+                    }
                     axios({
                         method: 'post',
                         url: '/Index/AddUsersRole',
                         data: params
                     }).then(function (res) {
-                        alert(res.data);
+                        if(res>0)
+                        {
+                            alert("角色添加成功！");
+                        }
                     });
                 },
-                BackLogin: function () { }
+                
             }
         })
     </script>
