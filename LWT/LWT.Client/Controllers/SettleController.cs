@@ -14,10 +14,10 @@ namespace LWT.Client.Controllers
         /// 额度管理表
         /// </summary>
         /// <returns></returns>
-        public IActionResult GetManageLimit()
+        public IActionResult GetLimit()
         {
-            string getManageLimit = Common.Client.GetApi("get", "Settle/GetManageLimit");
-            var list = JsonConvert.DeserializeObject<List<ManageLimit>>(getManageLimit);
+            string getLimit = Common.Client.GetApi("get", "Settle/GetLimit");
+            var list = JsonConvert.DeserializeObject<List<Limit>>(getLimit);
             return View(list);
         }
 
@@ -50,7 +50,7 @@ namespace LWT.Client.Controllers
         public IActionResult ThinMaLimite()
         {
             string thinMaLimite = Common.Client.GetApi("get", "Settle/ThinMaLimite");
-            var list = JsonConvert.DeserializeObject<List<ManageLimit>>(thinMaLimite);
+            var list = JsonConvert.DeserializeObject<List<Limit>>(thinMaLimite);
             return View(list);
         }
 

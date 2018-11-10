@@ -2,13 +2,13 @@
 @{
     Layout = null;
 }
-@model List<LWT.Model.ManageLimit>
+@model List<LWT.Model.Limit>
 <!DOCTYPE html>
 
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>GetManageLimit</title>
+    <title>GetLimit</title>
     <script src="~/Content/lib/laypage/1.2/laypage.js"></script>
     <script src="~/js/jquery-1.10.2.js"></script>
     <link href="~/Content/lib/Bootstrap/bootstrap.min.css" rel="stylesheet" />
@@ -40,7 +40,7 @@
                 <tr>
                     <td>@item.Id</td>
                     <td>@item.BuyerName</td>
-                    <td>@item.SettLemeny</td>
+                    <td>@item.AccountMode</td>
                     <td>@item.TotalAmount</td>
                     <td>@item.ApplyAmount </td>
                     <td>@(item.State == 0 ? "未审核" : "已审核" )</td>

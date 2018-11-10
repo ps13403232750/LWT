@@ -2,7 +2,7 @@
 @{
     Layout = null;
 }
-@model List<LWT.Model.ManageLimit>
+@model List<LWT.Model.Limit>
 <!DOCTYPE html>
 <html>
 <head>
@@ -53,7 +53,7 @@
             //获取加载时数据
             mounted: function () {
                 var that = this;
-                axios.get('http://localhost:60259/api/Settle/GetManageLimit').then(function (res) {
+                axios.get('http://localhost:60259/api/Settle/GetLimit').then(function (res) {
                     that.info = res.data;
                     console.log(res.data)
                 });
@@ -74,7 +74,7 @@
                     })
                 },
                 getlist: function (that) {
-                    axios.get('http://localhost:60259/api/Settle/GetManageLimit').then(function (res) {
+                    axios.get('http://localhost:60259/api/Settle/GetLimit').then(function (res) {
                         that.info = res.data;
                     });
                 }

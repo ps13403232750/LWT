@@ -42,6 +42,6 @@ namespace Model
         /// <summary>
         /// 审批额度
         /// </summary>
-        public int ApproveAmount { get; set; }
+        public int ApproveLimit { get; set; }
     }
 }
