@@ -82,5 +82,12 @@ namespace IServices
         /// <returns></returns>
         List<Users> GetUsers();
 
+        /// <summary>
+        /// 获取权限分页列表
+        /// </summary>
+        /// <param name="pageParams"></param>
+        /// <returns></returns>
+        List<Power> GetPowerPageList(PageParams pageParams);
+
     }
 }

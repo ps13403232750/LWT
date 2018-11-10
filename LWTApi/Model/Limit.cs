@@ -4,6 +4,9 @@ using System.Text;
 
 namespace Model
 {
+    /// <summary>
+    /// 额度管理表
+    /// </summary>
    public class Limit
     {
         /// <summary>
@@ -39,6 +42,6 @@ namespace Model
         /// <summary>
         /// 审批额度
         /// </summary>
-        public int ApproveAmount { get; set; }
+        public int ApproveLimit { get; set; }
     }
 }

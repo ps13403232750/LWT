@@ -7,7 +7,7 @@ namespace LWT.Model
     /// <summary>
     /// 额度管理表
     /// </summary>
-   public class ManageLimit
+   public class Limit
     {
         /// <summary>
         /// 额度id
@@ -22,7 +22,7 @@ namespace LWT.Model
         /// <summary>
         /// 结算方式
         /// </summary>
-        public string SettLemeny { get; set; }
+        public string AccountMode { get; set; }
 
         /// <summary>
         /// 总额度额度

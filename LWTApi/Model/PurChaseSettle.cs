@@ -25,11 +25,6 @@ namespace Model
         public string SettleMeny { get; set; }
 
         /// <summary>
-        /// 结算周期
-        /// </summary>
-        public string SettleDays { get; set; }
-
-        /// <summary>
         /// 状态
         /// </summary>
         public int State { get; set; }
