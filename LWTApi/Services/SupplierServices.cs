@@ -15,8 +15,8 @@ namespace Services
         /// <returns></returns>
         public List<Goods> Goods()
         {
-            var List = SqlSugarHelper<Goods>.FindAll();
-            return List;
+            var result = SqlSugarHelper<Goods>.FindAll();
+            return result;
         }
 
         /// <summary>
@@ -40,8 +40,8 @@ namespace Services
         /// <returns></returns>
         public List<Orders> GetOrder()
         {
-            var List = SqlSugarHelper<Orders>.FindAll();
-            return List;
+            var result = SqlSugarHelper<Orders>.FindAll();
+            return result;
         }
 
         /// <summary>
@@ -51,8 +51,8 @@ namespace Services
         public List<OrderList> GetOrderList(int OrderNum)
         {
             var db = BaseDB.GetInstance();
-            var List = db.Queryable<OrderList>().Where(it => it.OrderNum == OrderNum).ToList();
-            return List;
+            var result = db.Queryable<OrderList>().Where(it => it.OrderNum == OrderNum).ToList();
+            return result;
         }
 
         /// <summary>
@@ -62,8 +62,8 @@ namespace Services
         /// <returns></returns>
         public int AddGoods(Goods goods)
         {
-            var i = SqlSugarHelper<Goods>.Insert(goods);
-            return i;
+            var result = SqlSugarHelper<Goods>.Insert(goods);
+            return result;
         }
     }
 }
