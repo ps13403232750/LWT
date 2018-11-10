@@ -30,8 +30,8 @@ namespace LWTApi.Controllers
         [Route("[action]")]
         public ActionResult<List<Goods>> GetGoods()
         {
-            var list = _supplierServices.Goods().ToList();
-            return list;
+            var result = _supplierServices.Goods().ToList();
+            return result;
         }
 
         /// <summary>
@@ -44,8 +44,8 @@ namespace LWTApi.Controllers
         [Route("[action]")]
         public ActionResult<bool> UpdateGoods(int Id, int State = 1)
         {
-            var list = _supplierServices.UpdateGoods(Id, State);
-            return list;
+            var result = _supplierServices.UpdateGoods(Id, State);
+            return result;
         }
 
         /// <summary>
@@ -56,8 +56,8 @@ namespace LWTApi.Controllers
         [Route("[action]")]
         public ActionResult<List<Orders>> GetOrder()
         {
-            var list = _supplierServices.GetOrder().ToList();
-            return list;
+            var result = _supplierServices.GetOrder().ToList();
+            return result;
         }
         
         /// <summary>
@@ -68,8 +68,8 @@ namespace LWTApi.Controllers
         [Route("[action]")]
         public ActionResult<List<OrderList>> GetOrderList(int OrderNum)
         {
-            var list = _supplierServices.GetOrderList(OrderNum).ToList();
-            return list;
+            var result = _supplierServices.GetOrderList(OrderNum).ToList();
+            return result;
         }
 
         /// <summary>
