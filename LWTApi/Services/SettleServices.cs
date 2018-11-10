@@ -32,9 +32,10 @@ namespace Services
         /// 结算详情
         /// </summary>
         /// <returns></returns>
-        public List<PurchaseNumber> ThinPurState()
+
+        public List<Orders> ThinPurState()
         {
-            var list = SqlSugarHelper<PurchaseNumber>.FindAll();
+            var list = SqlSugarHelper<Orders>.FindAll();
             return list;
         }
 

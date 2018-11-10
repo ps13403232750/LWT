@@ -5,7 +5,7 @@ using System.Text;
 namespace LWT.Model
 {
     /// <summary>
-    /// 采购商列表
+    /// 采购商结算列表
     /// </summary>
    public class PurChaseSettle
     {
@@ -23,11 +23,6 @@ namespace LWT.Model
         /// 结算类型
         /// </summary>
         public string SettleMeny { get; set; }
-
-        /// <summary>
-        /// 结算周期
-        /// </summary>
-        public string SettleDays { get; set; }
 
         /// <summary>
         /// 状态

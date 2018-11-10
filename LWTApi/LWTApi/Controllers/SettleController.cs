@@ -37,7 +37,7 @@ namespace LWTApi.Controllers
         }
 
         /// <summary>
-        /////采购结算列表显示 
+        /////采购结算列表
         /// </summary>
         /// <returns></returns>
         [HttpGet]
@@ -48,12 +48,14 @@ namespace LWTApi.Controllers
         }
   
         /// <summary>
-        /////采购结算列表显示 
+        /////采购结算列表详情
         /// </summary>
         /// <returns></returns>
         [HttpGet]
         [Route("[action]")]
-        public ActionResult<List<PurchaseNumber>> ThinPurState()
+
+        public ActionResult<List<Orders>> ThinPurState()
+
         {
             return settleServices.ThinPurState().ToList();
         }
