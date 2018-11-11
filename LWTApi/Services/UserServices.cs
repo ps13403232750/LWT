@@ -92,7 +92,7 @@ namespace Services
         /// 获取权限列表信息
         /// </summary>
         /// <returns></returns>
-        public List<Power> GetPowerMessage()
+        public List<Power> GetAllPower()
         {
             var list = SqlSugarHelper<Power>.FindAll();
             return list;
@@ -123,7 +123,6 @@ namespace Services
             var list = SqlSugarHelper<Brand>.FindAll();
             return list;
         }
-
 
         /// <summary>
         /// 获取所有用户注册信息的名称
@@ -159,6 +158,16 @@ namespace Services
                 });
             }
             return i;
+        }
+
+        /// <summary>
+        /// 获取权限导航菜单
+        /// </summary>
+        /// <returns></returns>
+        public List<Power> GetPower()
+        {
+            var list = SqlSugarHelper<Power>.FindAll();
+            return list;
         }
     }
 }

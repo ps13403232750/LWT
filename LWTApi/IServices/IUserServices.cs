@@ -10,10 +10,16 @@ namespace IServices
         int Add(Users user);
 
         /// <summary>
-        /// 获取权限列表信息
+        /// 获取全部权限列表
         /// </summary>
         /// <returns></returns>
-        List<Power> GetPowerMessage();
+        List<Power> GetAllPower();
+
+        /// <summary>
+        /// 获取权限列表
+        /// </summary>
+        /// <returns></returns>
+        List<Power> GetPower();
 
         /// <summary>
         /// 企业采购入驻
