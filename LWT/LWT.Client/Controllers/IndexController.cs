@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Http;
 using System.Net.Http.Headers;
 using System.IO;
 using Microsoft.AspNetCore.Hosting;
+using LWT.Client.Models;
 
 namespace LWT.Client.Controllers
 {
@@ -41,10 +42,22 @@ namespace LWT.Client.Controllers
             return View(JsonConvert.DeserializeObject<List<Power>>(getpower));
         }
 
+        /// <summary>
+        /// 权限菜单维护
+        /// </summary>
+        /// <returns></returns>
         public IActionResult PowerManage()
         {
             return View();
         }
+
+        public string GetPowerList(PageParams pageParams)
+        {
+            pageParams.TableName = "Power";
+            var result = Common.Client.GetApi("post", "values/GetPowerPaged", pageParams);
+            return result;
+        }
+
 
         #endregion
 

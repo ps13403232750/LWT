@@ -56,15 +56,15 @@
                                         {
                                             <tr>
                                                 <td>
-                                                    <input id="Checkbox1" name="ck_father" type="checkbox" data-name="ck_father_@item.id" value="@item.id" />
+                                                    <input id="Checkbox1" name="ck_father" type="checkbox" data-name="ck_father_@item.Id" value="@item.Id" />
                                                     <span>@item.PowerName</span>
                                                 </td>
                                                 <td>
                                                     @foreach (var item1 in Model)
                                                     {
-                                                        if (item1.Pid == item.id)
+                                                        if (item1.Pid == item.Id)
                                                         {
-                                                            <input id="Checkbox1" hidden="hidden" name="ck_Child_@item.id" type="checkbox" data-father="@item1.Pid" data-name="ck_child" value="@item1.id" />
+                                                            <input id="Checkbox1" hidden="hidden" name="ck_Child_@item.Id" type="checkbox" data-father="@item1.Pid" data-name="ck_child" value="@item1.Id" />
                                                             <span hidden="hidden">@item1.PowerName</span>
                                                         }
                                                     }

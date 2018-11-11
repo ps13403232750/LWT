@@ -36,7 +36,7 @@ namespace LWTApi.Controllers
         /// 分页权限列表信息
         /// </summary>
         /// <returns></returns>
-        [HttpGet]
+        [HttpPost]
         [Route("[action]")]
         public ActionResult<PageResult<Power>> GetPowerPaged(PageParams pageParams)
         {
