@@ -10,11 +10,14 @@ using LWT.Model;
 using Microsoft.AspNetCore.Http;
 using System.Net.Http.Headers;
 using Microsoft.AspNetCore.Hosting.Internal;
+using System.IO;
+using Microsoft.AspNetCore.Hosting;
 
 namespace LWT.Client.Controllers
 {
     public class SupplierController : Controller
     {
+        private IHostingEnvironment hostingEnvironment;
         //显示商品视图
         public IActionResult Index()
         {
@@ -85,46 +88,14 @@ namespace LWT.Client.Controllers
         /// <param name="ids"></param>
         /// <returns></returns>
         [HttpPost]
-        public int AddGoods(Goods goods,IFormFile fileinput)
-        {
-            
-            // 文件大小
-            //long size = 0;
-            // 原文件名（包括路径）
-            var filename = ContentDispositionHeaderValue.Parse(fileinput.ContentDisposition).FileName;
-            // 扩展名
-            var extName = filename.Substring(filename.LastIndexOf('.')).Replace("\"", "");
-            // 新文件名
-            string shortfilename = $"{Guid.NewGuid()}{extName}";
-            // 新文件名（包括路径）
-            filename = hostingEnvironment.WebRootPath + @"\Images\" + shortfilename;
-            // 设置文件大小
-            //size += signature.Length;
-            // 创建新文件
-            //数据库添加对象
-            goods.Img = shortfilename;
-            var result = _student.AddCallPolice(alarm);
-            if (result > 0)
-            {
-                using (FileStream fs = System.IO.File.Create(filename))
-                {
-                    // 复制文件
-                    fileinput.CopyTo(fs);
-                    // 清空缓冲区数据
-                    fs.Flush();
-                }
-                return Content("<script>alert('报案成功,请保护好自己,耐心等待周队长处理!');location.href='/Center/Index'</script>", "text/html;charset=utf-8");
-            }
-            else
-            {
-                return Content("<script>alert('报案失败,请检查网络!如遇经济情况请直接联系周队长: 18513121113');location.href='/Center/Index'</script>", "text/html;charset=utf-8");
-            }
+        public int AddGoods( Goods goods,IFormFile fileinput)
+        {            
             var result = Common.Client.GetApi("post", "Supplier/AddGoods",goods);
             return int.Parse(result);
         }
 
         //数据统计视图
-        public IActionResult Statistics()
+        public IActionResult OrderStatistics()
         {
             return View();
         }

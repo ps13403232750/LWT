@@ -65,5 +65,12 @@ namespace Services
             var result = SqlSugarHelper<Goods>.Insert(goods);
             return result;
         }
+
+        public int CountOrder(string OrderTime)
+        {
+            var db = BaseDB.GetInstance();
+            var count = db.Ado.SqlQuery<Orders>("select count(*) from orders where OrderTime like '%@OrderTime%' ", new SugarParameter ("@OrderTime" , OrderTime) );
+            return Convert.ToInt32(count);
+        }
     }
 }

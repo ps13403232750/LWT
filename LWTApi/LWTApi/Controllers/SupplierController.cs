@@ -63,7 +63,7 @@ namespace LWTApi.Controllers
         /// <summary>
         /// 获取订单从表数据
         /// </summary>
-        /// <returns></returns>
+        /// <returns></returns>1
         [HttpGet]
         [Route("[action]")]
         public ActionResult<List<OrderList>> GetOrderList(int OrderNum)
@@ -74,6 +74,7 @@ namespace LWTApi.Controllers
 
         /// <summary>
         /// 添加新商品
+        /// 
         /// </summary>
         /// <returns></returns>
         [HttpPost]

@@ -15,6 +15,7 @@
   <ItemGroup>
     <None Include="wwwroot\Content\lib\ueditor\1.4.3\net\net.sln" />
     <None Include="wwwroot\H-ui\lib\ueditor\1.4.3\net\net.sln" />
+    <None Include="wwwroot\lib\ueditor\1.4.3\net\net.sln" />
   </ItemGroup>
 
   <ItemGroup>
