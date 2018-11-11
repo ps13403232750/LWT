@@ -60,10 +60,10 @@ namespace Services
         /// </summary>
         /// <param name="pageParams"></param>
         /// <returns></returns>
-        public List<Power> GetPowerPageList(PageParams pageParams)
+        public PageResult<Power> GetPowerPageList(PageParams pageParams)
         {
             var list = OraclePaging.QuickPage<Power>(pageParams);
-            return list.DataList;
+            return list;
         }
 
         /// <summary>

@@ -13,15 +13,25 @@ namespace LWT.Client.Controllers
 {
     public class IndexController : Controller
     {
+        #region 权限管理
+
         /// <summary>
         /// 主页面权限列表信息
         /// </summary>
         /// <returns></returns>
         public IActionResult Index()
         {
-            string getpower = Common.Client.GetApi("get","Values/GetPower");
+            string getpower = Common.Client.GetApi("get", "Values/GetPower");
             return View(JsonConvert.DeserializeObject<List<Power>>(getpower));
         }
+
+        public IActionResult PowerManage()
+        {
+            return View();
+        }
+
+        #endregion
+
 
         /// <summary>
         /// 注册用户

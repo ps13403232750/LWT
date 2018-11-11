@@ -93,7 +93,7 @@ namespace IServices
         /// </summary>
         /// <param name="pageParams"></param>
         /// <returns></returns>
-        List<Power> GetPowerPageList(PageParams pageParams);
+        PageResult<Power> GetPowerPageList(PageParams pageParams);
 
     }
 }

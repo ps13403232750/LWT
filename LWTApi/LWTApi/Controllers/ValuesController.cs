@@ -38,10 +38,10 @@ namespace LWTApi.Controllers
         /// <returns></returns>
         [HttpGet]
         [Route("[action]")]
-        public ActionResult<List<Power>> GetPowerPaged()
+        public ActionResult<PageResult<Power>> GetPowerPaged(PageParams pageParams)
         {
-            PageParams pageParams = new PageParams() { TableName="POWER",PageSize=5};
-            return userServices.GetPowerPageList(pageParams).ToList();
+            var list = userServices.GetPowerPageList(pageParams);
+            return list;
         }
 
         /// <summary>
