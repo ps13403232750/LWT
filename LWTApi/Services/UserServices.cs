@@ -11,6 +11,7 @@ namespace Services
     public class UserServices : BaseDB, IUserServices
     {
 
+        #region //权限模块
         /// <summary>
         /// 添加用户
         /// </summary>
@@ -19,28 +20,6 @@ namespace Services
         public int Add(Users user)
         {
             var i = SqlSugarHelper<Users>.Insert(user);
-            return i;
-        }
-
-        /// <summary>
-        /// 企业采购入驻
-        /// </summary>
-        /// <param name="Purchase"></param>
-        /// <returns></returns>
-        public int Add(Purchase purchase)
-        {
-            var i = SqlSugarHelper<Purchase>.Insert(purchase);
-            return i;
-        }
-
-        /// <summary>
-        /// 添加品牌
-        /// </summary>
-        /// <param name="brand"></param>
-        /// <returns></returns>
-        public int AddBrand(Brand brand)
-        {
-            var i = SqlSugarHelper<Brand>.Insert(brand);
             return i;
         }
 
@@ -56,17 +35,6 @@ namespace Services
         }
 
         /// <summary>
-        /// 供应商入驻
-        /// </summary>
-        /// <param name="supplier"></param>
-        /// <returns></returns>
-        public int AddSupplier(Supplier supplier)
-        {
-            var i = SqlSugarHelper<Supplier>.Insert(supplier);
-            return i;
-        }
-
-        /// <summary>
         /// 注册用户
         /// </summary>
         /// <param name="users"></param>
@@ -75,17 +43,6 @@ namespace Services
         {
             var i = SqlSugarHelper<Users>.Insert(users);
             return i;
-        }
-
-        /// <summary>
-        /// 获取类目信息
-        /// </summary>
-        /// <param name="classe"></param>
-        /// <returns></returns>
-        public List<Category> GetCategory()
-        {
-            var list = SqlSugarHelper<Category>.FindAll();
-            return list;
         }
 
         /// <summary>
@@ -98,6 +55,11 @@ namespace Services
             return list;
         }
 
+        /// <summary>
+        /// 权限列表分页
+        /// </summary>
+        /// <param name="pageParams"></param>
+        /// <returns></returns>
         public List<Power> GetPowerPageList(PageParams pageParams)
         {
             var list = OraclePaging.QuickPage<Power>(pageParams);
@@ -115,6 +77,7 @@ namespace Services
         }
 
         /// <summary>
+<<<<<<< HEAD
         /// 获取品牌的信息
         /// </summary>
         /// <returns></returns>
@@ -125,6 +88,8 @@ namespace Services
         }
 
         /// <summary>
+=======
+>>>>>>> 57a33a7c325c7890cf7272f49ba068ca205144da
         /// 获取所有用户注册信息的名称
         /// </summary>
         /// <returns></returns>
@@ -159,6 +124,7 @@ namespace Services
             }
             return i;
         }
+<<<<<<< HEAD
 
         /// <summary>
         /// 获取权限导航菜单
@@ -169,5 +135,66 @@ namespace Services
             var list = SqlSugarHelper<Power>.FindAll();
             return list;
         }
+=======
+        #endregion
+
+        #region //合作伙伴管理模块
+        /// <summary>
+        /// 企业采购入驻
+        /// </summary>
+        /// <param name="Purchase"></param>
+        /// <returns></returns>
+        public int Add(Purchase purchase)
+        {
+            var i = SqlSugarHelper<Purchase>.Insert(purchase);
+            return i;
+        }
+
+        /// <summary>
+        /// 获取品牌的信息
+        /// </summary>
+        /// <returns></returns>
+        public List<Brand> GetBrand()
+        {
+            var list = SqlSugarHelper<Brand>.FindAll();
+            return list;
+        }
+
+        /// <summary>
+        /// 供应商入驻
+        /// </summary>
+        /// <param name="supplier"></param>
+        /// <returns></returns>
+        public int AddSupplier(Supplier supplier)
+        {
+            var i = SqlSugarHelper<Supplier>.Insert(supplier);
+            return i;
+        }
+
+        /// <summary>
+        /// 添加品牌
+        /// </summary>
+        /// <param name="brand"></param>
+        /// <returns></returns>
+        public int AddBrand(Brand brand)
+        {
+            var i = SqlSugarHelper<Brand>.Insert(brand);
+            return i;
+        }
+        #endregion
+
+        #region //三级类目模块
+        /// <summary>
+        /// 获取类目信息
+        /// </summary>
+        /// <param name="classe"></param>
+        /// <returns></returns>
+        public List<Category> GetCategory()
+        {
+            var list = SqlSugarHelper<Category>.FindAll();
+            return list;
+        }
+        #endregion
+>>>>>>> 57a33a7c325c7890cf7272f49ba068ca205144da
     }
 }
