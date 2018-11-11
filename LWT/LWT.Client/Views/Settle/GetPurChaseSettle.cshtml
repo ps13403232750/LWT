@@ -43,12 +43,11 @@
                     <td>@item.BuyerName</td>
                     <td>@item.SettleMeny</td>
                     <td>@(item.State == 0 ? "未审核" : "已审核" )</td>
-                    <td><a href="/Settle/ThinPurState/" style="color:blue;">[查看]</a></td>
+                    <td class="td-manage"><a title="结算详情" href="javascript:;" onclick="admin_edit('结算详情','/Settle/ThinPurState/','2','900','600')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">[查看]</i></a> </td>
                 </tr>
                 }
             </table>
-        </div>
-        
+        </div> 
     </div>
     <!--_footer 作为公共模版分离出去-->
     <script type="text/javascript" src="~/Content/lib/jquery/1.9.1/jquery.min.js"></script>
@@ -65,8 +64,8 @@
     <script type="text/javascript" src="~/Content/lib/datatables/1.10.0/jquery.dataTables.min.js"></script>
     <script type="text/javascript" src="~/Content/lib/laypage/1.2/laypage.js"></script>
     <script type="text/javascript">
-        function show(title, url, w, d) {
-            layer_show(title, url, w, d)
+        function admin_edit(title, url, id, w, h) {
+            layer_show(title, url, w, h);
         }
     </script>
 </body>

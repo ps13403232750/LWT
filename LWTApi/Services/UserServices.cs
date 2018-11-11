@@ -49,7 +49,7 @@ namespace Services
         /// 获取权限列表信息
         /// </summary>
         /// <returns></returns>
-        public List<Power> GetPowerMessage()
+        public List<Power> GetAllPower()
         {
             var list = SqlSugarHelper<Power>.FindAll();
             return list;
@@ -60,10 +60,10 @@ namespace Services
         /// </summary>
         /// <param name="pageParams"></param>
         /// <returns></returns>
-        public List<Power> GetPowerPageList(PageParams pageParams)
+        public PageResult<Power> GetPowerPageList(PageParams pageParams)
         {
             var list = OraclePaging.QuickPage<Power>(pageParams);
-            return list.DataList;
+            return list;
         }
 
         /// <summary>
@@ -73,6 +73,17 @@ namespace Services
         public List<Roles> GetRoles()
         {
             var list = SqlSugarHelper<Roles>.FindAll();
+            return list;
+        }
+
+        /// <summary>
+
+        /// 获取品牌的信息
+        /// </summary>
+        /// <returns></returns>
+        public List<Brand> GetBrand()
+        {
+            var list = SqlSugarHelper<Brand>.FindAll();
             return list;
         }
 
@@ -111,6 +122,18 @@ namespace Services
             }
             return i;
         }
+
+
+        /// <summary>
+        /// 获取权限导航菜单
+        /// </summary>
+        /// <returns></returns>
+        public List<Power> GetPower()
+        {
+            var list = SqlSugarHelper<Power>.FindAll();
+            return list;
+        }
+
         #endregion
 
         #region //合作伙伴管理模块
@@ -125,15 +148,7 @@ namespace Services
             return i;
         }
 
-        /// <summary>
-        /// 获取品牌的信息
-        /// </summary>
-        /// <returns></returns>
-        public List<Brand> GetBrand()
-        {
-            var list = SqlSugarHelper<Brand>.FindAll();
-            return list;
-        }
+     
 
         /// <summary>
         /// 供应商入驻
@@ -180,5 +195,6 @@ namespace Services
             return list;
         }
         #endregion
+
     }
 }
