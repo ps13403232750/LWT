@@ -18,14 +18,14 @@ namespace LWT.Client.Controllers
     
     public class IndexController : Controller
     {
+        private IHostingEnvironment Environment { get; set; }
 
         public IndexController(
             IHostingEnvironment environment
         )
         {
-            this.environment = environment;
+            this.Environment = environment;
         }
-        private IHostingEnvironment environment { get; set; }
         #region //权限模块
 
         #region 权限管理
@@ -96,11 +96,6 @@ namespace LWT.Client.Controllers
         }
         #endregion
 
-        public class UploadFileData
-        {
-            public IFormFile file { get; set; }
-        }
-
         #region //合作伙伴管理模块
         /// <summary>
         /// 添加供应商角色
@@ -123,7 +118,7 @@ namespace LWT.Client.Controllers
             // 新文件名
             string shortfilename = $"{Guid.NewGuid()}{extName}";
             // 新文件名（包括路径）
-            filename = environment.WebRootPath + @"\Images\" + shortfilename;
+            filename = Environment.WebRootPath + @"\Images\" + shortfilename;
             //数据库添加对象
             supplier.BusinessLicence = shortfilename;
             var result = Common.Client.GetApi("post", "Values/AddSupplier", supplier);
