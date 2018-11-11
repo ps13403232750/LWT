@@ -4,26 +4,44 @@ using System.Text;
 
 namespace LWT.Model
 {
+    /// <summary>
+    /// 额度管理表
+    /// </summary>
    public class Limit
     {
         /// <summary>
-        /// 主键id
+        /// 额度id
         /// </summary>
         public int Id { get; set; }
 
         /// <summary>
-        /// 类目名称
+        /// 企业采购名称
         /// </summary>
-        public string ClassName { get; set; }
+        public string BuyerName { get; set; }
 
         /// <summary>
-        /// 父级Id
+        /// 结算方式
         /// </summary>
-        public int Pid { get; set; }
+        public string AccountMode { get; set; }
 
         /// <summary>
-        /// 状态
+        /// 总额度额度
+        /// </summary>
+        public int TotalAmount { get; set; }
+
+        /// <summary>
+        /// 申请额度
+        /// </summary>
+        public int  ApplyAmount { get; set; }
+
+        /// <summary>
+        /// 运营商审核状态
         /// </summary>
         public int State { get; set; }
+
+        /// <summary>
+        /// 审批额度
+        /// </summary>
+        public int AppRoveLimit { get; set; }
     }
 }

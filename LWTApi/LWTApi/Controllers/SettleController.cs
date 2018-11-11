@@ -42,7 +42,7 @@ namespace LWTApi.Controllers
         /// <returns></returns>
         [HttpGet]
         [Route("[action]")]
-        public ActionResult<List<PurchaseSettle>> GetPurChaseSettle()
+        public ActionResult<List<PurchaseSettle>> GetPurchaseSettle()
         {
             return settleServices.GetPurchaseSettle().ToList();
         }
@@ -55,7 +55,6 @@ namespace LWTApi.Controllers
         [Route("[action]")]
 
         public ActionResult<List<Orders>> ThinPurState()
-
         {
             return settleServices.ThinPurState().ToList();
         }

@@ -40,7 +40,7 @@ namespace Services
         }
 
         /// <summary>
-        /// 采购付款结算列表
+        /// 结算列表详情
         /// </summary>
         /// <returns></returns>
         public List<PurchasePay> GetPurchasePay()

@@ -20,6 +20,7 @@ namespace LWTApi.Controllers
             userServices = _userServices;       
         }
 
+        #region //权限模块
         /// <summary>
         /// 权限列表信息显示
         /// </summary>
@@ -28,7 +29,19 @@ namespace LWTApi.Controllers
         [Route("[action]")]
         public ActionResult<List<Power>> GetPower()
         {
-            return userServices.GetPowerMessage().ToList();
+            return userServices.GetPower().ToList();
+        } 
+
+        /// <summary>
+        /// 分页权限列表信息
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("[action]")]
+        public ActionResult<List<Power>> GetPowerPaged()
+        {
+            PageParams pageParams = new PageParams() { TableName="POWER",PageSize=5};
+            return userServices.GetPowerPageList(pageParams).ToList();
         }
 
         /// <summary>
@@ -57,6 +70,50 @@ namespace LWTApi.Controllers
         }
 
         /// <summary>
+        /// 添加角色
+        /// </summary>
+        /// <param name="roles"></param>
+        /// <returns></returns>
+        [Route("[action]")]
+        [HttpPost]
+        public int AddRole(Roles roles)
+        {
+            var i = userServices.AddRole(roles);
+            return i;
+        }
+
+        /// <summary>
+        /// 根据角色添加权限
+        /// </summary>
+        /// <param name="roleAndPower"></param>
+        /// <returns></returns>
+        [Route("[action]")]
+        [HttpPost]
+        public int AddRoleAndPower(RoleAndPowerHelper roleAndPowerHelper)
+        {
+            var i = userServices.AddRoleAndPower(roleAndPowerHelper);
+            return i;
+        }
+        #endregion
+
+        #region //三级类目模块
+        /// <summary>
+        /// 获取类目信息
+        /// </summary>
+        /// <param name="classe"></param>
+        /// <returns></returns>
+        [Route("[action]")]
+        [HttpGet]
+        public List<Category> GetClass()
+        {
+            var data = userServices.GetCategory().ToList();
+            return data;
+        }
+        #endregion
+
+        #region //合作伙伴模块
+
+        /// <summary>
         /// 企业采购入驻
         /// </summary>
         /// <param name="purchase"></param>
@@ -70,43 +127,14 @@ namespace LWTApi.Controllers
         }
 
         /// <summary>
-        /// 添加品牌
+        /// 获取品牌的信息
         /// </summary>
-        /// <param name="brand"></param>
         /// <returns></returns>
         [Route("[action]")]
-        [HttpPost]
-        public int AddBrand(Brand brand)
+        [HttpGet]
+        public List<Brand> GetBrand()
         {
-            var i = userServices.AddBrand(brand);
-            return i;
-        }
-
-        /// <summary>
-        /// 添加角色
-        /// </summary>
-        /// <param name="roles"></param>
-        /// <returns></returns>
-        [Route("[action]")]
-        [HttpPost]
-        public int AddRole(Roles roles)
-        {
-            var i = userServices.AddRole(roles);
-            return i;
-        }
-
-
-        /// <summary>
-        /// 根据角色添加权限
-        /// </summary>
-        /// <param name="roleAndPower"></param>
-        /// <returns></returns>
-        [Route("[action]")]
-        [HttpPost]
-        public int AddRoleAndPower(RoleAndPowerHelper roleAndPowerHelper)
-        {
-            var i = userServices.AddRoleAndPower(roleAndPowerHelper);
-            return i;
+            return userServices.GetBrand().ToList();
         }
 
         /// <summary>
@@ -123,28 +151,19 @@ namespace LWTApi.Controllers
         }
 
         /// <summary>
-        /// 获取类目信息
+        /// 添加品牌
         /// </summary>
-        /// <param name="classe"></param>
+        /// <param name="brand"></param>
         /// <returns></returns>
         [Route("[action]")]
-        [HttpGet]
-        public List<Category> GetClass()
+        [HttpPost]
+        public int AddBrand(Brand brand)
         {
-            var data = userServices.GetCategory().ToList();
-            return data;
+            var i = userServices.AddBrand(brand);
+            return i;
         }
 
-        /// <summary>
-        /// 获取品牌的信息
-        /// </summary>
-        /// <returns></returns>
-        [Route("[action]")]
-        [HttpGet]
-        public List<Brand> GetBrand()
-        {
-            return userServices.GetBrand().ToList();
-        }
+        #endregion
 
-        }
+    }
 }

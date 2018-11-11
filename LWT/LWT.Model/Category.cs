@@ -2,12 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Model
+namespace LWT.Model
 {
-    /// <summary>
-    /// 采购商结算列表
-    /// </summary>
-   public class PurchaseSettle
+   public class Category
     {
         /// <summary>
         /// 主键id
@@ -15,19 +12,18 @@ namespace Model
         public int Id { get; set; }
 
         /// <summary>
-        /// 采购商名称
+        /// 类目名称
         /// </summary>
-        public string BuyerName { get; set; }
+        public string ClassName { get; set; }
 
         /// <summary>
-        /// 结算类型
+        /// 父级Id
         /// </summary>
-        public string SettleMeny { get; set; }
+        public int Pid { get; set; }
 
         /// <summary>
         /// 状态
         /// </summary>
         public int State { get; set; }
     }
-
 }
