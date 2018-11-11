@@ -77,7 +77,7 @@ namespace Services
         }
 
         /// <summary>
-<<<<<<< HEAD
+
         /// 获取品牌的信息
         /// </summary>
         /// <returns></returns>
@@ -88,8 +88,6 @@ namespace Services
         }
 
         /// <summary>
-=======
->>>>>>> 57a33a7c325c7890cf7272f49ba068ca205144da
         /// 获取所有用户注册信息的名称
         /// </summary>
         /// <returns></returns>
@@ -124,7 +122,7 @@ namespace Services
             }
             return i;
         }
-<<<<<<< HEAD
+
 
         /// <summary>
         /// 获取权限导航菜单
@@ -135,7 +133,7 @@ namespace Services
             var list = SqlSugarHelper<Power>.FindAll();
             return list;
         }
-=======
+
         #endregion
 
         #region //合作伙伴管理模块
@@ -150,15 +148,7 @@ namespace Services
             return i;
         }
 
-        /// <summary>
-        /// 获取品牌的信息
-        /// </summary>
-        /// <returns></returns>
-        public List<Brand> GetBrand()
-        {
-            var list = SqlSugarHelper<Brand>.FindAll();
-            return list;
-        }
+     
 
         /// <summary>
         /// 供应商入驻
@@ -195,6 +185,6 @@ namespace Services
             return list;
         }
         #endregion
->>>>>>> 57a33a7c325c7890cf7272f49ba068ca205144da
+
     }
 }
