@@ -29,8 +29,8 @@ namespace LWTApi.Controllers
         [Route("[action]")]
         public ActionResult<List<Power>> GetPower()
         {
-            return userServices.GetPowerMessage().ToList();
-        }
+            return userServices.GetPower().ToList();
+        } 
 
         /// <summary>
         /// 分页权限列表信息
