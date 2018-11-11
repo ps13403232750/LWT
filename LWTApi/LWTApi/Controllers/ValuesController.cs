@@ -163,7 +163,17 @@ namespace LWTApi.Controllers
             return i;
         }
 
-        #endregion
+        /// <summary>
+        /// 获取区域的信息
+        /// </summary>
+        /// <returns></returns>
+        [Route("[action]")]
+        [HttpGet]
+        public List<Area> GetAreas()
+        {
+            return userServices.GetAreas();
+        }
+            #endregion
 
-    }
+        }
 }

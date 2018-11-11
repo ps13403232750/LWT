@@ -89,5 +89,11 @@ namespace IServices
         /// <returns></returns>
         List<Power> GetPowerPageList(PageParams pageParams);
 
+        /// <summary>
+        /// 获取区域信息
+        /// </summary>
+        /// <returns></returns>
+        List<Area> GetAreas();
+
     }
 }

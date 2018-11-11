@@ -156,6 +156,16 @@ namespace Services
             var i = SqlSugarHelper<Brand>.Insert(brand);
             return i;
         }
+
+        /// <summary>
+        /// 获取区域的信息
+        /// </summary>
+        /// <returns></returns>
+        public List<Area> GetAreas()
+        {
+            var list = SqlSugarHelper<Area>.FindAll();
+            return list;
+        }
         #endregion
 
         #region //三级类目模块

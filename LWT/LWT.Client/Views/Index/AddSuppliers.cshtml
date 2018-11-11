@@ -1,4 +1,9 @@
-﻿<!--_meta 作为公共模版分离出去-->
+﻿
+@{
+    Layout = null;
+}
+@model LWT.Model.Supplier
+<!--_meta 作为公共模版分离出去-->
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -13,6 +18,13 @@
     <script type="text/javascript" src="lib/html5shiv.js"></script>
     <script type="text/javascript" src="lib/respond.min.js"></script>
     <![endif]-->
+    <script src="~/js/jquery-1.10.2.js"></script>
+    <script src="~/js/axios.js"></script>
+    <script src="~/js/vue.js"></script>
+    <script src="~/js/jquery.form.js"></script>
+    <script src="~/js/jquery.unobtrusive-ajax.js"></script>
+    <script src="~/js/jquery.validate.js"></script>
+    <script src="~/js/jquery.validate.unobtrusive.js"></script>
     <link rel="stylesheet" type="text/css" href="~/Content/static/h-ui/css/H-ui.min.css" />
     <link rel="stylesheet" type="text/css" href="~/Content/static/h-ui.admin/css/H-ui.admin.css" />
     <link rel="stylesheet" type="text/css" href="~/Content/lib/Hui-iconfont/1.0.8/iconfont.css" />
@@ -27,114 +39,192 @@
     <title>添加用户</title>
 </head>
 <body>
-    <article>
-        <form action="" method="post" class="form form-horizontal" id="form-member-add">
-            <div class="row cl">
-                <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>公司名称：</label>
-                <div class="formControls col-xs-8 col-sm-9">
-                    <input type="text" class="input-text" value="" placeholder="" id="username" name="username">
-                </div>
-            </div>
-            <div class="row cl">
-                <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>店铺名称：</label>
-                <div class="formControls col-xs-8 col-sm-9">
-                    <input type="text" class="input-text" value="" placeholder="" id="username" name="username">
-                </div>
-            </div>
-            <div class="row cl">
-                <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>联系人：</label>
-                <div class="formControls col-xs-8 col-sm-9">
-                    <input type="text" class="input-text" value="" placeholder="" id="username" name="username">
-                </div>
-            </div>
-            <div class="row cl">
-                <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>联系人邮箱：</label>
-                <div class="formControls col-xs-8 col-sm-9">
-                    <input type="text" class="input-text" value="" placeholder="" id="username" name="username">
-                </div>
-            </div>
-            <div class="row cl">
-                <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>联系人电话：</label>
-                <div class="formControls col-xs-8 col-sm-9">
-                    <input type="text" class="input-text" value="" placeholder="" id="username" name="username">
-                </div>
-            </div>
-            <div class="row cl">
-                <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>设置密码：</label>
-                <div class="formControls col-xs-8 col-sm-9">
-                    <input type="text" class="input-text" value="" placeholder="" id="username" name="username">
-                </div>
-            </div>
-            <div class="row cl">
-                <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>确认密码：</label>
-                <div class="formControls col-xs-8 col-sm-9">
-                    <input type="text" class="input-text" value="" placeholder="" id="username" name="username">
-                </div>
-            </div>
-            <div class="row cl">
-                <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>企业Logo：</label>
-                <div class="formControls col-xs-8 col-sm-9">
-                    <input type="text" class="input-text" value="" placeholder="" id="username" name="username">
-                </div>
-            </div>
-            <div class="row cl">
-                <label class="form-label col-xs-4 col-sm-3">营业执照：</label>
-                <div class="formControls col-xs-8 col-sm-9">
-                    <span class="btn-upload form-group">
-                        <input class="input-text upload-url" type="text" name="uploadfile" id="uploadfile" readonly nullmsg="请添加图片！" style="width:200px">
-                        <a href="javascript:void();" class="btn btn-primary radius upload-btn"><i class="Hui-iconfont">&#xe642;</i> 浏览图片</a>
-                        <input type="file" multiple name="file-2" class="input-file">
-                    </span>
-                </div>
-            </div>
-            <div class="row cl">
-                <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>选择品牌：</label>
-                <div class="formControls col-xs-8 col-sm-9">
-                    <input type="text" class="input-text" value="" placeholder="" id="username" name="username">
-                </div>
-            </div>
-            <div class="row cl">
-                <label class="form-label col-xs-4 col-sm-3">所在城市：</label>
-                <div class="formControls col-xs-8 col-sm-9">
-                    <span class="select-box">
-                        <select class="select" size="1" name="city">
-                            <option value="" selected>请选择城市</option>
-                            <option value="1">北京</option>
-                        </select>
-                    </span>
-                </div>
-            </div>
-            <div class="row cl">
-                <label class="form-label col-xs-4 col-sm-3">备注：</label>
-                <div class="formControls col-xs-8 col-sm-9">
-                    <textarea name="beizhu" cols="" rows="" class="textarea" placeholder="说点什么...最少输入10个字符" onKeyUp="$.Huitextarealength(this,100)"></textarea>
-                    <p class="textarea-numberbar"><em class="textarea-length">0</em>/100</p>
-                </div>
-            </div>
-            <div class="row cl">
-                <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>是否关联工程服务商：</label>
-                <div class="formControls col-xs-8 col-sm-9 skin-minimal">
-                    <div class="radio-box">
-                        <input name="sex" type="radio" id="sex-1" checked>
-                        <label for="sex-1">关联</label>
-                    </div>
-                    <div class="radio-box">
-                        <input type="radio" id="sex-2" name="sex">
-                        <label for="sex-2">不关联</label>
+    <div id="app">
+        <article>
+            <form action="" method="post" class="form form-horizontal" id="form-member-add" enctype="multipart/form-data">
+                <div class="row cl">
+                    <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>公司名称：</label>
+                    <div class="formControls col-xs-8 col-sm-9">
+                        <input type="text" class="input-text" value="" v-model="CompanyName" placeholder="" id="companyname" name="username">
                     </div>
                 </div>
-            </div>
-            <div class="row cl">
-                <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
-                    <input class="btn btn-primary radius" type="submit" value="&nbsp;&nbsp;提交&nbsp;&nbsp;">
+                <div class="row cl">
+                    <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>店铺名称：</label>
+                    <div class="formControls col-xs-8 col-sm-9">
+                        <input type="text" class="input-text" value="" v-model="StoreName" placeholder="" id="StoreName" name="username">
+                    </div>
                 </div>
-            </div>
-            <input name="__RequestVerificationToken" type="hidden" value="CfDJ8AEwtwxZBf9JjEJSLUlAUJTGl9wkcStMU9AROzP0M6lScMV5fo4UBSXDZzBhAKgG1mtZUjcj9X_aHyW1pEf5iThAMM20wwF1IHb5hnixFgpyBFj18Bk2IwqEJcZj9a6vofxqc3bHlIUZvla4mVFgIn8" />
-        </form>
-    </article>
+                <div class="row cl">
+                    <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>联系人：</label>
+                    <div class="formControls col-xs-8 col-sm-9">
+                        <input type="text" class="input-text" value="" v-model="LinkMan" placeholder="" id="LinkMan" name="username">
+                    </div>
+                </div>
+                <div class="row cl">
+                    <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>联系人邮箱：</label>
+                    <div class="formControls col-xs-8 col-sm-9">
+                        <input type="text" class="input-text" v-model="LinkManEmail" placeholder="" id="LinkManEmail" name="username">
+                    </div>
+                </div>
+                <div class="row cl">
+                    <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>联系人电话：</label>
+                    <div class="formControls col-xs-8 col-sm-9">
+                        <input type="text" class="input-text" v-model="PhoneNumber" placeholder="" id="PhoneNumber" name="username">
+                    </div>
+                </div>
+                <div class="row cl">
+                    <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>设置密码：</label>
+                    <div class="formControls col-xs-8 col-sm-9">
+                        <input type="text" class="input-text" v-model="PassWord" placeholder="" id="PassWord1" name="username">
+                    </div>
+                </div>
+                <div class="row cl">
+                    <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>确认密码：</label>
+                    <div class="formControls col-xs-8 col-sm-9">
+                        <input type="text" class="input-text" placeholder="" id="PassWord2" name="username">
+                    </div>
+                </div>
+                <div class="row cl">
+                    <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>企业Logo：</label>
+                    <div class="formControls col-xs-8 col-sm-9">
+                        <input type="text" class="input-text" v-model="Logo" placeholder="" id="Logo" name="username">
+                    </div>
+                </div>
+                <div class="row cl">
+                    <label class="form-label col-xs-4 col-sm-3">营业执照：</label>
+                    <div class="formControls col-xs-8 col-sm-9">
+                        <span class="btn-upload form-group">
+                            <input class="input-text upload-url" type="text" id="formFile"  readonly nullmsg="请添加图片！" style="width:200px">
+                            <a href="javascript:void();" class="btn btn-primary radius upload-btn"><i class="Hui-iconfont">&#xe642;</i> 浏览图片</a>
+                            <input type="file" multiple name="file-2" class="input-file">
+                        </span>
+                    </div>
+                </div>
+                <div class="row cl">
+                    <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>选择品牌：</label>
+                    <div class="formControls col-xs-8 col-sm-9">
+                        <input type="text" class="input-text" v-model="Brand" placeholder="" id="Brand" name="username">
+                    </div>
+                </div>
+                <div class="row cl">
+                    <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>选择类目：</label>
+                    <div class="formControls col-xs-8 col-sm-9">
+                        <input type="text" class="input-text" v-model="SalesId" placeholder="" id="SalesId" name="username">
+                    </div>
+                </div>
+                <div class="row cl">
+                    <label class="form-label col-xs-4 col-sm-3">所在城市：</label>
+                    <div class="formControls col-xs-8 col-sm-9">
+                        <span class="select-box">
+                            <select id="select">
+                                <option selected>请选择城市</option>
+                                <option v-for="item in select" :value="item.aId">{{item.areaName}}</option>
+                            </select>
+                        </span>
+                    </div>
+                </div>
+                <div class="row cl">
+                    <label class="form-label col-xs-4 col-sm-3">备注：</label>
+                    <div class="formControls col-xs-8 col-sm-9">
+                        <textarea name="beizhu" v-model="BusinessMark" id="BusinessMark" class="textarea" placeholder="说点什么...最少输入10个字符" onKeyUp="$.Huitextarealength(this,100)"></textarea>
+                        <p class="textarea-numberbar"><em class="textarea-length">0</em>/100</p>
+                    </div>
+                </div>
+                <div class="row cl">
+                    <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>是否关联工程服务商：</label>
+                    <div class="formControls col-xs-8 col-sm-9 skin-minimal">
+                        <div class="radio-box">
+                            <input name="sex1" type="radio" id="sex-1" checked>
+                            <label for="sex-1">关联</label>
+                        </div>
+                        <div class="radio-box">
+                            <input type="radio" id="sex-2" name="sex1">
+                            <label for="sex-2">不关联</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row cl">
+                    <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
+                        <input class="btn btn-primary radius" type=" " v-on:click="adduser" value="提交">
+                    </div>
+                </div>
+            </form>
+        </article>
+    </div>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                CompanyName: "",
+                StoreName: "",
+                LinkMan: "",
+                LinkManEmail: "",
+                PassWord: "",
+                BusinessLicence: "",
+                Status: null,
+                Logo: "",
+                SalesId: "",
+                Brand: "",
+                Aid: 0,
+                BusinessMark: "",
+                PhoneNumber: "",
+                select: null
+            },
+            mounted: function () {
+                var that = this;
+                axios.get('/Index/GetArea')
+                    .then(function (res) {
+                        console.log(res.data);
+                        that.select = res.data;
+                    })
+            },
+            methods: {
+                adduser: function () {
+                    var that = this;
+                    var params = new URLSearchParams();
+                    params.append('Id', '0');
+                    params.append('CompanyName', $("#companyname").val());
+                    params.append('StoreName', $("#StoreName").val());
+                    params.append('LinkMan', $("#LinkMan").val());
+                    params.append('LinkManEmail', $("#LinkManEmail").val());
+                    if ($("#PassWord1").val() != $("#PassWord2").val()) {
+                        alert("对不起，您输入的两次密码不一致，请重新输入！");
+                    }
+                    else {
+                        params.append('PassWord', $("#PassWord1").val());
+                    }
+                    params.append('BusinessLicence', $("#uploadfile").val());
+
+                    if ($('input[name="sex1"]:checked').val() !== null) {
+                        params.append('Status', $('input[name="sex1"]:checked').val());
+                    }
+                    else if ($('input[name="sex2"]:checked').val() !== null) {
+                        params.append('Status', $('input[name="sex2"]:checked').val());
+                    }
+                    params.append('Logo', $("#Logo").val());
+                    params.append('SalesId', $("#SalesId").val());
+                    params.append('Brand', $("#Brand").val());
+                    params.append('Aid', $("#select").val());
+                    params.append('BusinessMark', $("#BusinessMark").val());
+                    params.append('PhoneNumber', $("#PhoneNumber").val());
+                    axios({
+                        method: 'post',
+                        url: '/index/AddSuppliers',
+                        data: params
+                    }).then(function (res) {
+                        if (res > 0) {
+                            alert("添加成功");
+                        }
+                        else {
+                            alert("添加失败！");
+                        }
+                    });
+                }
+            }
+        });
+    </script>
 
     <!--_footer 作为公共模版分离出去-->
-    <script type="text/javascript" src="~/Content/lib/jquery/1.9.1/jquery.min.js"></script>
     <script type="text/javascript" src="~/Content/lib/layer/2.4/layer.js"></script>
     <script type="text/javascript" src="~/Content/static/h-ui/js/H-ui.min.js"></script>
     <script type="text/javascript" src="~/Content/static/h-ui.admin/js/H-ui.admin.js"></script> <!--/_footer 作为公共模版分离出去-->
