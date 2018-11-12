@@ -22,6 +22,17 @@ namespace LWT.Client.Controllers
         }
 
         /// <summary>
+        /// 额度管理表查询
+        /// </summary>
+        /// <returns></returns>
+        public IActionResult Inquire(string Name)
+        {
+            string inquire = Common.Client.GetApi("get", "Settle/Inquire");
+            var list = JsonConvert.DeserializeObject<List<Limit>>(inquire);
+            return View(list);
+        }
+
+        /// <summary>
         /// 采购结算列表
         /// </summary>
         /// <returns></returns>
