@@ -23,7 +23,7 @@
             </tr>
             <tr>
                 <td align="right">状态：</td>
-                <td><input id="Radio1" name="yes" type="radio" value="1"/>启用<input id="Radio2" name="no" type="radio" value="0"/>停用</td>
+                <td><input id="Radio1" name="yes" type="radio" checked="checked" value="1"/>启用<input id="Radio1" name="yes" type="radio" value="0"/>停用</td>
             </tr>
             <tr>
                 <td></td>
@@ -55,10 +55,8 @@
                         url: '/Index/AddUsersRole',
                         data: params
                     }).then(function (res) {
-                        if(res>0)
-                        {
-                            alert("角色添加成功！");
-                        }
+                        alert('角色添加成功！');
+                        location.href('/index/RolesManage');
                     });
                 },
                 

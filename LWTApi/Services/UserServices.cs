@@ -71,9 +71,20 @@ namespace Services
         /// </summary>
         /// <param name="pageParams"></param>
         /// <returns></returns>
-        public PageResult<Users> GetUsersPageList(PageParams pageParams)
+        public PageResult<UsersHelper> GetUsersPageList(PageParams pageParams)
         {
-            var list = OraclePaging.QuickPage<Users>(pageParams);
+            var list = OraclePaging.QuickPage<UsersHelper>(pageParams);
+            return list;
+        }
+
+        /// <summary>
+        /// 显示所有角色信息
+        /// </summary>
+        /// <param name="pageParams"></param>
+        /// <returns></returns>
+        public PageResult<Roles> GetRolesPageList(PageParams pageParams)
+        {
+            var list = OraclePaging.QuickPage<Roles>(pageParams);
             return list;
         }
 
@@ -84,17 +95,6 @@ namespace Services
         public List<Roles> GetRoles()
         {
             var list = SqlSugarHelper<Roles>.FindAll();
-            return list;
-        }
-
-        /// <summary>
-
-        /// 获取品牌的信息
-        /// </summary>
-        /// <returns></returns>
-        public List<Brand> GetBrand()
-        {
-            var list = SqlSugarHelper<Brand>.FindAll();
             return list;
         }
 
@@ -133,7 +133,6 @@ namespace Services
             }
             return i;
         }
-
 
         /// <summary>
         /// 获取权限导航菜单
@@ -205,6 +204,28 @@ namespace Services
             var list = SqlSugarHelper<Category>.FindAll();
             return list;
         }
+
+        /// <summary>
+        /// 获取品牌的信息
+        /// </summary>
+        /// <returns></returns>
+        public List<Brand> GetBrand()
+        {
+            var list = SqlSugarHelper<Brand>.FindAll();
+            return list;
+        }
+
+        /// <summary>
+        /// 获取所有供应商信息
+        /// </summary>
+        /// <param name="pageParams"></param>
+        /// <returns></returns>
+        public PageResult<SupplierHelper> GetSupplierPageList(PageParams pageParams)
+        {
+            var list = OraclePaging.QuickPage<SupplierHelper>(pageParams);
+            return list;
+        }
+
         #endregion
 
     }

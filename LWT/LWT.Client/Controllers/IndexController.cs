@@ -39,7 +39,7 @@ namespace LWT.Client.Controllers
         }
 
         /// <summary>
-        /// 权限菜单维护
+        /// 权限信息维护
         /// </summary>
         /// <returns></returns>
         public IActionResult PowerManage()
@@ -59,18 +59,42 @@ namespace LWT.Client.Controllers
         }
 
         /// <summary>
-        /// 权限菜单维护
+        /// 用户信息维护
         /// </summary>
         /// <returns></returns>
         public IActionResult UsersManage()
         {
-            return View();
+            return View(); 
         }
 
         public string GetUsersList(PageParams pageParams)
         {
             pageParams.TableName = "Users s join Roles r on s.roleid = r.roleid";
+            if (!string.IsNullOrEmpty(pageParams.StrWhere))
+            {
+                pageParams.StrWhere = "and UserName like '%" + pageParams.StrWhere + "%'";
+            }
             var result = Common.Client.GetApi("post", "values/GetUsersPaged", pageParams);
+            return result;
+        }
+
+        /// <summary>
+        /// 用户信息维护
+        /// </summary>
+        /// <returns></returns>
+        public IActionResult RolesManage()
+        {
+            return View();
+        }
+
+        public string GetRolesList(PageParams pageParams)
+        {
+            pageParams.TableName = "Roles";
+            if (!string.IsNullOrEmpty(pageParams.StrWhere))
+            {
+                pageParams.StrWhere = "and UserName like '%" + pageParams.StrWhere + "%'";
+            }
+            var result = Common.Client.GetApi("post", "values/GetRolesPaged", pageParams);
             return result;
         }
 
@@ -131,7 +155,6 @@ namespace LWT.Client.Controllers
             return View();
         }
         [HttpPost]
-
         public IActionResult AddSuppliers(Supplier supplier,IFormFile formFile)
         {
             // 文件大小
@@ -156,15 +179,76 @@ namespace LWT.Client.Controllers
                     // 清空缓冲区数据
                     fs.Flush();
                 }
-                return Content("<script>alert('供应商添加成功');location.href='/Center/Index'</script>", "text/html;charset=utf-8");
+                return Content("<script>alert('供应商入驻成功');location.href='/index/SupplierManage'</script>", "text/html;charset=utf-8");
             }
             else
             {
-                return Content("<script>alert('添加供应商失败！请联系客服，核对重要信息');location.href='/Center/Index'</script>", "text/html;charset=utf-8");
+                return Content("<script>alert('添加供应商入驻失败！请联系客服，核对重要信息');location.href='/index/SupplierManage'</script>", "text/html;charset=utf-8");
             }
             
         }
 
+        /// <summary>
+        /// 用户信息维护
+        /// </summary>
+        /// <returns></returns>
+        public IActionResult SupplierManage()
+        {
+            return View();
+        }
+
+        public string GetSupplierList(PageParams pageParams)
+        {
+            pageParams.TableName = "Supplier s join brand b on s.brand = b.bid join Area a on s.aid = a.aid";
+            if (!string.IsNullOrEmpty(pageParams.StrWhere))
+            {
+                pageParams.StrWhere = "and UserName like '%" + pageParams.StrWhere + "%'";
+            }
+            var result = Common.Client.GetApi("post", "values/GetSupplierPaged", pageParams);
+            return result;
+        }
+
+        /// <summary>
+        /// 添加企业采购
+        /// </summary>
+        /// <returns></returns>
+        public IActionResult AddPurChase()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult AddPurChase(Purchase purchase, IFormFile formFile)
+        {
+            // 文件大小
+            //long size = 0;
+            // 原文件名（包括路径）
+            var filename = ContentDispositionHeaderValue.Parse(formFile.ContentDisposition).FileName;
+            // 扩展名
+            var extName = filename.Substring(filename.LastIndexOf('.')).Replace("\"", "");
+            // 新文件名
+            string shortfilename = $"{Guid.NewGuid()}{extName}";
+            // 新文件名（包括路径）
+            filename = Environment.WebRootPath + @"\Images\" + shortfilename;
+            //数据库添加对象
+            purchase.BusinessLicence = shortfilename;
+            var result = Common.Client.GetApi("post", "Values/AddPurChase", purchase);
+            if (Int32.Parse(result) > 0)
+            {
+                using (FileStream fs = System.IO.File.Create(filename))
+                {
+                    // 复制文件
+                    formFile.CopyTo(fs);
+                    // 清空缓冲区数据
+                    fs.Flush();
+                }
+                return Content("<script>alert('企业采购入驻成功');location.href='/index/SupplierManage'</script>", "text/html;charset=utf-8");
+            }
+            else
+            {
+                return Content("<script>alert('企业采购入驻失败！请联系客服，核对重要信息');location.href='/Center/Index'</script>", "text/html;charset=utf-8");
+            }
+
+        }
         #endregion
 
         #region 所有下拉菜单
@@ -174,6 +258,15 @@ namespace LWT.Client.Controllers
         public string GetRoles()
         {
             string sql = Common.Client.GetApi("Get", "Values/GetRoles");
+            return sql;
+        }
+
+        /// <summary>
+        /// 获取品牌名称的下拉菜单
+        /// </summary>
+        public string GetBrand()
+        {
+            string sql = Common.Client.GetApi("Get", "Values/GetBrand");
             return sql;
         }
 
@@ -199,19 +292,19 @@ namespace LWT.Client.Controllers
         /// <summary>
         /// 获取品牌名称的下拉菜单
         /// </summary>
-        public void GetBrand()
-        {
-            string sql = Common.Client.GetApi("Get", "Values/GetBrand");
-            List<Brand> list = JsonConvert.DeserializeObject<List<Brand>>(sql);
-            var data = from s in list
-                       select new SelectListItem
-                       {
-                           Text = s.BrandName,
-                           Value = s.Id.ToString()
-                       };
-            ViewBag.brand = data.ToList();
+        //public void GetBrand()
+        //{
+        //    string sql = Common.Client.GetApi("Get", "Values/GetBrand");
+        //    List<Brand> list = JsonConvert.DeserializeObject<List<Brand>>(sql);
+        //    var data = from s in list
+        //               select new SelectListItem
+        //               {
+        //                   Text = s.BrandName,
+        //                   Value = s.Id.ToString()
+        //               };
+        //    ViewBag.brand = data.ToList();
 
-        }
+        //}
         #endregion
 
         

@@ -4,15 +4,13 @@ using System.Text;
 
 namespace Model
 {
-   public class Users
+   public class UsersHelper
     {
-
         /// <summary>
         /// 主键id
         /// </summary>
         public int Id { get; set; }
 
-   
         /// <summary>
         /// 用户名称
         /// </summary>
@@ -28,5 +26,9 @@ namespace Model
         /// </summary>
         public int RoleId { get; set; }
 
+        /// <summary>
+        /// 角色名称
+        /// </summary>
+        public string RoleName { get; set; }
     }
 }
