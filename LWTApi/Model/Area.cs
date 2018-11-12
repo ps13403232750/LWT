@@ -7,7 +7,7 @@ namespace Model
         /// <summary>
         /// 主键ID
         /// </summary>
-        public int Id { get; set; }
+        public int AId { get; set; }
 
         /// <summary>
         /// 地域名称

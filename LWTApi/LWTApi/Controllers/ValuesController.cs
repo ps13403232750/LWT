@@ -36,12 +36,23 @@ namespace LWTApi.Controllers
         /// 分页权限列表信息
         /// </summary>
         /// <returns></returns>
-        [HttpGet]
+        [HttpPost]
         [Route("[action]")]
-        public ActionResult<List<Power>> GetPowerPaged()
+        public ActionResult<PageResult<Power>> GetPowerPaged(PageParams pageParams)
         {
-            PageParams pageParams = new PageParams() { TableName="POWER",PageSize=5};
-            return userServices.GetPowerPageList(pageParams).ToList();
+            var list = userServices.GetPowerPageList(pageParams);
+            return list;
+        }
+
+        /// <summary>
+        /// 用户列表分页
+        /// </summary>
+        /// <param name="pageParams"></param>
+        /// <returns></returns>
+        public ActionResult<PageResult<Users>> GetUsersPageed(PageParams pageParams)
+        {
+            var list = userServices.GetUsersPageList(pageParams);
+            return list;
         }
 
         /// <summary>
@@ -163,7 +174,17 @@ namespace LWTApi.Controllers
             return i;
         }
 
-        #endregion
+        /// <summary>
+        /// 获取区域的信息
+        /// </summary>
+        /// <returns></returns>
+        [Route("[action]")]
+        [HttpGet]
+        public List<Area> GetAreas()
+        {
+            return userServices.GetAreas();
+        }
+            #endregion
 
-    }
+        }
 }

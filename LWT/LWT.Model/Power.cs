@@ -9,7 +9,7 @@ namespace LWT.Model
         /// <summary>
         /// 权限id
         /// </summary>
-        public int id { get; set; }
+        public int Id { get; set; }
 
         /// <summary>
         /// 权限名称

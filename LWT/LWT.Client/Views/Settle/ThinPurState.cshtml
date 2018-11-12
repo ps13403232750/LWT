@@ -21,15 +21,21 @@
         <li><button>2017年</button><button>2016年</button></li>
     </ul>
     <ul>
-        <li>第四次结算</li>
-        <li>第三次结算  </li>
-        <li>第二次结算 </li>
-        <li>第一次结算 </li>
+        <li><a href="#">第四次结算</a></li>
+    </ul>
+    <ul>
+        <li><a href="#">第三次结算</a></li>
+    </ul>
+    <ul>
+        <li><a href="#">第二次结算</a></li>
+    </ul>
+    <ul>
+        <li><a href="#">第一次结算</a></li>
     </ul>
     <p>采购商名称 七彩北京公司 结算周期 201804/01-2019/02/01</p>
     <p>结算类型:季度 收款总金额:$5555555.00</p>
     <p>订单数:9898</p>
-    <input id="Button1" type="button" value="发送对账单" style="background-color:blue;color:white"/>
+    <input id="Button1" type="button" value="发送对账单" style="background-color:blue;color:white" />
     <table class="table table-border" style="width:600px;height:300px;">
         <tr>
             <th>订单编号</th>
@@ -43,9 +49,9 @@
             <tr>
                 <td>@item.OrderNum</td>
                 <td>@item.OrderTime</td>
-                <td></td>
+                <td>@item.Address</td>
+                <td>@item.UserId</td>
                 <td>@item.Price</td>
-                <td></td>
             </tr>
         }
     </table>

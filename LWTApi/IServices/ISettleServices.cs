@@ -14,6 +14,14 @@ namespace IServices
         List<Limit> GetLimit();
 
         /// <summary>
+        /// 额度查询
+        /// </summary>
+        /// <param name="Name"></param>
+        /// <param name="states"></param>
+        /// <returns></returns>
+        List<Limit>  Inquire(string Name);
+
+        /// <summary>
         /// 结算次数
         /// </summary>
         /// <returns></returns>

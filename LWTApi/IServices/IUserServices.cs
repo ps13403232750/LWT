@@ -93,7 +93,20 @@ namespace IServices
         /// </summary>
         /// <param name="pageParams"></param>
         /// <returns></returns>
-        List<Power> GetPowerPageList(PageParams pageParams);
+        PageResult<Power> GetPowerPageList(PageParams pageParams);
+
+        /// <summary>
+        /// 获取所有用户分页列表
+        /// </summary>
+        /// <param name="pageParams"></param>
+        /// <returns></returns>
+        PageResult<Users> GetUsersPageList(PageParams pageParams);
+
+        /// <summary>
+        /// 获取区域信息
+        /// </summary>
+        /// <returns></returns>
+        List<Area> GetAreas();
 
     }
 }

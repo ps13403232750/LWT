@@ -60,10 +60,21 @@ namespace Services
         /// </summary>
         /// <param name="pageParams"></param>
         /// <returns></returns>
-        public List<Power> GetPowerPageList(PageParams pageParams)
+        public PageResult<Power> GetPowerPageList(PageParams pageParams)
         {
             var list = OraclePaging.QuickPage<Power>(pageParams);
-            return list.DataList;
+            return list;
+        }
+
+        /// <summary>
+        /// 用户列表分页
+        /// </summary>
+        /// <param name="pageParams"></param>
+        /// <returns></returns>
+        public PageResult<Users> GetUsersPageList(PageParams pageParams)
+        {
+            var list = OraclePaging.QuickPage<Users>(pageParams);
+            return list;
         }
 
         /// <summary>
@@ -170,6 +181,16 @@ namespace Services
         {
             var i = SqlSugarHelper<Brand>.Insert(brand);
             return i;
+        }
+
+        /// <summary>
+        /// 获取区域的信息
+        /// </summary>
+        /// <returns></returns>
+        public List<Area> GetAreas()
+        {
+            var list = SqlSugarHelper<Area>.FindAll();
+            return list;
         }
         #endregion
 

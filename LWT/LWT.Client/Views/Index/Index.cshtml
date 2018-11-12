@@ -69,10 +69,10 @@
                             <ul>
                                 @foreach (var item1 in Model)
                                 {
-                                    if (@item1.Pid == @item.id)
+                                    if (@item1.Pid == @item.Id)
                                     {
                                     <li>
-                                        <div><a data-href="@item.Url" data-title="@item1.PowerName" href="javascript:void(0)">@item1.PowerName</a></div> 
+                                        <div><a data-href="@item1.Url" data-title="@item1.PowerName" href="javascript:void(0)">@item1.PowerName</a></div> 
                                     </li> 
                                     }
                                 }
