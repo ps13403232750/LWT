@@ -17,7 +17,7 @@
 </head>
 <body>
     <div id="app">
-        <table  class="table table-border table-hover table-striped">
+        <table class="table table-border table-hover table-striped">
             <tr>
                 <td> 编号 </td>
                 <td> 商品名称 </td>
@@ -38,6 +38,17 @@
                 </td>
             </tr>
         </table>
+        <!--分页布局-->
+        <div style="width:50%;margin:auto;">
+            <a class="btn btn-secondary-outline" v-on:click="firstpage">首页</a>
+            <a class="btn btn-secondary-outline" v-on:click="prevpage">上一页</a>
+            <span v-for="index in totalPage">
+                <a class="btn btn-secondary" v-if="index==currentpage">{{index}}</a>
+                <a class="btn btn-secondary-outline" v-else v-on:click="thispage(index)">{{index}}</a>
+            </span>
+            <a class="btn btn-secondary-outline" v-on:click="nextpage">下一页</a>
+            <a class="btn btn-secondary-outline" v-on:click="lastpage">尾页</a>
+        </div>
     </div>
 </body>
 </html>
@@ -53,4 +64,119 @@
             axios.get('/Supplier/OrderLists?OrderNum='+@ViewBag.OrderNum).then(response => (this.info = response.data));
         }
     })
+</script>
+
+<script type="text/javascript">
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            totalCount: 0,
+            totalPage: 0,
+            currentpage: 1,
+            searchtxt: "",
+            dataList: null
+        },
+        mounted: function () {
+            var that = this;
+            axios.get('/Supplier/PageGoods'
+                .then(function (res) {
+                    that.totalCount = res.data.totalCount;
+                    that.totalPage = res.data.totalPage;
+                    that.dataList = res.data.dataList;
+                })
+        },
+        methods: {
+            firstpage: function () {
+                var that = this;
+                if (that.currentpage != 1) {
+                    that.currentpage = 1;
+                    axios({
+                        url: "/Supplier/PageGoods",
+                        method: "get",
+                        params: { 'CurPage': that.currentpage, 'StrWhere': that.searchtxt }
+                    }).then(function (res) {
+                        that.totalCount = res.data.totalCount;
+                        that.totalPage = res.data.totalPage;
+                        that.dataList = res.data.dataList;
+                    })
+                }
+            },
+            nextpage: function () {
+                var that = this;
+                if (that.currentpage < that.totalPage) {
+                    that.currentpage += 1;
+                    axios({
+                        url: "/Supplier/PageGoods",
+                        method: "get",
+                        params: { 'CurPage': that.currentpage, 'StrWhere': that.searchtxt }
+                    }).then(function (res) {
+                        that.totalCount = res.data.totalCount;
+                        that.totalPage = res.data.totalPage;
+                        that.dataList = res.data.dataList;
+                    })
+                }
+
+            },
+            thispage: function (res) {
+                var that = this;
+                that.currentpage = res;
+                axios({
+                    url: "/Supplier/PageGoods",
+                    method: "get",
+                    params: { 'CurPage': that.currentpage, 'StrWhere': that.searchtxt }
+                }).then(function (res) {
+                    that.totalCount = res.data.totalCount;
+                    that.totalPage = res.data.totalPage;
+                    that.dataList = res.data.dataList;
+                })
+
+            },
+            prevpage: function () {
+                var that = this;
+                if (that.currentpage > 1) {
+                    that.currentpage -= 1;
+                    axios({
+                        url: "/Supplier/PageGoods",
+                        method: "get",
+                        params: { 'CurPage': that.currentpage, 'StrWhere': that.searchtxt }
+                    }).then(function (res) {
+                        that.totalCount = res.data.totalCount;
+                        that.totalPage = res.data.totalPage;
+                        that.dataList = res.data.dataList;
+                    })
+                }
+
+            },
+            lastpage: function () {
+                var that = this;
+                if (that.currentpage != that.totalPage) {
+                    that.currentpage = that.totalPage;
+                    axios({
+                        url: "/Supplier/PageGoods",
+                        method: "get",
+                        params: { 'CurPage': that.currentpage, 'StrWhere': that.searchtxt }
+                    }).then(function (res) {
+                        that.totalCount = res.data.totalCount;
+                        that.totalPage = res.data.totalPage;
+                        that.dataList = res.data.dataList;
+                    })
+                }
+
+            },
+            search: function () {
+                var that = this;
+                that.currentpage = 1;
+                axios({
+                    url: "/Supplier/PageGoods",
+                    method: "get",
+                    params: { 'CurPage': that.currentpage, 'StrWhere': that.searchtxt }
+                }).then(function (res) {
+                    that.totalCount = res.data.totalCount;
+                    that.totalPage = res.data.totalPage;
+                    that.dataList = res.data.dataList;
+                })
+            }
+        }
+    })
+
 </script>

@@ -29,7 +29,7 @@
 </head>
 <body>
     <div class="page-container">
-        <div id="containe" style="min-width:700px;height:400px"></div>
+        <div id="container" style="min-width:700px;height:400px"></div>
     </div>
     <!--_footer 作为公共模版分离出去-->
     <script type="text/javascript" src="~/lib/jquery/1.9.1/jquery.min.js"></script>
@@ -55,9 +55,9 @@
             getusers("2018/11");
             getusers("2018/12");
 
-            Highcharts.chart('containe', {
+            Highcharts.chart('container', {
                 title: {
-                    text: 'Monthly Average Temperature',
+                    text: '各月份订单总结',
                     x: -20 //center
                 },
                 subtitle: {

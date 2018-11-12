@@ -22,7 +22,7 @@ namespace Model
         /// <summary>
         /// 关联订单
         /// </summary>
-        public int OrderNum { get; set; }
+        public string OrderNum { get; set; }
 
         /// <summary>
         /// 商品价格

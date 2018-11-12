@@ -76,8 +76,10 @@
                 that.info = res.data;
             });
         },
-        methods: function (res) {
-                axios({   
+        methods: {
+            edituser: function (res) {
+                var that = this;
+                axios({
                     method: 'put',
                     url: '/Supplier/UpdateGoods?Id=' + res,
                 }).then(function (result) {
@@ -85,9 +87,17 @@
                     console.log(result);
                     //根据返回结果给出修改成功提示
                     if (result.data == true) {
-                        alert(2)
+                        alert('修改成功');
+                        //更新数据
+                        that.$options.methods.show(that);                       
                     }
                 })
+            },
+            show: function (result) {
+                axios.get('http://localhost:60259/api/Supplier/GetGoods').then(function (res) {
+                    result.info = res.data;
+                });
+            }
         }
     })
 

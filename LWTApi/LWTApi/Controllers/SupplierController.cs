@@ -32,6 +32,32 @@ namespace LWTApi.Controllers
         {
             var result = _supplierServices.Goods().ToList();
             return result;
+        }       
+
+        /// <summary>
+        /// 用户列表分页
+        /// </summary>
+        /// <param name="pageParams"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("[action]")]
+        public ActionResult<PageResult<Goods>> PageGoods(PageParams pageParams)
+        {
+            var list = _supplierServices.PageGoods(pageParams);
+            return list;
+        }
+
+        /// <summary>
+        /// 订单列表分页
+        /// </summary>
+        /// <param name="pageParams"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("[action]")]
+        public ActionResult<PageResult<Orders>> PageOrders(PageParams pageParams)
+        {
+            var list = _supplierServices.PageOrders(pageParams);
+            return list;
         }
 
         /// <summary>
@@ -66,7 +92,7 @@ namespace LWTApi.Controllers
         /// <returns></returns>1
         [HttpGet]
         [Route("[action]")]
-        public ActionResult<List<OrderList>> GetOrderList(int OrderNum)
+        public ActionResult<List<OrderList>> GetOrderList(string OrderNum)
         {
             var result = _supplierServices.GetOrderList(OrderNum).ToList();
             return result;

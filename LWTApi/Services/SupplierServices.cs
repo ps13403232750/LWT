@@ -5,6 +5,8 @@ using System.Text;
 using Model;
 using IServices;
 using SqlSugar;
+using Common;
+
 namespace Services
 {
     public class SupplierServices : BaseDB, ISupplierServices
@@ -17,6 +19,28 @@ namespace Services
         {
             var result = SqlSugarHelper<Goods>.FindAll();
             return result;
+        }
+
+        /// <summary>
+        /// 获取商品表数据分页
+        /// </summary>
+        /// <param name="pageParams"></param>
+        /// <returns></returns>
+        public PageResult<Goods> PageGoods(PageParams pageParams)
+        {
+            var list = OraclePaging.QuickPage<Goods>(pageParams);
+            return list;
+        }
+
+        /// <summary>
+        /// 获取订单表数据分页
+        /// </summary>
+        /// <param name="pageParams"></param>
+        /// <returns></returns>
+        public PageResult<Orders> PageOrders(PageParams pageParams)
+        {
+            var list = OraclePaging.QuickPage<Orders>(pageParams);
+            return list;
         }
 
         /// <summary>
@@ -48,7 +72,7 @@ namespace Services
         /// 获取订单从表详细数据
         /// </summary>
         /// <returns></returns>
-        public List<OrderList> GetOrderList(int OrderNum)
+        public List<OrderList> GetOrderList(string OrderNum)
         {
             var db = BaseDB.GetInstance();
             var result = db.Queryable<OrderList>().Where(it => it.OrderNum == OrderNum).ToList();
