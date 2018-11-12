@@ -16,9 +16,9 @@ namespace LWT.Client.Controllers
         }
 
         [HttpPost]
-        public string Login(string username)
+        public int Login(string username,string userpwd)
         {
-            return username;
+            return 1;
         }
        
     }

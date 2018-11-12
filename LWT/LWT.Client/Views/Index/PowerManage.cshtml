@@ -25,12 +25,11 @@
     <div class="page-container" id="app">
         <div class="text-c">
 
-            <input type="text" class="input-text" style="width:250px" placeholder="输入会员名称、电话、邮箱" id="" name="">
-            <button type="submit" class="btn btn-success radius" id="" name=""><i class="Hui-iconfont">&#xe665;</i> 搜用户</button>
+            <input type="text" class="input-text" style="width:250px" placeholder="输入菜单名称" v-model="searchtxt" id="search" name="">
+            <button type="button" class="btn btn-success radius" id="" name="" v-on:click="search"><i class="Hui-iconfont">&#xe665;</i> 搜索</button>
         </div>
         <div class="cl pd-5 bg-1 bk-gray mt-20">
             <span class="l">
-                <a href="javascript:;" onclick="datadel()" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a>
                 <a href="javascript:;" onclick="member_add('添加用户','member-add.html','','510')" class="btn btn-primary radius"><i class="Hui-iconfont">&#xe600;</i> 添加用户</a>
             </span> <span class="r">共有数据：<strong>{{totalCount}}</strong> 条</span>
         </div>
@@ -66,10 +65,18 @@
                     </tr>
                 </tbody>
             </table>
-            <div>
-                <a class="btn btn-secondary-outline" v-on:click="prevpage" >上一页</a>
-                <span><a class="btn btn-secondary-outline">1</a></span>
-                <a class="btn btn-secondary-outline" v-on:click="nextpage" >下一页</a>
+            <!--分页布局-->
+            <div style="width:50%;margin:auto;">
+                <a class="btn btn-secondary-outline" v-on:click="firstpage">首页</a>
+                <a class="btn btn-secondary-outline" v-on:click="prevpage">上一页</a>
+
+                <span v-for="index in totalPage">
+                    <a class="btn btn-secondary" v-if="index==currentpage">{{index}}</a>
+                    <a class="btn btn-secondary-outline" v-else v-on:click="thispage(index)">{{index}}</a>
+                </span>
+
+                <a class="btn btn-secondary-outline" v-on:click="nextpage">下一页</a>
+                <a class="btn btn-secondary-outline" v-on:click="lastpage">尾页</a>
             </div>
         </div>
     </div>
@@ -86,7 +93,8 @@
             data: {
                 totalCount: 0,
                 totalPage: 0,
-                currentpage:1,
+                currentpage: 1,
+                searchtxt: "",
                 dataList: null
             },
             mounted: function () {
@@ -99,6 +107,22 @@
                     })
             },
             methods: {
+                firstpage: function () {
+                    var that = this;
+                    if (that.currentpage != 1) {
+                        that.currentpage = 1;
+                        axios({
+                            url: "/Index/GetPowerList",
+                            method: "get",
+                            params: { 'CurPage': that.currentpage, 'StrWhere': that.searchtxt }
+                        }).then(function (res) {
+                            that.totalCount = res.data.totalCount;
+                            that.totalPage = res.data.totalPage;
+                            that.dataList = res.data.dataList;
+                        })
+                    }
+
+                },
                 nextpage: function () {
                     var that = this;
                     if (that.currentpage < that.totalPage) {
@@ -106,30 +130,73 @@
                         axios({
                             url: "/Index/GetPowerList",
                             method: "get",
-                            params: { 'CurPage': that.currentpage }
+                            params: { 'CurPage': that.currentpage, 'StrWhere': that.searchtxt }
                         }).then(function (res) {
                             that.totalCount = res.data.totalCount;
                             that.totalPage = res.data.totalPage;
                             that.dataList = res.data.dataList;
                         })
                     }
-                   
+
+                },
+                thispage: function (res) {
+                    var that = this;
+                    that.currentpage = res;
+                    axios({
+                        url: "/Index/GetPowerList",
+                        method: "get",
+                        params: { 'CurPage': that.currentpage, 'StrWhere': that.searchtxt }
+                    }).then(function (res) {
+                        that.totalCount = res.data.totalCount;
+                        that.totalPage = res.data.totalPage;
+                        that.dataList = res.data.dataList;
+                    })
+
                 },
                 prevpage: function () {
                     var that = this;
-                    if (that.currentpage >1) {
+                    if (that.currentpage > 1) {
                         that.currentpage -= 1;
                         axios({
                             url: "/Index/GetPowerList",
                             method: "get",
-                            params: { 'CurPage': that.currentpage }
+                            params: { 'CurPage': that.currentpage, 'StrWhere': that.searchtxt }
                         }).then(function (res) {
                             that.totalCount = res.data.totalCount;
                             that.totalPage = res.data.totalPage;
                             that.dataList = res.data.dataList;
                         })
                     }
-                   
+
+                },
+                lastpage: function () {
+                    var that = this;
+                    if (that.currentpage != that.totalPage) {
+                        that.currentpage = that.totalPage;
+                        axios({
+                            url: "/Index/GetPowerList",
+                            method: "get",
+                            params: { 'CurPage': that.currentpage, 'StrWhere': that.searchtxt }
+                        }).then(function (res) {
+                            that.totalCount = res.data.totalCount;
+                            that.totalPage = res.data.totalPage;
+                            that.dataList = res.data.dataList;
+                        })
+                    }
+
+                },
+                search: function () {
+                    var that = this;
+                    that.currentpage = 1;
+                    axios({
+                        url: "/Index/GetPowerList",
+                        method: "get",
+                        params: { 'CurPage': that.currentpage, 'StrWhere': that.searchtxt }
+                    }).then(function (res) {
+                        that.totalCount = res.data.totalCount;
+                        that.totalPage = res.data.totalPage;
+                        that.dataList = res.data.dataList;
+                    })
                 }
             }
         })
