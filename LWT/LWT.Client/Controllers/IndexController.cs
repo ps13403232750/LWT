@@ -28,10 +28,6 @@ namespace LWT.Client.Controllers
             this.Environment = environment;
         }
         #region //权限模块
-
-        #region 权限管理
-
-
         /// <summary>
         /// 主页面权限列表信息
         /// </summary>
@@ -58,9 +54,21 @@ namespace LWT.Client.Controllers
             return result;
         }
 
+        /// <summary>
+        /// 权限菜单维护
+        /// </summary>
+        /// <returns></returns>
+        public IActionResult UsersManage()
+        {
+            return View();
+        }
 
-        #endregion
-
+        public string GetUsersList(PageParams pageParams)
+        {
+            pageParams.TableName = "Users";
+            var result = Common.Client.GetApi("post", "values/GetUsersPageed", pageParams);
+            return result;
+        }
 
         /// <summary>
         /// 注册用户
@@ -152,6 +160,7 @@ namespace LWT.Client.Controllers
             }
             
         }
+
         #endregion
 
         #region 所有下拉菜单
