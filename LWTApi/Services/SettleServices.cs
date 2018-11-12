@@ -21,6 +21,19 @@ namespace Services
         }
 
         /// <summary>
+        /// 额度表查询
+        /// </summary>
+        /// <param name="Name"></param>
+        /// <param name="states"></param>
+        /// <returns></returns>
+        public List<Limit> Inquire(string Name)
+        {
+            var db = BaseDB.GetInstance();
+            var entities = db.Queryable<Limit>().Where(Name).ToList();
+            return entities;
+        }
+
+        /// <summary>
         /// 结算次数
         /// </summary>
         /// <returns></returns>

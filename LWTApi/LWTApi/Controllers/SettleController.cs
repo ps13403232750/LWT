@@ -8,6 +8,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 using Model;
+using Services;
+
 namespace LWTApi.Controllers
 {
     /// <summary>
@@ -34,6 +36,19 @@ namespace LWTApi.Controllers
         {
             var list = settleServices.GetLimit().ToList();
             return list;
+        }
+
+        /// <summary>
+        ///额度管理表查询
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("[action]")]
+        public ActionResult <List<Limit>> Inquire(string Name)
+        {
+            var db = BaseDB.GetInstance();
+            var entities = db.Queryable<Limit>().Where(m=>m.BuyerName.Contains(Name)).ToList();
+            return entities;
         }
 
         /// <summary>
