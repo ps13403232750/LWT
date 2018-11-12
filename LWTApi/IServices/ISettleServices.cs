@@ -58,5 +58,11 @@ namespace IServices
         /// <param name="states"></param>
         /// <returns></returns>
         bool  UpdateState(int id, int states);
+
+        /// <summary>
+        ///审批状态下拉 
+        /// </summary>
+        /// <returns></returns>
+        List<Limit> GetState();
     }
 }

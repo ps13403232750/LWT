@@ -67,6 +67,17 @@ namespace Services
         }
 
         /// <summary>
+        /// 用户列表分页
+        /// </summary>
+        /// <param name="pageParams"></param>
+        /// <returns></returns>
+        public PageResult<Users> GetUsersPageList(PageParams pageParams)
+        {
+            var list = OraclePaging.QuickPage<Users>(pageParams);
+            return list;
+        }
+
+        /// <summary>
         /// 获取用户角色的所有信息
         /// </summary>
         /// <returns></returns>

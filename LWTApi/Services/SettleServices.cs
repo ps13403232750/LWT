@@ -93,6 +93,16 @@ namespace Services
         {
             var result = GetSimpleInstance<Limit>().Update(it => new Limit() { State = states }, it => it.Id == id);
             return (result);
-        } 
+        }
+
+        /// <summary>
+        /// 审批状态下拉
+        /// </summary>
+        /// <returns></returns>
+        public List<Limit> GetState()
+        {
+            var list = SqlSugarHelper<Limit>.FindAll();
+            return list;
+        }
     }
 }

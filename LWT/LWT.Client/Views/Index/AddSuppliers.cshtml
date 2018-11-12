@@ -155,6 +155,7 @@
         var app = new Vue({
             el: '#app',
             data: {
+                Id:null,
                 CompanyName: "",
                 StoreName: "",
                 LinkMan: "",
@@ -182,7 +183,7 @@
                 adduser: function () {
                     var that = this;
                     var params = new URLSearchParams();
-                    params.append('Id', '0');
+                    params.append('Id', null);
                     params.append('CompanyName', $("#companyname").val());
                     params.append('StoreName', $("#StoreName").val());
                     params.append('LinkMan', $("#LinkMan").val());

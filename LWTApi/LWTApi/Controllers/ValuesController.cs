@@ -45,6 +45,17 @@ namespace LWTApi.Controllers
         }
 
         /// <summary>
+        /// 用户列表分页
+        /// </summary>
+        /// <param name="pageParams"></param>
+        /// <returns></returns>
+        public ActionResult<PageResult<Users>> GetUsersPageed(PageParams pageParams)
+        {
+            var list = userServices.GetUsersPageList(pageParams);
+            return list;
+        }
+
+        /// <summary>
         /// 获取用户角色信息
         /// </summary>
         /// <returns></returns>
