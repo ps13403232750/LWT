@@ -49,7 +49,9 @@ namespace LWTApi.Controllers
         /// </summary>
         /// <param name="pageParams"></param>
         /// <returns></returns>
-        public ActionResult<PageResult<Users>> GetUsersPageed(PageParams pageParams)
+        [HttpPost]
+        [Route("[action]")]
+        public ActionResult<PageResult<Users>> GetUsersPaged(PageParams pageParams)
         {
             var list = userServices.GetUsersPageList(pageParams);
             return list;
