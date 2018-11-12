@@ -7,7 +7,7 @@ namespace Model
     /// <summary>
     /// 额度管理表
     /// </summary>
-   public class Limit
+   public class Limits
     {
         /// <summary>
         /// 额度id
@@ -26,6 +26,7 @@ namespace Model
 
         /// <summary>
         /// 总额度
+        /// 
         /// </summary>
         public int TotalAmount { get; set; }
 

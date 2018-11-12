@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-
+using LWT.Client.Models;
 using LWT.Model;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
@@ -16,22 +16,31 @@ namespace LWT.Client.Controllers
         /// <returns></returns>
         public IActionResult GetLimit()
         {
-            GetState();
-           
-            string getLimit = Common.Client.GetApi("get", "Settle/GetLimit");
-            var list = JsonConvert.DeserializeObject<List<Limit>>(getLimit);
-            return View(list);
+            string getlimit = Common.Client.GetApi("get", "Settle/GetLimit");
+            return View(JsonConvert.DeserializeObject<List<Limits>>(getlimit));
         }
 
         /// <summary>
-        /// 额度管理表查询
+        /// 额度管理表分页
         /// </summary>
+        /// <param name="pageParams"></param>
         /// <returns></returns>
-        public IActionResult Inquire(string Name)
+        public string GetLimits(PageParams pageParams,string BuyerName,int State=2)
         {
-            string inquire = Common.Client.GetApi("get", "Settle/Inquire");
-            var list = JsonConvert.DeserializeObject<List<Limit>>(inquire);
-            return View(list);
+            pageParams.TableName = "Limits";
+            var wherestr = "";
+            if (!string.IsNullOrEmpty(BuyerName))
+            {
+                wherestr = " and BuyerName like '%" + BuyerName + "%'";
+            }
+
+            if (State==0||State == 1)
+            {
+                wherestr = " and State = " + State;
+            }
+            pageParams.StrWhere = wherestr;
+            var list = Common.Client.GetApi("post", "Settle/GetLimitPageList", pageParams);
+            return list;
         }
 
         /// <summary>
@@ -40,7 +49,7 @@ namespace LWT.Client.Controllers
         /// <returns></returns>
         public IActionResult GetPurChaseSettle()
         {
-            string getPurChaseSettle =Common.Client.GetApi("get", "Settle/GetPurchaseSettle");
+            string getPurChaseSettle = Common.Client.GetApi("get", "Settle/GetPurchaseSettle");
             var list = JsonConvert.DeserializeObject<List<PurchaseSettle>>(getPurChaseSettle);
             return View(list);
         }
@@ -63,7 +72,7 @@ namespace LWT.Client.Controllers
         public IActionResult ThinMaLimite()
         {
             string thinMaLimite = Common.Client.GetApi("get", "Settle/ThinMaLimite");
-            var list = JsonConvert.DeserializeObject<List<Limit>>(thinMaLimite);
+            var list = JsonConvert.DeserializeObject<List<Limits>>(thinMaLimite);
             return View(list);
         }
 
