@@ -8,18 +8,16 @@ namespace IServices
    public interface ISettleServices
     {
         /// <summary>
+        /// 额度管理表分页
+        /// </summary>
+        /// <returns></returns>
+        PageResult<Limits> GetLimitPageList(PageParams pageParams);
+
+        /// <summary>
         /// 额度管理表
         /// </summary>
         /// <returns></returns>
-        List<Limit> GetLimit();
-
-        /// <summary>
-        /// 额度查询
-        /// </summary>
-        /// <param name="Name"></param>
-        /// <param name="states"></param>
-        /// <returns></returns>
-        List<Limit>  Inquire(string Name);
+        List<Limits> GetLimit();
 
         /// <summary>
         /// 结算次数
@@ -31,7 +29,7 @@ namespace IServices
         /// 额度详情
         /// </summary>
         /// <returns></returns>
-        List<Limit> ThinMaLimite();
+        List<Limits> ThinMaLimite();
 
         /// <summary>
         /// 详情
@@ -63,6 +61,6 @@ namespace IServices
         ///审批状态下拉 
         /// </summary>
         /// <returns></returns>
-        List<Limit> GetState();
+        List<Limits> GetState();
     }
 }

@@ -27,28 +27,26 @@ namespace LWTApi.Controllers
         }
 
         /// <summary>
-        ///额度管理表显示 
+        /// 额度管理表
         /// </summary>
         /// <returns></returns>
         [HttpGet]
         [Route("[action]")]
-        public ActionResult<List<Limit>> GetLimit()
+        public ActionResult<List<Limits>> GetLimit()
         {
-            var list = settleServices.GetLimit().ToList();
-            return list;
+            return settleServices.GetLimit().ToList();
         }
 
         /// <summary>
-        ///额度管理表查询
+        ///额度管理表分页
         /// </summary>
         /// <returns></returns>
-        [HttpGet]
+        [HttpPost]
         [Route("[action]")]
-        public ActionResult <List<Limit>> Inquire(string Name)
+        public ActionResult<PageResult<Limits>> GetLimitPageList(PageParams pageParams)
         {
-            var db = BaseDB.GetInstance();
-            var entities = db.Queryable<Limit>().Where(m=>m.BuyerName.Contains(Name)).ToList();
-            return entities;
+            var list = settleServices.GetLimitPageList(pageParams);
+            return list;
         }
 
         /// <summary>
@@ -61,7 +59,7 @@ namespace LWTApi.Controllers
         {
             return settleServices.GetPurchaseSettle().ToList();
         }
-  
+
         /// <summary>
         /////采购结算列表详情
         /// </summary>
@@ -80,7 +78,7 @@ namespace LWTApi.Controllers
         /// <returns></returns>
         [HttpGet]
         [Route("[action]")]
-        public ActionResult<List<Limit>> ThinMaLimite()
+        public ActionResult<List<Limits>> ThinMaLimite()
         {
             return settleServices.ThinMaLimite().ToList();
         }
@@ -105,7 +103,7 @@ namespace LWTApi.Controllers
         /// <returns></returns>
         [Route("[action]")]
         [HttpGet]
-        public List<Limit> GetState()
+        public List<Limits> GetState()
         {
             return settleServices.GetState();
         }

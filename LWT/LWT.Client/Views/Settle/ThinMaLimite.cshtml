@@ -2,7 +2,7 @@
 @{
     Layout = null;
 }
-@model List<LWT.Model.Limit>
+@model List<LWT.Model.Limits>
 <!DOCTYPE html>
 <html>
 <head>
@@ -42,7 +42,7 @@
                         <td>我刘可鑫不同意！</td>
                     </template>
                     <template v-else-if="item.state==1">
-                        <td>我刘可鑫无敌！</td>
+                        <td>我刘可鑫无敌</td>
                     </template>
                     <td>{{item.isable}} <a href="javascript:;" v-on:click="edituser(item.id)"> 提交 </a></td>
                 </tr>

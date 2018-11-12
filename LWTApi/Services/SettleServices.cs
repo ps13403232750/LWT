@@ -5,32 +5,30 @@ using System.Text;
 using SqlSugar;
 using Model;
 using IServices;
+using Common;
 
 namespace Services
 {
     public class SettleServices : BaseDB, ISettleServices
     {
         /// <summary>
-        /// 额度表显示
+        /// 额度管理表分页
         /// </summary>
         /// <returns></returns>
-        public List<Limit> GetLimit()
+        public PageResult<Limits> GetLimitPageList(PageParams pageParams)
         {
-            var list = SqlSugarHelper<Limit>.FindAll();
+            var list = OraclePaging.QuickPage<Limits>(pageParams);
             return list;
         }
 
         /// <summary>
-        /// 额度表查询
+        /// 额度管理表
         /// </summary>
-        /// <param name="Name"></param>
-        /// <param name="states"></param>
         /// <returns></returns>
-        public List<Limit> Inquire(string Name)
+        public List<Limits> GetLimit()
         {
-            var db = BaseDB.GetInstance();
-            var entities = db.Queryable<Limit>().Where(Name).ToList();
-            return entities;
+            var list = SqlSugarHelper<Limits>.FindAll();
+            return list;
         }
 
         /// <summary>
@@ -77,9 +75,9 @@ namespace Services
         /// 额度详情
         /// </summary>
         /// <returns></returns>
-        public List<Limit> ThinMaLimite()
+        public List<Limits> ThinMaLimite()
         {
-            var list = SqlSugarHelper<Limit>.FindAll();
+            var list = SqlSugarHelper<Limits>.FindAll();
             return list;
         }
 
@@ -91,7 +89,7 @@ namespace Services
         /// <returns></returns>
         public bool UpdateState(int id, int states)
         {
-            var result = GetSimpleInstance<Limit>().Update(it => new Limit() { State = states }, it => it.Id == id);
+            var result = GetSimpleInstance<Limits>().Update(it => new Limits() { State = states }, it => it.Id == id);
             return (result);
         }
 
@@ -99,9 +97,9 @@ namespace Services
         /// 审批状态下拉
         /// </summary>
         /// <returns></returns>
-        public List<Limit> GetState()
+        public List<Limits> GetState()
         {
-            var list = SqlSugarHelper<Limit>.FindAll();
+            var list = SqlSugarHelper<Limits>.FindAll();
             return list;
         }
     }

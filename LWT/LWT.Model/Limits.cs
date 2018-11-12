@@ -7,7 +7,7 @@ namespace LWT.Model
     /// <summary>
     /// 额度管理表
     /// </summary>
-   public class Limit
+   public class Limits
     {
         /// <summary>
         /// 额度id
@@ -42,6 +42,6 @@ namespace LWT.Model
         /// <summary>
         /// 审批额度
         /// </summary>
-        public int AppRoveLimit { get; set; }
+        public int ApproveLimit { get; set; }   
     }
 }
