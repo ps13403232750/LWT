@@ -26,17 +26,17 @@
     <div class="loginWraper">
         <h1>劳物通</h1>
         <div id="loginform" class="loginBox">
-            <form class="form form-horizontal" action="index.html" method="post">
+            <form class="form form-horizontal" >
                 <div class="row cl">
                     <label class="form-label col-xs-3"><i class="Hui-iconfont">&#xe60d;</i></label>
                     <div class="formControls col-xs-8">
-                        <input id="" name="" type="text" placeholder="账户" class="input-text size-L">
+                        <input id="username" name="username" type="text" placeholder="账户" class="input-text size-L">
                     </div>
                 </div>
                 <div class="row cl">
                     <label class="form-label col-xs-3"><i class="Hui-iconfont">&#xe60e;</i></label>
                     <div class="formControls col-xs-8">
-                        <input id="" name="" type="password" placeholder="密码" class="input-text size-L">
+                        <input id="userpwd" name="userpwd" type="password" placeholder="密码" class="input-text size-L">
                     </div>
                 </div>
                 <div class="row cl">
@@ -48,7 +48,7 @@
               
                 <div class="row cl">
                     <div class="formControls col-xs-8 col-xs-offset-3">
-                        <input name="" type="submit" class="btn btn-success radius size-L" value="&nbsp;登&nbsp;&nbsp;&nbsp;&nbsp;录&nbsp;">
+                        <input name="" type="button" class="btn btn-success radius size-L" onclick="Login()" value="&nbsp;登&nbsp;&nbsp;&nbsp;&nbsp;录&nbsp;">
                         <input name="" type="reset" class="btn btn-default radius size-L" value="&nbsp;取&nbsp;&nbsp;&nbsp;&nbsp;消&nbsp;">
                     </div>
                 </div>
@@ -58,6 +58,25 @@
     <div class="footer">Copyright 天虎股份有限公司 </div>
     <script type="text/javascript" src="~/Content/lib/jquery/1.9.1/jquery.min.js"></script>
     <script type="text/javascript" src="~/Content/static/h-ui/js/H-ui.min.js"></script>
+    <script>
+        function Login() {
+            $.ajax({
+                url: "/Home/Login",
+                data: {
+                    username: $("#username").val(),
+                    userpwd: $("#userpwd").val()
+                },
+                type: "post",
+                success: function (res) {
+                    if (res > 0) {
+                        alert("登录成功！")
+                        location.href = "/Index/Index";
+                    }
+                }
+            })
+            
+        }
+    </script>
 
 
 </body>

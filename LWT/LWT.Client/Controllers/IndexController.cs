@@ -50,6 +50,10 @@ namespace LWT.Client.Controllers
         public string GetPowerList(PageParams pageParams)
         {
             pageParams.TableName = "Power";
+            if (!string.IsNullOrEmpty(pageParams.StrWhere))
+            {
+                pageParams.StrWhere = " and PowerName like '%" + pageParams.StrWhere + "%'";
+            }
             var result = Common.Client.GetApi("post", "values/GetPowerPaged", pageParams);
             return result;
         }

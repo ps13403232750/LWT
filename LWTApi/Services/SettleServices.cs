@@ -5,6 +5,7 @@ using System.Text;
 using SqlSugar;
 using Model;
 using IServices;
+
 namespace Services
 {
     public class SettleServices : BaseDB, ISettleServices
@@ -17,6 +18,19 @@ namespace Services
         {
             var list = SqlSugarHelper<Limit>.FindAll();
             return list;
+        }
+
+        /// <summary>
+        /// 额度表查询
+        /// </summary>
+        /// <param name="Name"></param>
+        /// <param name="states"></param>
+        /// <returns></returns>
+        public List<Limit> Inquire(string Name)
+        {
+            var db = BaseDB.GetInstance();
+            var entities = db.Queryable<Limit>().Where(Name).ToList();
+            return entities;
         }
 
         /// <summary>
