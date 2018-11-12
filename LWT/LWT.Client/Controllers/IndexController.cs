@@ -27,7 +27,8 @@ namespace LWT.Client.Controllers
         {
             this.Environment = environment;
         }
-        #region //权限模块
+        #region 主界面
+
         /// <summary>
         /// 主页面权限列表信息
         /// </summary>
@@ -38,6 +39,13 @@ namespace LWT.Client.Controllers
             return View(JsonConvert.DeserializeObject<List<Power>>(getpower));
         }
 
+        public IActionResult HomePage()
+        {
+            return View();
+        }
+        #endregion
+        #region //权限模块
+        
         /// <summary>
         /// 权限菜单维护
         /// </summary>
@@ -69,8 +77,8 @@ namespace LWT.Client.Controllers
 
         public string GetUsersList(PageParams pageParams)
         {
-            pageParams.TableName = "Users";
-            var result = Common.Client.GetApi("post", "values/GetUsersPageed", pageParams);
+            pageParams.TableName = "Users s join Roles r on s.roleid = r.roleid";
+            var result = Common.Client.GetApi("post", "values/GetUsersPaged", pageParams);
             return result;
         }
 
