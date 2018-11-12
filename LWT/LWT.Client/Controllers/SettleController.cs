@@ -33,7 +33,6 @@ namespace LWT.Client.Controllers
             {
                 wherestr = " and BuyerName like '%" + BuyerName + "%'";
             }
-
             if (State==0||State == 1)
             {
                 wherestr = " and State = " + State;
