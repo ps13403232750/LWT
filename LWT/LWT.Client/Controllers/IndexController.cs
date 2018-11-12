@@ -69,8 +69,8 @@ namespace LWT.Client.Controllers
 
         public string GetUsersList(PageParams pageParams)
         {
-            pageParams.TableName = "Users";
-            var result = Common.Client.GetApi("post", "values/GetUsersPageed", pageParams);
+            pageParams.TableName = "Users s join Roles r on s.roleid = r.roleid";
+            var result = Common.Client.GetApi("post", "values/GetUsersPaged", pageParams);
             return result;
         }
 
