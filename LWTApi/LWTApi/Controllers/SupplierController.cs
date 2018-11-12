@@ -84,5 +84,14 @@ namespace LWTApi.Controllers
             var result = _supplierServices.AddGoods(goods);
             return result;
         }
+
+        [HttpGet]
+        [Route("[action]")]
+        public int CountOrder(string OrderTime)
+        {
+            var result = _supplierServices.CountOrder(OrderTime);
+            return result;
+        }
+
     } 
 }

@@ -38,5 +38,12 @@ namespace IServices
         /// </summary>
         /// <returns></returns>
         int AddGoods(Goods goods);
+
+        /// <summary>
+        /// 统计订单
+        /// </summary>
+        /// <param name="OrderTime"></param>
+        /// <returns></returns>
+        int CountOrder(string OrderTime);
     }
 }

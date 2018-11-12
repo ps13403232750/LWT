@@ -99,5 +99,16 @@ namespace LWT.Client.Controllers
         {
             return View();
         }
+
+        /// <summary>
+        /// 数据统计
+        /// </summary>
+        /// <param name="Id"></param>
+        /// <returns></returns>
+        public string CountOrder(string OrderTime)
+        {
+            var result = Common.Client.GetApi("Get", "Supplier/CountOrder?OrderTime=" + OrderTime);
+            return result;
+        }
     }
 }

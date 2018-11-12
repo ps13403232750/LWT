@@ -66,11 +66,16 @@ namespace Services
             return result;
         }
 
+        /// <summary>
+        /// 统计订单
+        /// </summary>
+        /// <param name="OrderTime"></param>
+        /// <returns></returns>
         public int CountOrder(string OrderTime)
         {
             var db = BaseDB.GetInstance();
-            var count = db.Ado.SqlQuery<Orders>("select count(*) from orders where OrderTime like '%@OrderTime%' ", new SugarParameter ("@OrderTime" , OrderTime) );
-            return Convert.ToInt32(count);
+            var count = db.Queryable<Orders>().Where(it => it.OrderTime.Contains(OrderTime)).Count();
+            return count;
         }
     }
 }
