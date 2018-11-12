@@ -47,7 +47,7 @@
                 </tr>
                 @foreach (var item in Model)
                 {
-                <tr  class="text-c">
+                <tr class="text-c">
                     <td>@item.Id</td>
                     <td>@item.BuyerName</td>
                     <td>@item.AccountMode</td>
@@ -55,7 +55,7 @@
                     <td>@item.ApplyAmount </td>
                     <td>@(item.State == 0 ? "未审核" : "已审核" )</td>
                     <td>@item.AppRoveLimit </td>
-                    <td class="td-manage"><a title="额度数据详情" href="javascript:;" onclick="admin_edit('管理员编辑','/Settle/ThinMaLimite/','2','800','500')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">[查看]</i></a> </td>
+                    <td class="td-manage"><span class="label label-info" style="background-color:cornflowerblue;"><a title="额度数据详情" href="javascript:;" onclick="admin_edit('管理员编辑','/Settle/ThinMaLimite/','2','800','500')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont" style="color:white;">[查看]</i></a> </span></td>
                 </tr>
                 }
             </table>

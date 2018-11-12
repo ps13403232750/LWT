@@ -98,5 +98,16 @@ namespace LWTApi.Controllers
             var list = settleServices.UpdateState(id, 1);
             return list;
         }
+
+        /// <summary>
+        /// 获取额度审批状态下拉
+        /// </summary>
+        /// <returns></returns>
+        [Route("[action]")]
+        [HttpGet]
+        public List<Limit> GetState()
+        {
+            return settleServices.GetState();
+        }
     }
 }
