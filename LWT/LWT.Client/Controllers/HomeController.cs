@@ -18,6 +18,7 @@ namespace LWT.Client.Controllers
         [HttpPost]
         public int Login(string username,string userpwd)
         {
+            string getpower = Common.Client.GetApi("get", "Values/GetPower");
             return 1;
         }
        
