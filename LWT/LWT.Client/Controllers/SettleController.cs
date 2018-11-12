@@ -16,6 +16,8 @@ namespace LWT.Client.Controllers
         /// <returns></returns>
         public IActionResult GetLimit()
         {
+            GetState();
+           
             string getLimit = Common.Client.GetApi("get", "Settle/GetLimit");
             var list = JsonConvert.DeserializeObject<List<Limit>>(getLimit);
             return View(list);
