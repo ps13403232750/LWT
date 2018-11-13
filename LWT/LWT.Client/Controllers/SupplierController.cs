@@ -42,10 +42,10 @@ namespace LWT.Client.Controllers
         /// </summary>
         /// <param name="pageParams"></param>
         /// <returns></returns>
-        public string PageOrders(PageParams pageParams)
+        public string PageGoods(PageParams pageParams)
         {
-            pageParams.TableName = "Orders";
-            var result = Common.Client.GetApi("post", "Supplier/PageOrders", pageParams);
+            pageParams.TableName = "Goods";
+            var result = Common.Client.GetApi("post", "Supplier/PageGoods", pageParams);
             return result;
         }
 
@@ -71,6 +71,18 @@ namespace LWT.Client.Controllers
         {
             ViewBag.OrderNum = OrderNum;
             return View();
+        }
+
+        /// <summary>
+        ///订单表分页显示 
+        /// </summary>
+        /// <param name="pageParams"></param>
+        /// <returns></returns>
+        public string PageOrders(PageParams pageParams)
+        {
+            pageParams.TableName = "Orders";
+            var result = Common.Client.GetApi("post", "Supplier/PageOrders", pageParams);
+            return result;
         }
 
         /// <summary>
