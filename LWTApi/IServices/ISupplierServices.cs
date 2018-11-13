@@ -14,6 +14,13 @@ namespace IServices
         List<Goods> Goods();
 
         /// <summary>
+        /// 分页显示商品表
+        /// </summary>
+        /// <param name="pageParams"></param>
+        /// <returns></returns>
+        PageResult<Goods> PageGoods(PageParams pageParams);
+
+        /// <summary>
         /// 审批商品
         /// </summary>
         /// <param name="Id"></param>
@@ -31,12 +38,26 @@ namespace IServices
         /// </summary>
         /// <param name="OrderNum"></param>
         /// <returns></returns>
-        List<OrderList> GetOrderList(int OrderNum);
+        List<OrderList> GetOrderList(string OrderNum);
+
+        /// <summary>
+        /// 获取订单表数据分页
+        /// </summary>
+        /// <param name="pageParams"></param>
+        /// <returns></returns>
+        PageResult<Orders> PageOrders(PageParams pageParams);
 
         /// <summary>
         /// 添加新商品（新商品添加需要审批才能上架）
         /// </summary>
         /// <returns></returns>
         int AddGoods(Goods goods);
+
+        /// <summary>
+        /// 统计订单
+        /// </summary>
+        /// <param name="OrderTime"></param>
+        /// <returns></returns>
+        int CountOrder(string OrderTime);
     }
 }

@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     Layout = null;
 }
 @model List<LWT.Model.Goods>
@@ -8,12 +7,35 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
+    <title>ReviewOfGoods</title>
     <script src="~/js/vue.js"></script>
+    <script src="~/js/axios.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+    <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+    <link href="~/lib/bootstrap/dist/css/bootstrap-theme.css" rel="stylesheet" />
+
+
+    <link href="~/Content/static/h-ui/css/H-ui.css" rel="stylesheet" />
+    <link href="~/Content/static/h-ui.admin/css/H-ui.admin.css" rel="stylesheet" />
+    <link href="~/Content/lib/Hui-iconfont/1.0.8/iconfont.css" rel="stylesheet" />
+    <link href="~/Content/static/h-ui.admin/skin/default/skin.css" rel="stylesheet" />
+    <script src="~/js/vue.js"></script>
+    <script src="~/js/axios.js"></script>
+    @*<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>*@
 </head>
 <body>
     <div id="app">
-        <table>
+        <div class="cl pd-5 bg-1 bk-gray mt-20">
+            <span class="text-c">
+                <input type="text" placeholder="请输入商品名称" style="height:26px;" v-model="searchtxt" />
+                
+                <button v-on:click="search" type="button" class="btn btn-success">
+                    <i class="Hui-iconfont">&#xe665;</i> 搜用户
+                </button>
+            </span> <span class="r">共有数据：<strong>{{totalCount}}</strong>条</span>
+        </div>
+        <table class="table table-bordered table-border table-hover table-striped">
             <tr>
                 <td> 编号 </td>
                 <td> 商品名称 </td>
@@ -24,41 +46,227 @@
                 <td> 规格属性 </td>
                 <td> 价格 </td>
                 <td> 库存量 </td>
-                <td> 状态 </td>
                 <td> 是否启用 </td>
                 <td> 操作 </td>
             </tr>
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td>@item.Id</td>
-                    <td>@item.Name</td>
-                    <td>@item.Img</td>
-                    <td>@item.Category</td>
-                    <td>@item.Band</td>
-                    <td>@item.Color</td>
-                    <td>@item.Attribute</td>
-                    <td>@item.Price</td>
-                    <td>@item.Inventory</td>
-                    <td>@item.State</td>
-                    <td>@item.Isable</td>
-                    <td><a href="#">操作</a></td>
-                </tr>
-            }
+            <tr v-for="item in dataList" v-if="item.state==1" v-bind:key="item.id">
 
+                <td>{{item.id}}</td>
+                <td>{{item.name}}</td>
+                <td>{{item.img}}</td>
+                <td>{{item.category}}</td>
+                <td>{{item.band}}</td>
+                <td>{{item.color}}</td>
+                <td>{{item.attribute}}</td>
+                <td>{{item.price}}</td>
+                <td>{{item.inventory}}</td>
+                <td>{{item.isable}}</td>
+                <td>
+                    <a href="javascript:;" > <i style="color:#ff0000">操作</i> </a>
+                </td>
+            </tr>
         </table>
+
+        <!--分页布局-->
+        <div style="width:50%;margin:auto;">
+            <a class="btn btn-secondary-outline" v-on:click="firstpage">首页</a>
+            <a class="btn btn-secondary-outline" v-on:click="prevpage">上一页</a>
+            <span v-for="index in totalPage">
+                <a class="btn btn-secondary" v-if="index==currentpage">{{index}}</a>
+                <a class="btn btn-secondary-outline" v-else v-on:click="thispage(index)">{{index}}</a>
+            </span>
+            <a class="btn btn-secondary-outline" v-on:click="nextpage">下一页</a>
+            <a class="btn btn-secondary-outline" v-on:click="lastpage">尾页</a>
+        </div>
     </div>
+
+    <!--_footer 作为公共模版分离出去-->
+    <script src="~/Content/lib/jquery/1.9.1/jquery.js"></script>
+    <script src="~/Content/lib/layer/2.4/layer.js"></script>
+    <script src="~/Content/static/h-ui/js/H-ui.min.js"></script>
+    <script src="~/Content/static/h-ui.admin/js/H-ui.admin.js"></script> <!--/_footer 作为公共模版分离出去-->
+    <!--请在下方写此页面业务相关的脚本-->
+    <script type="text/javascript" src="~/Content/lib/laypage/1.2/laypage.js"></script>
 </body>
 </html>
-<script>
-            var app = new Vue({
-                el: '#app',
-                data: {
-                    info: null,
-                },
-                mounted: function () {
-                    axios.get('/Supplier/GetGoods')
-                        .then(response => (this.info = response.data));
+<!--
+    <script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            info: null,
+            Id: 0,
+            State: 1,
+            num: 0
+        },
+        //获取加载时数据
+        mounted: function () {
+            var that = this;
+            axios.get('http://localhost:60259/api/Supplier/GetGoods').then(function (res) {
+                that.info = res.data;
+            });
+        },
+        methods: {
+            edituser: function (res) {
+                var that = this;
+                axios({
+                    method: 'put',
+                    url: '/Supplier/UpdateGoods?Id=' + res,
+                }).then(function (result) {
+                    //监控API返回结果result
+                    console.log(result);
+                    //根据返回结果给出修改成功提示
+                    if (result.data == true) {
+                        alert('修改成功');
+                        //更新数据
+                        that.$options.methods.show(that);
+                    }
+                })
+            },
+            show: function (result) {
+                axios.get('http://localhost:60259/api/Supplier/GetGoods').then(function (res) {
+                    result.info = res.data;
+                });
+            }
+        }
+    })
+</script>
+
+    -->
+
+<script type="text/javascript">
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            totalCount: 0,
+            totalPage: 0,
+            currentpage: 1,
+            searchtxt: "",
+            dataList: null
+        },
+        mounted: function () {
+            var that = this;
+            axios.get('/Supplier/PageGoods')
+                .then(function (res) {
+                    console.log(res.data);
+                    that.totalCount = res.data.totalCount;
+                    that.totalPage = res.data.totalPage;
+                    that.dataList = res.data.dataList;
+                })
+        },
+        methods: {
+            firstpage: function () {
+                var that = this;
+                if (that.currentpage != 1) {
+                    that.currentpage = 1;
+                    axios({
+                        url: "/Supplier/PageGoods",
+                        method: "get",
+                        params: { 'CurPage': that.currentpage, 'StrWhere': that.searchtxt }
+                    }).then(function (res) {
+                        that.totalCount = res.data.totalCount;
+                        that.totalPage = res.data.totalPage;
+                        that.dataList = res.data.dataList;
+                    })
                 }
-            })
+            },
+            nextpage: function () {
+                var that = this;
+                if (that.currentpage < that.totalPage) {
+                    that.currentpage += 1;
+                    axios({
+                        url: "/Supplier/PageGoods",
+                        method: "get",
+                        params: { 'CurPage': that.currentpage, 'StrWhere': that.searchtxt }
+                    }).then(function (res) {
+                        that.totalCount = res.data.totalCount;
+                        that.totalPage = res.data.totalPage;
+                        that.dataList = res.data.dataList;
+                    })
+                }
+
+            },
+            thispage: function (res) {
+                var that = this;
+                that.currentpage = res;
+                axios({
+                    url: "/Supplier/PageGoods",
+                    method: "get",
+                    params: { 'CurPage': that.currentpage, 'StrWhere': that.searchtxt }
+                }).then(function (res) {
+                    that.totalCount = res.data.totalCount;
+                    that.totalPage = res.data.totalPage;
+                    that.dataList = res.data.dataList;
+                })
+
+            },
+            prevpage: function () {
+                var that = this;
+                if (that.currentpage > 1) {
+                    that.currentpage -= 1;
+                    axios({
+                        url: "/Supplier/PageGoods",
+                        method: "get",
+                        params: { 'CurPage': that.currentpage, 'StrWhere': that.searchtxt }
+                    }).then(function (res) {
+                        that.totalCount = res.data.totalCount;
+                        that.totalPage = res.data.totalPage;
+                        that.dataList = res.data.dataList;
+                    })
+                }
+
+            },
+            lastpage: function () {
+                var that = this;
+                if (that.currentpage != that.totalPage) {
+                    that.currentpage = that.totalPage;
+                    axios({
+                        url: "/Supplier/PageGoods",
+                        method: "get",
+                        params: { 'CurPage': that.currentpage, 'StrWhere': that.searchtxt }
+                    }).then(function (res) {
+                        that.totalCount = res.data.totalCount;
+                        that.totalPage = res.data.totalPage;
+                        that.dataList = res.data.dataList;
+                    })
+                }
+
+            },
+            search: function () {
+                var that = this;
+                that.currentpage = 1;
+                axios({
+                    url: "/Supplier/PageGoods",
+                    method: "get",
+                    params: { 'CurPage': that.currentpage, 'Name': that.searchtxt, 'State': that.selectval }
+                }).then(function (res) {
+                    that.totalCount = res.data.totalCount;
+                    that.totalPage = res.data.totalPage;
+                    that.dataList = res.data.dataList;
+                })
+            },
+            edituser: function (res) {
+                var that = this;
+                axios({
+                    method: 'put',
+                    url: '/Supplier/UpdateGoods?Id=' + res,
+                }).then(function (result) {
+                    //监控API返回结果result
+                    console.log(result);
+                    //根据返回结果给出修改成功提示
+                    if (result.data == true) {
+                        alert('修改成功');
+                        //更新数据
+                        that.$options.methods.show(that);
+                    }
+                })
+            },
+            show: function (result) {
+                axios.get('http://localhost:60259/api/Supplier/GetGoods').then(function (res) {
+                    result.dataList = res.data;
+                });
+            }
+        }
+    })
+
 </script>

@@ -13,11 +13,14 @@ using System.Net.Http.Headers;
 using System.IO;
 using Microsoft.AspNetCore.Hosting;
 using LWT.Client.Models;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace LWT.Client.Controllers
 {
 
-    public class IndexController : Controller
+    public class IndexController : BaseController
     {
         private IHostingEnvironment Environment { get; set; }
 
@@ -33,6 +36,7 @@ namespace LWT.Client.Controllers
         /// 主页面权限列表信息
         /// </summary>
         /// <returns></returns>
+        [Authorize]
         public IActionResult Index()
         {
             string getpower = Common.Client.GetApi("get", "Values/GetPower");
@@ -195,6 +199,16 @@ namespace LWT.Client.Controllers
         {
             var data = Common.Client.GetApi("Post", "Values/AddUser", user);
             return int.Parse(data);
+        }
+
+        /// <summary>
+        /// 退出登录
+        /// </summary>
+        /// <returns></returns>
+        public async Task<IActionResult> Logout()
+        {
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            return RedirectToAction(nameof(HomeController.Login), "Home");
         }
 
         #endregion
