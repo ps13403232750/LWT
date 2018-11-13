@@ -116,5 +116,27 @@ namespace IServices
         /// <returns></returns>
         List<Area> GetAreas();
 
+
+        /// <summary>
+        /// 获取所有供应商分页列表
+        /// </summary>
+        /// <param name="pageParams"></param>
+        /// <returns></returns>
+        PageResult<SupplierHelper> GetSupplierPageList(PageParams pageParams);
+
+        /// <summary>
+        /// 企业采购员入驻
+        /// </summary>
+        /// <param name="supplier"></param>
+        /// <returns></returns>
+        int AddPurChase(Purchase purchase);
+
+        /// <summary>
+        /// 获取所有供应商分页列表
+        /// </summary>
+        /// <param name="pageParams"></param>
+        /// <returns></returns>
+        PageResult<Purchase> GetPurchasePageList(PageParams pageParams);
+
     }
 }

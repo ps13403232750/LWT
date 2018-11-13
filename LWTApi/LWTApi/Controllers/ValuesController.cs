@@ -233,8 +233,7 @@ namespace LWTApi.Controllers
         {
             return userServices.GetPurchasePageList(pageParams);
         }
-
-            #endregion
+        #endregion
 
         }
 }

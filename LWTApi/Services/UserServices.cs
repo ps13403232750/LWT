@@ -158,8 +158,6 @@ namespace Services
             return i;
         }
 
-     
-
         /// <summary>
         /// 供应商入驻
         /// </summary>
@@ -191,19 +189,6 @@ namespace Services
             var list = SqlSugarHelper<Area>.FindAll();
             return list;
         }
-        #endregion
-
-        #region //三级类目模块
-        /// <summary>
-        /// 获取类目信息
-        /// </summary>
-        /// <param name="classe"></param>
-        /// <returns></returns>
-        public List<Category> GetCategory()
-        {
-            var list = SqlSugarHelper<Category>.FindAll();
-            return list;
-        }
 
         /// <summary>
         /// 获取品牌的信息
@@ -225,6 +210,44 @@ namespace Services
             var list = OraclePaging.QuickPage<SupplierHelper>(pageParams);
             return list;
         }
+
+        /// <summary>
+        /// 添加企业采购员
+        /// </summary>
+        /// <param name="purchase"></param>
+        /// <returns></returns>
+        public int AddPurChase(Purchase purchase)
+        {
+            var i = SqlSugarHelper<Purchase>.Insert(purchase);
+            return i;
+        }
+
+        /// <summary>
+        /// 企业采购员分页显示
+        /// </summary>
+        /// <param name="pageParams"></param>
+        /// <returns></returns>
+        public PageResult<Purchase> GetPurchasePageList(PageParams pageParams)
+        {
+            var list = OraclePaging.QuickPage<Purchase>(pageParams);
+            return list;
+        }
+
+        #endregion
+
+        #region //三级类目模块
+        /// <summary>
+        /// 获取类目信息
+        /// </summary>
+        /// <param name="classe"></param>
+        /// <returns></returns>
+        public List<Category> GetCategory()
+        {
+            var list = SqlSugarHelper<Category>.FindAll();
+            return list;
+        }
+
+      
 
         #endregion
 
