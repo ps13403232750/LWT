@@ -2,7 +2,7 @@
 @{
     Layout = null;
 }
-@model List<LWT.Model.PurchaseSettle>
+@model List<LWT.Model.Settle>
 
 <!DOCTYPE html>
 <html>
@@ -20,32 +20,42 @@
     <link rel="stylesheet" type="text/css" href="~/Content/static/h-ui.admin/skin/default/skin.css" id="skin" />
     <link rel="stylesheet" type="text/css" href="~/Content/static/h-ui.admin/css/style.css" />
     <link href="~/scripts/bootstrap.css" rel="stylesheet" />
+    <script src="~/js/vue.js"></script>
+    <script src="~/js/axios.js"></script>
 </head>
 <body>
-    <div style="text-align:center;">
+    <div style="text-align:center;" id="app">
         <div style="padding-top:20px;">
-            <input id="Text1" type="text" name="Name" placeholder="输入姓名" style="height:26px;"/>
-            <button name="" id="" class="btn btn-success" type="submit"><i class="Hui-iconfont">&#xe665;</i>查询</button>
-        </div> 
+            <input id="Text1" type="text" name="" placeholder="输入公司名称" style="height:26px;" v-model="searchtxt" />
+            <button name="" id="" class="btn btn-success" type="button" v-on:click="search"><i class="Hui-iconfont">&#xe665;</i>查询</button>
+        </div>
         <div style="padding-top:20px;">
             <table class="table table-border table-bordered table-bg">
-                <tr class="text-c">
-                    <th>序号</th>
-                    <th>采购商名称</th>
-                    <th>结算类型</th>
-                    <th>状态</th>
-                    <th>操作</th>
-                </tr>
-                @foreach (var item in Model)
-                {
+                <thead>
                     <tr class="text-c">
-                        <td>@item.Id</td>
-                        <td>@item.BuyerName</td>
-                        <td>@item.SettleMeny</td>
-                        <td>@(item.State == 0 ? "未审核" : "已审核" )</td>
+                        <th>序号</th>
+                        <th>采购商名称</th>
+                        <th>结算类型</th>
+                        <th>状态</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="text-c" v-for="item in dataList">
+                        <td>{{item.id}}</td>
+                        <td>{{item.buyerName}}</td>
+                        <td>{{item.settleMeny}}</td>                  
+                        <td class="td-status">
+                            <span class="label label-success radius" v-if="item.status==1">
+                                已审核
+                            </span>
+                            <span class="label label-success radius" v-else>
+                                未审核
+                            </span>
+                        </td>
                         <td class="td-manage"><span class="label label-info" style="background-color:cornflowerblue;"><a title="结算详情" href="javascript:;" onclick="admin_edit('结算详情','/Settle/ThinPurState/','2','900','600')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont" style="color:white;">[查看]</i></a> </span></td>
                     </tr>
-                }
+                </tbody>
             </table>
             <!--分页布局-->
             <div style="width:50%;margin:auto;">
@@ -57,8 +67,9 @@
                 </span>
                 <a class="btn btn-secondary-outline" v-on:click="nextpage">下一页</a>
                 <a class="btn btn-secondary-outline" v-on:click="lastpage">尾页</a>
+                <span>共{{totalPage}}页,共{{totalCount}}条</span>
             </div>
-        </div> 
+        </div>
     </div>
     <!--_footer 作为公共模版分离出去-->
     <script type="text/javascript" src="~/Content/lib/jquery/1.9.1/jquery.min.js"></script>
@@ -67,7 +78,6 @@
     <script type="text/javascript" src="~/Content/static/h-ui.admin/js/H-ui.admin.js"></script>
     <!--/_footer 作为公共模版分离出去-->
     <!--请在下方写此页面业务相关的脚本-->
-
     <script src="~/Content/lib/jquery-1.10.2.js"></script>
     <script src="~/scripts/jquery.unobtrusive-ajax.js"></script>
     <script src="~/scripts/jquery-form.js"></script>
@@ -78,6 +88,115 @@
         function admin_edit(title, url, id, w, h) {
             layer_show(title, url, w, h);
         }
+    </script>
+    <script type="text/javascript">
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                totalCount: 0,
+                totalPage: 0,
+                currentpage: 1,
+                searchtxt: "",
+                dataList: null
+            },
+            mounted: function () {
+                var that = this;
+                axios.get('/Settle/SettlePageList')
+                    .then(function (res) {
+                        that.totalCount = res.data.totalCount;
+                        that.totalPage = res.data.totalPage;
+                        that.dataList = res.data.dataList;
+                    })
+            },
+            methods: {
+                firstpage: function () {
+                    var that = this;
+                    if (that.currentpage != 1) {
+                        that.currentpage = 1;
+                        axios({
+                            url: "/Settle/SettlePageList",
+                            method: "get",
+                            params: { 'CurPage': that.currentpage, 'BuyerName': that.searchtxt }
+                        }).then(function (res) {
+                            that.totalCount = res.data.totalCount;
+                            that.totalPage = res.data.totalPage;
+                            that.dataList = res.data.dataList;
+                        })
+                    }
+                },
+                nextpage: function () {
+                    var that = this;
+                    if (that.currentpage < that.totalPage) {
+                        that.currentpage += 1;
+                        axios({
+                            url: "/Settle/SettlePageList",
+                            method: "get",
+                            params: { 'CurPage': that.currentpage, 'StrWhere': that.searchtxt }
+                        }).then(function (res) {
+                            that.totalCount = res.data.totalCount;
+                            that.totalPage = res.data.totalPage;
+                            that.dataList = res.data.dataList;
+                        })
+                    }
+                },
+                thispage: function (res) {
+                    var that = this;
+                    that.currentpage = res;
+                    axios({
+                        url: "/Settle/SettlePageList",
+                        method: "get",
+                        params: { 'CurPage': that.currentpage, 'BuyerName': that.searchtxt }
+                    }).then(function (res) {
+                        that.totalCount = res.data.totalCount;
+                        that.totalPage = res.data.totalPage;
+                        that.dataList = res.data.dataList;
+                    })
+                },
+                prevpage: function () {
+                    var that = this;
+                    if (that.currentpage > 1) {
+                        that.currentpage -= 1;
+                        axios({
+                            url: "/Settle/SettlePageList",
+                            method: "get",
+                            params: { 'CurPage': that.currentpage, 'BuyerName': that.searchtxt }
+                        }).then(function (res) {
+                            that.totalCount = res.data.totalCount;
+                            that.totalPage = res.data.totalPage;
+                            that.dataList = res.data.dataList;
+                        })
+                    }
+                },
+                lastpage: function () {
+                    var that = this;
+                    if (that.currentpage != that.totalPage) {
+                        that.currentpage = that.totalPage;
+                        axios({
+                            url: "/Settle/SettlePageList",
+                            method: "get",
+                            params: { 'CurPage': that.currentpage, 'StrWhBuyerNameere': that.searchtxt }
+                        }).then(function (res) {
+                            that.totalCount = res.data.totalCount;
+                            that.totalPage = res.data.totalPage;
+                            that.dataList = res.data.dataList;
+                        })
+                    }
+                },
+                search: function () {
+                    var that = this;
+                    that.currentpage = 1;
+                    axios({
+                        url: "/Settle/SettlePageList",
+                        method: "get",
+                        params: { 'CurPage': that.currentpage, 'BuyerName': that.searchtxt }
+                    }).then(function (res) {
+                        that.totalCount = res.data.totalCount;
+                        that.totalPage = res.data.totalPage;
+                        that.dataList = res.data.dataList;
+                    })
+                }
+            }
+        })
     </script>
 </body>
 </html>

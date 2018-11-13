@@ -37,16 +37,18 @@
         </div>
         <div style="padding-top:20px;">
             <table class="table table-border table-bordered table-bg">
-                <tr class="text-c">
-                    <th>序号</th>
-                    <th>企业名称</th>
-                    <th>结算方式</th>
-                    <th>总额度</th>
-                    <th>申请额度</th>
-                    <th>运营商审核装状态</th>
-                    <th>审批额度</th>
-                    <th>操作</th>
-                </tr>
+                <thead>
+                    <tr class="text-c">
+                        <th>序号</th>
+                        <th>企业名称</th>
+                        <th>结算方式</th>
+                        <th>总额度</th>
+                        <th>申请额度</th>
+                        <th>运营商审核装状态</th>
+                        <th>审批额度</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
                 <tbody>
                     <tr class="text-c" v-for="item in dataList">
                         <td>{{item.id}}</td>

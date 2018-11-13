@@ -171,7 +171,36 @@ namespace Services
                 return i > 0;
             }
         }
-        
+
+        /// <summary>
+        /// 执行sql语句查询数据
+        /// </summary>
+        /// <param name="sql"></param>
+        /// <returns></returns>
+        public static List<T> GetListBySQL(string sql)
+        {
+            using (var db = BaseDB.GetInstance())
+            {
+                var list = db.Ado.SqlQuery<T>(sql);
+                return list;
+            }
+        }
+
+        /// <summary>
+        /// 执行sql语句执行增删改
+        /// </summary>
+        /// <param name="sql"></param>
+        /// <returns></returns>
+        public static int ExcuteBySQL(string sql)
+        {
+            using (var db = BaseDB.GetInstance())
+            {
+                var i = db.Ado.ExecuteCommand(sql);
+                return i;
+            }
+        }
+
+
 
         /// <summary>  
         /// 带条件的分页查询  
