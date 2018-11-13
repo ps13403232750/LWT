@@ -117,8 +117,10 @@ namespace Services
         {
             int name = roleAndPowerHelper.Id;
             string ids = roleAndPowerHelper.RoleId;
-            RoleAndPower roleAndPower = new RoleAndPower();
-            roleAndPower.Id = name;
+            RoleAndPower roleAndPower = new RoleAndPower
+            {
+                Id = name
+            };
             string idss = roleAndPower.RoleId.ToString();
             idss = ids.ToString();
             var result = idss.Split(',');
