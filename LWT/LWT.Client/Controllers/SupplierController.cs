@@ -12,6 +12,7 @@ using LWT.Client.Models;
 
 namespace LWT.Client.Controllers
 {
+    // [Authorize]
     public class SupplierController : BaseController
     {
         private IHostingEnvironment Environment { get; set; }

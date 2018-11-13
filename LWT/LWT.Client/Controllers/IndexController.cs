@@ -19,7 +19,7 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace LWT.Client.Controllers
 {
-
+   // [Authorize]
     public class IndexController : BaseController
     {
         private IHostingEnvironment Environment { get; set; }
@@ -36,7 +36,7 @@ namespace LWT.Client.Controllers
         /// 主页面权限列表信息
         /// </summary>
         /// <returns></returns>
-        [Authorize]
+       
         public IActionResult Index()
         {
             string getpower = Common.Client.GetApi("get", "Values/GetPower");
