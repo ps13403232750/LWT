@@ -65,9 +65,9 @@ namespace Services
         /// 采购结算列表
         /// </summary>
         /// <returns></returns>
-        public List<PurchaseSettle> GetPurchaseSettle()
+        public List<Settle> GetPurchaseSettle()
         {
-            var list = SqlSugarHelper<PurchaseSettle>.FindAll();
+            var list = SqlSugarHelper<Settle>.FindAll();
             return list;
         }
 
@@ -75,9 +75,9 @@ namespace Services
         /// 采购结算列表分页
         /// </summary>
         /// <returns></returns>
-        public PageResult<PurchaseSettle> SettlePageList(PageParams pageParams)
+        public PageResult<Settle> SettlePageList(PageParams pageParams)
         {
-            var list = OraclePaging.QuickPage<PurchaseSettle>(pageParams);
+            var list = OraclePaging.QuickPage<Settle>(pageParams);
             return list;
         }
 

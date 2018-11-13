@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace LWT.Model
+namespace Model
 {
     /// <summary>
     /// 采购商结算列表
     /// </summary>
-   public class PurchaseSettle
+   public class Settle
     {
         /// <summary>
         /// 主键id

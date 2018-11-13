@@ -55,7 +55,7 @@ namespace LWTApi.Controllers
         /// <returns></returns>
         [HttpGet]
         [Route("[action]")]
-        public ActionResult<List<PurchaseSettle>> GetPurchaseSettle()
+        public ActionResult<List<Settle>> GetPurchaseSettle()
         {
             return settleServices.GetPurchaseSettle().ToList();
         }
@@ -66,7 +66,7 @@ namespace LWTApi.Controllers
         /// <returns></returns>
         [HttpPost]
         [Route("[action]")]
-        public ActionResult<PageResult<PurchaseSettle>> SettlePageList(PageParams pageParams)
+        public ActionResult<PageResult<Settle>> SettlePageList(PageParams pageParams)
         {
             var list = settleServices.SettlePageList(pageParams);
             return list;

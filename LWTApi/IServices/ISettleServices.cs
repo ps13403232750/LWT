@@ -48,13 +48,13 @@ namespace IServices
         /// </summary>
         /// <param name="pageParams"></param>
         /// <returns></returns>
-        PageResult<PurchaseSettle> SettlePageList(PageParams pageParams);
+        PageResult<Settle> SettlePageList(PageParams pageParams);
 
         /// <summary>
         /// 采购付款结算列表
         /// </summary>
         /// <returns></returns>
-        List<PurchaseSettle> GetPurchaseSettle();
+        List<Settle> GetPurchaseSettle();
 
         /// <summary>
         /// 修改审批状态

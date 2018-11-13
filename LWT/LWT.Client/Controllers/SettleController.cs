@@ -49,7 +49,7 @@ namespace LWT.Client.Controllers
         public IActionResult GetPurChaseSettle()
         {
             string getPurChaseSettle = Common.Client.GetApi("get", "Settle/GetPurchaseSettle");
-            var list = JsonConvert.DeserializeObject<List<PurchaseSettle>>(getPurChaseSettle);
+            var list = JsonConvert.DeserializeObject<List<Settle>>(getPurChaseSettle);
             return View(list);
         }
 
@@ -60,7 +60,7 @@ namespace LWT.Client.Controllers
         /// <returns></returns>
         public string SettlePageList(PageParams pageParams, string BuyerName)
         {
-            pageParams.TableName = "PurchaseSettle";
+            pageParams.TableName = "Settle";
             var wherestr = "";
             if (!string.IsNullOrEmpty(BuyerName))
             {
