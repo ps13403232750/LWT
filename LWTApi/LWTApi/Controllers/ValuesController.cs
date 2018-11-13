@@ -208,21 +208,43 @@ namespace LWTApi.Controllers
             var data = userServices.GetCategory().ToList();
             return data;
         }
-        #endregion
-
-        #region //合作伙伴模块
 
         /// <summary>
-        /// 企业采购入驻
+        /// 三级类目显示
         /// </summary>
-        /// <param name="purchase"></param>
+        /// <param name="pageParams"></param>
         /// <returns></returns>
+        [Route("[action]")]
+        [HttpPost]
+        public PageResult<Category> GetCategoryPaged(PageParams pageParams)
+        {
+            return userServices.GetCategoryPageList(pageParams);
+        }
+        #endregion
+
+            #region //合作伙伴模块
+
+            /// <summary>
+            /// 企业采购入驻
+            /// </summary>
+            /// <param name="purchase"></param>
+            /// <returns></returns>
         [Route("[action]")]
         [HttpPost]
         public int Add(Purchase purchase)
         {
             var i = userServices.Add(purchase);
             return i;
+        }
+
+        /// <summary>
+        /// 获取品牌名称信息
+        /// </summary>
+        /// <param name="pageParams"></param>
+        /// <returns></returns>
+        public PageResult<Brand> GetBrandPaged(PageParams pageParams)
+        {
+            return userServices.GetBrandPageList(pageParams);
         }
 
         /// <summary>

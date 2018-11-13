@@ -40,6 +40,7 @@
 </head>
 <body>
     <div id="app">
+
         <article>
             <form action="AddSuppliers" method="post" class="form form-horizontal" id="form-member-add" enctype="multipart/form-data">
                 <div class="row cl">
@@ -88,12 +89,13 @@
                     <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>企业Logo：</label>
                     <div class="formControls col-xs-8 col-sm-9">
                         <input type="text" class="input-text" v-model="Logo" placeholder="" id="Logo" >
+
                     </div>
                 </div>
                 <div class="row cl">
                     <label class="form-label col-xs-4 col-sm-3">营业执照：</label>
                     <div class="formControls col-xs-8 col-sm-9">
-                        <input id="Text1" type="file" name="formFile"/>
+                        <input id="Text1" type="file" name="formFile" v-on:change="changeImage($event)" ref="avatarInput" />
                     </div>
                 </div>
                 <div class="row cl">
@@ -146,7 +148,7 @@
                 </div>
                 <div class="row cl">
                     <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
-                        <input class="btn btn-primary radius" type="submit" v-on:click="adduser" value="提交">
+                        <input class="btn btn-primary radius" type="button" v-on:click="adduser"  value="提交">
                     </div>
                 </div>
             </form>
@@ -170,6 +172,7 @@
                 Aid: 0,
                 BusinessMark: "",
                 PhoneNumber: "",
+                formFile: null,
                 select: null,
                 selectbrand:null
             },
@@ -189,7 +192,9 @@
             methods: {
                 adduser: function () {
                     var that = this;
-                    var params = new URLSearchParams();
+                    //var params = new URLSearchParams();
+                    var params = new FormData()
+                    params.append('formFile', this.$refs.avatarInput.files[0])
                     params.append('Id', null);
                     params.append('CompanyName', $("#companyname").val());
                     params.append('StoreName', $("#StoreName").val());
@@ -215,12 +220,27 @@
                     params.append('Aid', $("#select").val());
                     params.append('BusinessMark', $("#BusinessMark").val());
                     params.append('PhoneNumber', $("#PhoneNumber").val());
+                    console.log(params)
                     axios({
                         method: 'post',
+                        headers: { "Content-Type": "multipart/form-data" },
                         url: '/index/AddSuppliers',
                         data: params
                     }).then(function (res) {
+                        if (res.data<0) {
+                            alert("入驻成功！")
+                            location.href = "/Index/SupplierManage";
+                        }
                     });
+                },
+                changeImage(e) {
+                    var file = e.target.files[0]
+                    var reader = new FileReader()
+                    var that = this
+                    reader.readAsDataURL(file)
+                    reader.onload = function (e) {
+                        that.avatar = this.result
+                    }
                 }
             }
         });

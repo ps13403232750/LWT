@@ -77,13 +77,16 @@
                         </tr>
                     </table>
                     <table>
-                        <tr><td><input id="Button1" class="btn btn-primary" type="button" value="保存" v-on:click="AddBtn" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input id="Button1" class="btn btn-primary" type="button" value="返回" /></td></tr>
+                        <tr><td><input id="Button1" class="btn btn-primary" type="button" value="保存" v-on:click="AddBtn" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input id="Button1" class="btn btn-primary" type="button" onclick="Back('/index/AddUsersRole',800,400)" value="返回" /></td></tr>
                     </table>
                 </div>
             </td>
         </tr>
     </table>
     <script>
+        function Back(title, url, w, h) {
+            layer_close(title, url, w, h);
+        }
         var app = new Vue({
             el: '#app',
             data: {
@@ -121,6 +124,7 @@
                         }  
                         });
                 }
+
             }
         });
     </script>

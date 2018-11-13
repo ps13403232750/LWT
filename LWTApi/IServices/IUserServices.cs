@@ -102,6 +102,13 @@ namespace IServices
         /// <returns></returns>
         PageResult<UsersHelper> GetUsersPageList(PageParams pageParams);
 
+        /// <summary>
+        /// 获取所有用户分页列表
+        /// </summary>
+        /// <param name="pageParams"></param>
+        /// <returns></returns>
+        PageResult<Brand> GetBrandPageList(PageParams pageParams);
+
 
         /// <summary>
         /// 获取所有用户分页列表
@@ -139,11 +146,25 @@ namespace IServices
         PageResult<Purchase> GetPurchasePageList(PageParams pageParams);
 
         /// <summary>
+        /// 获取所有供应商分页列表
+        /// </summary>
+        /// <param name="pageParams"></param>
+        /// <returns></returns>
+        PageResult<Category> GetCategoryPageList(PageParams pageParams);
+
+        /// <summary>
         /// 修改菜单详情
         /// </summary>
         /// <param name="power"></param>
         /// <returns></returns>
         int EditPower(Power power);
+
+        /// <summary>
+        /// 修改采购员信息
+        /// </summary>
+        /// <param name="power"></param>
+        /// <returns></returns>
+        int EditPurchase(Purchase purchase);
 
         /// <summary>
         /// 启停用权限

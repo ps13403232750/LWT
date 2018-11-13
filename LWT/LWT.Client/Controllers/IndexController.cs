@@ -17,9 +17,12 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 
+using LWT.Client.Filter;
+
 namespace LWT.Client.Controllers
 {
-   // [Authorize]
+    [Authorize]
+    
     public class IndexController : BaseController
     {
         private IHostingEnvironment Environment { get; set; }
@@ -39,7 +42,7 @@ namespace LWT.Client.Controllers
        
         public IActionResult Index()
         {
-            string getpower = Common.Client.GetApi("get", "Values/GetPower");
+            string getpower = RedisHelper.Get("powerlist");
             return View(JsonConvert.DeserializeObject<List<Power>>(getpower));
         }
 
@@ -55,6 +58,7 @@ namespace LWT.Client.Controllers
         /// 权限信息维护
         /// </summary>
         /// <returns></returns>
+        [AuthorizationAttributecs]
         public IActionResult PowerManage()
         {
             return View();
@@ -223,30 +227,27 @@ namespace LWT.Client.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult AddSuppliers(Supplier supplier, IFormFile formFile)
+        public int AddSuppliers(Supplier supplier, IFormFile formFile)
         {
             var extension = Path.GetExtension(formFile.FileName);
             var root = Environment.WebRootPath;
             var fullPath = $@"{root}\images\{formFile.FileName + extension}";
+            supplier.BusinessLicence = "/images/" + formFile.FileName;
             var result = Common.Client.GetApi("post", "Values/AddSupplier", supplier);
             if (Int32.Parse(result) > 0)
             {
                 // 创建新文件
                 using (FileStream fs = System.IO.File.Create(fullPath))
                 {
-                    supplier.BusinessLicence = "/images/" + new Guid() + formFile.FileName;
+                  
                     // 复制文件
                     formFile.CopyTo(fs);
                     // 清空缓冲区数据
                     fs.Flush();
                 }
-                return Content("<script>alert('供应商入驻成功');location.href='/index/SupplierManage'</script>", "text/html;charset=utf-8");
+                return 1;
             }
-            else
-            {
-                return Content("<script>alert('添加供应商入驻失败！请联系客服，核对重要信息');location.href='/index/SupplierManage'</script>", "text/html;charset=utf-8");
-            }
-
+            return 0;
         }
 
         /// <summary>
@@ -263,9 +264,29 @@ namespace LWT.Client.Controllers
             pageParams.TableName = "Supplier";
             if (!string.IsNullOrEmpty(pageParams.StrWhere))
             {
-                pageParams.StrWhere = "and UserName like '%" + pageParams.StrWhere + "%'";
+                pageParams.StrWhere = "and LinkMan like '%" + pageParams.StrWhere + "%'";
             }
             var result = Common.Client.GetApi("post", "values/GetSupplierPaged", pageParams);
+            return result;
+        }
+
+        /// <summary>
+        /// 品牌信息维护
+        /// </summary>
+        /// <returns></returns>
+        public IActionResult BrandManage()
+        {
+            return View();
+        }
+
+        public string GetBrandlierList(PageParams pageParams)
+        {
+            pageParams.TableName = "Brand";
+            if (!string.IsNullOrEmpty(pageParams.StrWhere))
+            {
+                pageParams.StrWhere = "and LinkMan like '%" + pageParams.StrWhere + "%'";
+            }
+            var result = Common.Client.GetApi("post", "values/GetBrandPaged", pageParams);
             return result;
         }
 
@@ -283,7 +304,7 @@ namespace LWT.Client.Controllers
             pageParams.TableName = "Purchase";
             if (!string.IsNullOrEmpty(pageParams.StrWhere))
             {
-                pageParams.StrWhere = "and UserName like '%" + pageParams.StrWhere + "%'";
+                pageParams.StrWhere = "and LinkManName like '%" + pageParams.StrWhere + "%'";
             }
             var result = Common.Client.GetApi("post", "values/GetPurchasePaged", pageParams);
             return result;
@@ -350,7 +371,7 @@ namespace LWT.Client.Controllers
             {
                 pageParams.StrWhere = "and UserName like '%" + pageParams.StrWhere + "%'";
             }
-            var result = Common.Client.GetApi("post", "values/GetCategory", pageParams);
+            var result = Common.Client.GetApi("post", "values/GetCategoryPaged", pageParams);
             return result;
         }
 
