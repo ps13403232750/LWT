@@ -24,8 +24,12 @@ namespace LWT.Client.Controllers
         {
             string url = string.Format($"Values/Login?name={username}&pwd={userpwd}");
             var user = JsonConvert.DeserializeObject<UserData>(Common.Client.GetApi("get", url));
-            WriteDataToCookieAsync(user,HttpContext);
-            return 1;
+            if (user!=null)
+            {
+                WriteDataToCookieAsync(user, HttpContext);
+                return 1;
+            }
+            return 0;
         }
        
     }
