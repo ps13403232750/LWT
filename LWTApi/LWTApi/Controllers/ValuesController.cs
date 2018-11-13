@@ -289,7 +289,7 @@ namespace LWTApi.Controllers
         /// <param name="pageParams"></param>
         /// <returns></returns>
         [Route("[action]")]
-        [HttpGet]
+        [HttpPost]
         public PageResult<Purchase> GetPurchasePaged(PageParams pageParams)
         {
             return userServices.GetPurchasePageList(pageParams);

@@ -236,7 +236,7 @@ namespace LWT.Client.Controllers
         }
 
         /// <summary>
-        /// 用户信息维护
+        /// 供应商信息维护
         /// </summary>
         /// <returns></returns>
         public IActionResult SupplierManage()
@@ -246,7 +246,7 @@ namespace LWT.Client.Controllers
 
         public string GetSupplierList(PageParams pageParams)
         {
-            pageParams.TableName = "Supplier s join brand b on s.brand = b.bid join Area a on s.aid = a.aid";
+            pageParams.TableName = "Supplier";
             if (!string.IsNullOrEmpty(pageParams.StrWhere))
             {
                 pageParams.StrWhere = "and UserName like '%" + pageParams.StrWhere + "%'";
@@ -255,6 +255,25 @@ namespace LWT.Client.Controllers
             return result;
         }
 
+        /// <summary>
+        /// 用户信息维护
+        /// </summary>
+        /// <returns></returns>
+        public IActionResult PurchageManage()
+        {
+            return View();
+        }
+
+        public string GetPurchageList(PageParams pageParams)
+        {
+            pageParams.TableName = "Purchase";
+            if (!string.IsNullOrEmpty(pageParams.StrWhere))
+            {
+                pageParams.StrWhere = "and UserName like '%" + pageParams.StrWhere + "%'";
+            }
+            var result = Common.Client.GetApi("post", "values/GetPurchasePaged", pageParams);
+            return result;
+        }
         /// <summary>
         /// 添加企业采购
         /// </summary>
