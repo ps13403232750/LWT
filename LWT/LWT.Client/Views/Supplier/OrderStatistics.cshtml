@@ -1,0 +1,111 @@
+﻿
+@{
+    Layout = null;
+}
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta name="viewport" content="width=device-width" />
+    <!--[if lt IE 9]>
+    <script type="text/javascript" src="lib/html5shiv.js"></script>
+    <script type="text/javascript" src="lib/respond.min.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" type="text/css" href="~/static/h-ui/css/H-ui.min.css" />
+    <link rel="stylesheet" type="text/css" href="~/static/h-ui.admin/css/H-ui.admin.css" />
+    <link rel="stylesheet" type="text/css" href="~/lib/Hui-iconfont/1.0.8/iconfont.css" />
+    <link rel="stylesheet" type="text/css" href="~/static/h-ui.admin/skin/default/skin.css" id="skin" />
+    <link rel="stylesheet" type="text/css" href="~/static/h-ui.admin/css/style.css" />
+    <!--[if IE 6]>
+    <script type="text/javascript" src="lib/DD_belatedPNG_0.0.8a-min.js" ></script>
+    <script>DD_belatedPNG.fix('*');</script>
+    <![endif]-->
+    <title>折线图</title>
+    <script src="~/js/jquery-1.10.2.js"></script>
+</head>
+<body>
+    <div class="page-container">
+        <div id="container" style="min-width:700px;height:400px"></div>
+    </div>
+    <!--_footer 作为公共模版分离出去-->
+    <script type="text/javascript" src="~/lib/jquery/1.9.1/jquery.min.js"></script>
+    <script type="text/javascript" src="~/lib/layer/2.4/layer.js"></script>
+    <script type="text/javascript" src="~/static/h-ui/js/H-ui.min.js"></script>
+    <script type="text/javascript" src="~/static/h-ui.admin/js/H-ui.admin.js"></script> <!--/_footer 作为公共模版分离出去-->
+    <!--请在下方写此页面业务相关的脚本-->
+    <script type="text/javascript" src="~/lib/hcharts/Highcharts/5.0.6/js/highcharts.js"></script>
+    <script type="text/javascript" src="~/lib/hcharts/Highcharts/5.0.6/js/modules/exporting.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            data = [];
+            getusers("2018/01");
+            getusers("2018/02");
+            getusers("2018/03");
+            getusers("2018/04");
+            getusers("2018/05");
+            getusers("2018/06");
+            getusers("2018/07");
+            getusers("2018/08");
+            getusers("2018/09");
+            getusers("2018/10");
+            getusers("2018/11");
+            getusers("2018/12");
+
+            Highcharts.chart('container', {
+                title: {
+                    text: '各月份订单总结',
+                    x: -20 //center
+                },
+                subtitle: {
+                    text: 'Welcome!',
+                    x: -20
+                },
+                xAxis: {
+                    categories: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月']
+                },
+                yAxis: {
+                    title: {
+                        text: '数量 (单)'
+                    },
+                    plotLines: [{
+                        value: 0,
+                        width: 1,
+                        color: '#808080'
+                    }]
+                },
+                tooltip: {
+                    valueSuffix: '单'
+                },
+                legend: {
+                    layout: 'vertical',
+                    align: 'right',
+                    verticalAlign: 'middle',
+                    borderWidth: 0
+                },
+                series: [{
+                    name: '订单数量',
+                    data: data
+                }]
+            });
+        });
+        function getusers(OrderTime) {
+           
+            $.ajax({
+                async: false,
+                url: "/Supplier/CountOrder",
+                type: "get",
+                data: { OrderTime: OrderTime },
+                dataType: "json",
+                success: function (result) {
+                    data.push(result);
+                }
+            })
+            return data;
+        }
+    </script>
+</body>
+</html>

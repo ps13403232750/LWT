@@ -187,6 +187,20 @@ namespace Services
         }
 
         /// <summary>
+        /// 执行sql语句查询单条数据
+        /// </summary>
+        /// <param name="sql"></param>
+        /// <returns></returns>
+        public static T GetEntityBySQL(string sql)
+        {
+            using (var db = BaseDB.GetInstance())
+            {
+                var result = db.Ado.SqlQuery<T>(sql).FirstOrDefault();
+                return result;
+            }
+        }
+
+        /// <summary>
         /// 执行sql语句执行增删改
         /// </summary>
         /// <param name="sql"></param>

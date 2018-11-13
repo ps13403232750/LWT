@@ -21,43 +21,44 @@
         <table  class="table table-border table-hover table-striped">
             <tr>
                 <td align="right">商品名字：</td>
-                <td><input id="name" type="text" v-model="Name" /></td>
+                <td><input id="Name" type="text" v-model="Name" /></td>
             </tr>
             <tr>
                 <td align="right">商品图片：</td>
-                <td><input id="pwd" type="text" v-model="Img" /></td>
+                <td><input id="Img" type="file" v-model="Img" />
+                <input id="Img" readonly="readonly" type="text" v-model="Img" /></td>
             </tr>
             <tr>
                 <td align="right">类目：</td>
-                <td><input id="name" type="text" v-model="Category" /></td>
+                <td><input id="Category" type="text" v-model="Category" /></td>
             </tr>
             <tr>
                 <td align="right">品牌：</td>
-                <td><input id="pwd" type="text" v-model="Band" /></td>
+                <td><input id="Band" type="text" v-model="Band" /></td>
             </tr>
             <tr>
                 <td align="right">颜色：</td>
-                <td><input id="name" type="text" v-model="Color" /></td>
+                <td><input id="Color" type="text" v-model="Color" /></td>
             </tr>
             <tr>
                 <td align="right">规格属性：</td>
-                <td><input id="pwd" type="text" v-model="Attribute" /></td>
+                <td><input id="Attribute" type="text" v-model="Attribute" /></td>
             </tr>
             <tr>
                 <td align="right">价格：</td>
-                <td><input id="pwd" type="text" v-model="Price" /></td>
+                <td><input id="Price" type="text" v-model="Price" /></td>
             </tr>
             <tr>
                 <td align="right">库存量：</td>
-                <td><input id="pwd" type="text" v-model="Inventory" /></td>
+                <td><input id="Inventory" type="text" v-model="Inventory" /></td>
             </tr>
             <tr>
                 <td align="right">状态：</td>
-                <td><input id="pwd" type="text" v-model="State" /></td>
+                <td><input id="State" type="text" v-model="State" /></td>
             </tr>
             <tr>
                 <td align="right">是否启用：</td>
-                <td><input id="pwd" type="text" v-model="Isable" /></td>
+                <td><input id="Isable" type="text" v-model="Isable" /></td>
             </tr>
             <tr>
                 <td></td>
@@ -88,7 +89,7 @@
             addgoods: function () {
                 var that = this;
                 var params = new URLSearchParams();
-                params.append('Name',$("#name").val());
+                params.append('Name',$("#Name").val());
                 params.append('Img',$("#Img").val());
                 params.append('Category',$("#Category").val());
                 params.append('Band', $("#Band").val());
@@ -105,8 +106,7 @@
                 }).then(function (res) {
                     alert(res.data);
                 });
-            },
-            BackLogin: function () { }
+            }
         }
     })
 </script>

@@ -158,5 +158,13 @@ namespace IServices
         /// <returns></returns>
         List<Power> GetParentPower();
 
+        /// <summary>
+        /// 用户登录
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="pwd"></param>
+        /// <returns></returns>
+        UserData Login(string name, string pwd);
+
     }
 }

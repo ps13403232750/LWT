@@ -13,11 +13,14 @@ using System.Net.Http.Headers;
 using System.IO;
 using Microsoft.AspNetCore.Hosting;
 using LWT.Client.Models;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace LWT.Client.Controllers
 {
 
-    public class IndexController : Controller
+    public class IndexController : BaseController
     {
         private IHostingEnvironment Environment { get; set; }
 
@@ -33,6 +36,7 @@ namespace LWT.Client.Controllers
         /// 主页面权限列表信息
         /// </summary>
         /// <returns></returns>
+        [Authorize]
         public IActionResult Index()
         {
             string getpower = Common.Client.GetApi("get", "Values/GetPower");
@@ -197,6 +201,16 @@ namespace LWT.Client.Controllers
             return int.Parse(data);
         }
 
+        /// <summary>
+        /// 退出登录
+        /// </summary>
+        /// <returns></returns>
+        public async Task<IActionResult> Logout()
+        {
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            return RedirectToAction(nameof(HomeController.Login), "Home");
+        }
+
         #endregion
 
         #region //合作伙伴管理模块
@@ -211,23 +225,16 @@ namespace LWT.Client.Controllers
         [HttpPost]
         public IActionResult AddSuppliers(Supplier supplier, IFormFile formFile)
         {
-            // 文件大小
-            //long size = 0;
-            // 原文件名（包括路径）
-            var filename = ContentDispositionHeaderValue.Parse(formFile.ContentDisposition).FileName;
-            // 扩展名
-            var extName = filename.Substring(filename.LastIndexOf('.')).Replace("\"", "");
-            // 新文件名
-            string shortfilename = $"{Guid.NewGuid()}{extName}";
-            // 新文件名（包括路径）
-            filename = Environment.WebRootPath + @"\Images\" + shortfilename;
-            //数据库添加对象
-            supplier.BusinessLicence = shortfilename;
+            var extension = Path.GetExtension(formFile.FileName);
+            var root = Environment.WebRootPath;
+            var fullPath = $@"{root}\images\{formFile.FileName + extension}";
             var result = Common.Client.GetApi("post", "Values/AddSupplier", supplier);
             if (Int32.Parse(result) > 0)
             {
-                using (FileStream fs = System.IO.File.Create(filename))
+                // 创建新文件
+                using (FileStream fs = System.IO.File.Create(fullPath))
                 {
+                    supplier.BusinessLicence = "/images/" + new Guid() + formFile.FileName;
                     // 复制文件
                     formFile.CopyTo(fs);
                     // 清空缓冲区数据
@@ -243,7 +250,7 @@ namespace LWT.Client.Controllers
         }
 
         /// <summary>
-        /// 用户信息维护
+        /// 供应商信息维护
         /// </summary>
         /// <returns></returns>
         public IActionResult SupplierManage()
@@ -253,7 +260,7 @@ namespace LWT.Client.Controllers
 
         public string GetSupplierList(PageParams pageParams)
         {
-            pageParams.TableName = "Supplier s join brand b on s.brand = b.bid join Area a on s.aid = a.aid";
+            pageParams.TableName = "Supplier";
             if (!string.IsNullOrEmpty(pageParams.StrWhere))
             {
                 pageParams.StrWhere = "and UserName like '%" + pageParams.StrWhere + "%'";
@@ -263,6 +270,25 @@ namespace LWT.Client.Controllers
         }
 
         /// <summary>
+        /// 用户信息维护
+        /// </summary>
+        /// <returns></returns>
+        public IActionResult PurchageManage()
+        {
+            return View();
+        }
+
+        public string GetPurchageList(PageParams pageParams)
+        {
+            pageParams.TableName = "Purchase";
+            if (!string.IsNullOrEmpty(pageParams.StrWhere))
+            {
+                pageParams.StrWhere = "and UserName like '%" + pageParams.StrWhere + "%'";
+            }
+            var result = Common.Client.GetApi("post", "values/GetPurchasePaged", pageParams);
+            return result;
+        }
+        /// <summary>
         /// 添加企业采购
         /// </summary>
         /// <returns></returns>
@@ -271,30 +297,30 @@ namespace LWT.Client.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult AddPurChase(Purchase purchase, IFormFile formFile)
+        public IActionResult AddPurChase(Purchase purchase)
         {
             // 文件大小
             //long size = 0;
             // 原文件名（包括路径）
-            var filename = ContentDispositionHeaderValue.Parse(formFile.ContentDisposition).FileName;
-            // 扩展名
-            var extName = filename.Substring(filename.LastIndexOf('.')).Replace("\"", "");
-            // 新文件名
-            string shortfilename = $"{Guid.NewGuid()}{extName}";
-            // 新文件名（包括路径）
-            filename = Environment.WebRootPath + @"\Images\" + shortfilename;
-            //数据库添加对象
-            purchase.BusinessLicence = shortfilename;
+            //var filename = ContentDispositionHeaderValue.Parse(formFile.ContentDisposition).FileName;
+            //// 扩展名
+            //var extName = filename.Substring(filename.LastIndexOf('.')).Replace("\"", "");
+            //// 新文件名
+            //string shortfilename = $"{Guid.NewGuid()}{extName}";
+            //// 新文件名（包括路径）
+            //filename = Environment.WebRootPath + @"\Images\" + shortfilename;
+            ////数据库添加对象
+            //purchase.BusinessLicence = shortfilename;
             var result = Common.Client.GetApi("post", "Values/AddPurChase", purchase);
             if (Int32.Parse(result) > 0)
             {
-                using (FileStream fs = System.IO.File.Create(filename))
-                {
-                    // 复制文件
-                    formFile.CopyTo(fs);
-                    // 清空缓冲区数据
-                    fs.Flush();
-                }
+                //using (FileStream fs = System.IO.File.Create(filename))
+                //{
+                //    // 复制文件
+                //    formFile.CopyTo(fs);
+                //    // 清空缓冲区数据
+                //    fs.Flush();
+                //}
                 return Content("<script>alert('企业采购入驻成功');location.href='/index/SupplierManage'</script>", "text/html;charset=utf-8");
             }
             else
@@ -303,6 +329,31 @@ namespace LWT.Client.Controllers
             }
 
         }
+        #endregion
+
+        #region 三级类目模块
+
+        /// <summary>
+        /// 用户信息维护
+        /// </summary>
+        /// <returns></returns>
+        public IActionResult CategoryManage()
+        {
+            return View();
+        }
+
+        public string GetCategoryList(PageParams pageParams)
+        {
+
+            pageParams.TableName = "Category";
+            if (!string.IsNullOrEmpty(pageParams.StrWhere))
+            {
+                pageParams.StrWhere = "and UserName like '%" + pageParams.StrWhere + "%'";
+            }
+            var result = Common.Client.GetApi("post", "values/GetCategory", pageParams);
+            return result;
+        }
+
         #endregion
 
         #region 所有下拉菜单

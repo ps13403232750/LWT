@@ -9,25 +9,45 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>OrderList</title>
+    <script src="~/js/jquery-1.10.2.js"></script>
     <script src="~/js/vue.js"></script>
     <script src="~/js/axios.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
     <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
     <link href="~/lib/bootstrap/dist/css/bootstrap-theme.css" rel="stylesheet" />
+
+    <link href="~/Content/static/h-ui/css/H-ui.css" rel="stylesheet" />
+    <link href="~/Content/static/h-ui.admin/css/H-ui.admin.css" rel="stylesheet" />
+    <link href="~/Content/lib/Hui-iconfont/1.0.8/iconfont.css" rel="stylesheet" />
+    <link href="~/Content/static/h-ui.admin/skin/default/skin.css" rel="stylesheet" />
+    <script src="~/js/vue.js"></script>
+    <script src="~/js/axios.js"></script>
+
 </head>
 <body>
+
+
+
     <div id="app">
-        <table class="table table-border table-hover table-striped">
-            <tr>
-                <td> 编号 </td>
-                <td> 订单号 </td>
-                <td> 订货日期 </td>
-                <td> 订单总价 </td>
-                <td> 收货地址 </td>
-                <td> 采购商 </td>
-                <td> 操作 </td>
+        <div class="cl pd-5 bg-1 bk-gray mt-20">
+            <span class="text-c">
+                <input type="text" placeholder="请输入清单号" style="height:26px;" v-model="searchtxt" />
+                <button v-on:click="search" type="button" class="btn btn-success">
+                    <i class="Hui-iconfont">&#xe665;</i> 搜用户
+                </button>
+            </span> <span class="r">共有数据：<strong>{{totalCount}}</strong>条</span>
+        </div>
+        <table class="table table-border table-bordered table-bg">
+            <tr  class="text-c">
+                <th> 编号 </th>
+                <th> 订单号 </th>
+                <th> 订货日期 </th>
+                <th> 订单总价 </th>
+                <th> 收货地址 </th>
+                <th> 采购商 </th>
+                <th> 操作 </th>
             </tr>
-            <tr v-for="item in info" v-bind:key="item.id">
+            <tr class="text-c" v-for="item in dataList" v-bind:key="item.id">
 
                 <td>{{item.id}}</td>
                 <td>{{item.orderNum}}</td>
@@ -36,35 +56,149 @@
                 <td>{{item.address}}</td>
                 <td>{{item.userId}}</td>
                 <td>
-                    <a href="javascript:;" v-on:click="JumpTo(item.orderNum)"> 查看详情 </a>
+                    <a href="javascript:;" v-on:click="orderlist('订单详情', '/Supplier/OrderList?OrderNum='+item.orderNum,'800','500')" class="btn   btn-success">
+                        <i class="Hui-iconfont">&#xe665;</i>订单详情
+                    </a>
                 </td>
             </tr>
         </table>
+        <!--分页布局-->
+        <div style="width:50%;margin:auto;">
+            <a class="btn btn-secondary-outline" v-on:click="firstpage">首页</a>
+            <a class="btn btn-secondary-outline" v-on:click="prevpage">上一页</a>
+            <span v-for="index in totalPage">
+                <a class="btn btn-secondary" v-if="index==currentpage">{{index}}</a>
+                <a class="btn btn-secondary-outline" v-else v-on:click="thispage(index)">{{index}}</a>
+            </span>
+            <a class="btn btn-secondary-outline" v-on:click="nextpage">下一页</a>
+            <a class="btn btn-secondary-outline" v-on:click="lastpage">尾页</a>
+        </div>
     </div>
+    <!--_footer 作为公共模版分离出去-->
+    <script src="~/Content/lib/jquery/1.9.1/jquery.js"></script>
+    <script src="~/Content/lib/layer/2.4/layer.js"></script>
+    <script src="~/Content/static/h-ui/js/H-ui.min.js"></script>
+    <script src="~/Content/static/h-ui.admin/js/H-ui.admin.js"></script> <!--/_footer 作为公共模版分离出去-->
+    <!--请在下方写此页面业务相关的脚本-->
+    <script type="text/javascript" src="~/Content/lib/laypage/1.2/laypage.js"></script>
 </body>
 </html>
-<script>
-    var app = new Vue({
+
+<script type="text/javascript">
+    var vm = new Vue({
         el: '#app',
         data: {
-            info: null
+            totalCount: 0,
+            totalPage: 0,
+            currentpage: 1,
+            searchtxt: "",
+            dataList: null
         },
-        //获取加载时数据
         mounted: function () {
             var that = this;
-            axios.get('http://localhost:60259/api/Supplier/GetOrder').then(function (res) {
-                that.info = res.data;
-            });
+            axios.get('/Supplier/PageOrders')
+                .then(function (res) {
+                    console.log(res.data);
+                    that.totalCount = res.data.totalCount;
+                    that.totalPage = res.data.totalPage;
+                    that.dataList = res.data.dataList;
+                })            
         },
         methods: {
-            //修改事件
-            JumpTo: function (res) {
-
-                location.href = '/Supplier/OrderList?OrderNum=' + res;
-                
+            firstpage: function () {
+                var that = this;
+                if (that.currentpage != 1) {
+                    that.currentpage = 1;
+                    axios({
+                        url: "/Supplier/PageOrders",
+                        method: "get",
+                        params: { 'CurPage': that.currentpage, 'StrWhere': that.searchtxt }
+                    }).then(function (res) {
+                        that.totalCount = res.data.totalCount;
+                        that.totalPage = res.data.totalPage;
+                        that.dataList = res.data.dataList;
+                    })
                 }
-
+            },
+            nextpage: function () {
+                var that = this;
+                if (that.currentpage < that.totalPage) {
+                    that.currentpage += 1;
+                    axios({
+                        url: "/Supplier/PageOrders",
+                        method: "get",
+                        params: { 'CurPage': that.currentpage, 'StrWhere': that.searchtxt }
+                    }).then(function (res) {
+                        that.totalCount = res.data.totalCount;
+                        that.totalPage = res.data.totalPage;
+                        that.dataList = res.data.dataList;
+                    })
+                }
+            },
+            thispage: function (res) {
+                var that = this;
+                that.currentpage = res;
+                axios({
+                    url: "/Supplier/PageOrders",
+                    method: "get",
+                    params: { 'CurPage': that.currentpage, 'StrWhere': that.searchtxt }
+                }).then(function (res) {
+                    that.totalCount = res.data.totalCount;
+                    that.totalPage = res.data.totalPage;
+                    that.dataList = res.data.dataList;
+                })
+            },
+            prevpage: function () {
+                var that = this;
+                if (that.currentpage > 1) {
+                    that.currentpage -= 1;
+                    axios({
+                        url: "/Supplier/PageOrders",
+                        method: "get",
+                        params: { 'CurPage': that.currentpage, 'StrWhere': that.searchtxt }
+                    }).then(function (res) {
+                        that.totalCount = res.data.totalCount;
+                        that.totalPage = res.data.totalPage;
+                        that.dataList = res.data.dataList;
+                    })
+                }
+            },
+            lastpage: function () {
+                var that = this;
+                if (that.currentpage != that.totalPage) {
+                    that.currentpage = that.totalPage;
+                    axios({
+                        url: "/Supplier/PageOrders",
+                        method: "get",
+                        params: { 'CurPage': that.currentpage, 'StrWhere': that.searchtxt }
+                    }).then(function (res) {
+                        that.totalCount = res.data.totalCount;
+                        that.totalPage = res.data.totalPage;
+                        that.dataList = res.data.dataList;
+                    })
+                }
+            },
+            search: function () {
+                var that = this;
+                that.currentpage = 1;
+                axios({
+                    url: "/Supplier/PageOrders",
+                    method: "get",
+                    params: { 'CurPage': that.currentpage, 'StrWhere': that.searchtxt }
+                }).then(function (res) {
+                    that.totalCount = res.data.totalCount;
+                    that.totalPage = res.data.totalPage;
+                    that.dataList = res.data.dataList;
+                })
+            },
+            ////跳转页面事件
+            //JumpTo: function (res) {
+            //    location.href = '/Supplier/OrderList?OrderNum=' + res;
+            //},
+            orderlist: function (title, url, w, h) {
+                layer_show(title, url, w, h);
             }
-        })
-   
+        }
+    })
+
 </script>

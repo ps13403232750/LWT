@@ -16,11 +16,16 @@ namespace LWT.Client.Models
         /// <summary>
         /// 用户姓名
         /// </summary>
-        public string Name { get; set; }
+        public string UserName { get; set; }
         /// <summary>
         /// 用户角色
         /// </summary>
-        public Roles Role { get; set; }
+        public string RoleName { get; set; }
+
+        /// <summary>
+        /// 用户角色ID
+        /// </summary>
+        public int RoleId { get; set; }
 
     }
 }
