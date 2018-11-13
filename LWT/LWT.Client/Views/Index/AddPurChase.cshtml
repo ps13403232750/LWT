@@ -96,9 +96,9 @@
                     </div>
                 </div>
                 <div class="row cl">
-                    <label class="form-label col-xs-4 col-sm-3">公司地址：</label>
+                    <label class="form-label col-xs-4 col-sm-3">营业执照：</label>
                     <div class="formControls col-xs-8 col-sm-9">
-                        <input type="text" class="input-text" v-model="BusinessLicence" placeholder="" id="address">
+                        <input id="Text1" type="file" name="formFile" v-on:change="changeImage($event)" ref="avatarInput" />
                     </div>
                 </div>
                 <div class="row cl">
@@ -147,6 +147,7 @@
                 Aid: 0,
                 BusinessMark: "",
                 PhoneNumber: "",
+                formFile: null,
                 select: null,
                 selectbrand:null
             },
@@ -156,7 +157,8 @@
             methods: {
                 adduser: function () {
                     var that = this;
-                    var params = new URLSearchParams();
+                    var params = new FormData()
+                    params.append('formFile', this.$refs.avatarInput.files[0])
                     params.append('Id', null);
                     params.append('CompanyName', $("#companyname").val());
                     params.append('LinkManName', $("#LinkManName").val());
@@ -165,7 +167,7 @@
                     params.append('LinkManEmail', $("#SettleDateTime").val());
                     if ($("#PassWord1").val() != $("#PassWord2").val()) {
                         alert("对不起，您输入的两次密码不一致，请重新输入！");
-
+                        return;
                     }
                     else {
                         params.append('PassWord', $("#PassWord1").val());
@@ -183,10 +185,12 @@
                     params.append('PhoneNumber', $("#PhoneNumber").val());
                     axios({
                         method: 'post',
+                        headers: { "Content-Type": "multipart/form-data" },
                         url: '/index/AddPurChase',
                         data: params
                     }).then(function (res) {
                         alert('添加成功！');
+                        
                     });
                 }
             }

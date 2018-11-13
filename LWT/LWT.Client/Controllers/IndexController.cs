@@ -239,7 +239,6 @@ namespace LWT.Client.Controllers
                 // 创建新文件
                 using (FileStream fs = System.IO.File.Create(fullPath))
                 {
-                  
                     // 复制文件
                     formFile.CopyTo(fs);
                     // 清空缓冲区数据
@@ -318,30 +317,30 @@ namespace LWT.Client.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult AddPurChase(Purchase purchase)
+        public IActionResult AddPurChase(Purchase purchase,IFormFile formFile)
         {
             // 文件大小
             //long size = 0;
             // 原文件名（包括路径）
-            //var filename = ContentDispositionHeaderValue.Parse(formFile.ContentDisposition).FileName;
-            //// 扩展名
-            //var extName = filename.Substring(filename.LastIndexOf('.')).Replace("\"", "");
-            //// 新文件名
-            //string shortfilename = $"{Guid.NewGuid()}{extName}";
-            //// 新文件名（包括路径）
-            //filename = Environment.WebRootPath + @"\Images\" + shortfilename;
-            ////数据库添加对象
-            //purchase.BusinessLicence = shortfilename;
+            var filename = ContentDispositionHeaderValue.Parse(formFile.ContentDisposition).FileName;
+            // 扩展名
+            var extName = filename.Substring(filename.LastIndexOf('.')).Replace("\"", "");
+            // 新文件名
+            string shortfilename = $"{Guid.NewGuid()}{extName}";
+            // 新文件名（包括路径）
+            filename = Environment.WebRootPath + @"\Images\" + shortfilename;
+            //数据库添加对象
+            purchase.BusinessLicence = shortfilename;
             var result = Common.Client.GetApi("post", "Values/AddPurChase", purchase);
             if (Int32.Parse(result) > 0)
             {
-                //using (FileStream fs = System.IO.File.Create(filename))
-                //{
-                //    // 复制文件
-                //    formFile.CopyTo(fs);
-                //    // 清空缓冲区数据
-                //    fs.Flush();
-                //}
+                using (FileStream fs = System.IO.File.Create(filename))
+                {
+                    // 复制文件
+                    formFile.CopyTo(fs);
+                    // 清空缓冲区数据
+                    fs.Flush();
+                }
                 return Content("<script>alert('企业采购入驻成功');location.href='/index/SupplierManage'</script>", "text/html;charset=utf-8");
             }
             else
