@@ -96,13 +96,9 @@
                     </div>
                 </div>
                 <div class="row cl">
-                    <label class="form-label col-xs-4 col-sm-3">营业执照：</label>
+                    <label class="form-label col-xs-4 col-sm-3">公司地址：</label>
                     <div class="formControls col-xs-8 col-sm-9">
-                        <span class="btn-upload form-group">
-                            <input class="input-text upload-url" type="text" id="oo" readonly nullmsg="请添加图片！" style="width:200px">
-                            <a href="javascript:void();" class="btn btn-primary radius upload-btn"><i class="Hui-iconfont">&#xe642;</i> 浏览图片</a>
-                            <input type="file" name="formFile" class="input-file">
-                        </span>
+                        <input type="text" class="input-text" v-model="BusinessLicence" placeholder="" id="address">
                     </div>
                 </div>
                 <div class="row cl">
@@ -127,7 +123,7 @@
                 </div>
                 <div class="row cl">
                     <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
-                        <input class="btn btn-primary radius" type="submit" v-on:click="adduser" value="提交">
+                        <input class="btn btn-primary radius" type="button" v-on:click="adduser" value="提交">
                     </div>
                 </div>
             </form>
@@ -169,11 +165,12 @@
                     params.append('LinkManEmail', $("#SettleDateTime").val());
                     if ($("#PassWord1").val() != $("#PassWord2").val()) {
                         alert("对不起，您输入的两次密码不一致，请重新输入！");
+
                     }
                     else {
                         params.append('PassWord', $("#PassWord1").val());
                     }
-                    params.append('BusinessLicence', $("#uploadfile").val());
+                    params.append('BusinessLicence', $("#address").val());
 
                     if ($('input[name="sex1"]:checked').val() !== null) {
                         params.append('Status', $('input[name="sex1"]:checked').val());
@@ -189,6 +186,7 @@
                         url: '/index/AddPurChase',
                         data: params
                     }).then(function (res) {
+                        alert('添加成功！');
                     });
                 }
             }

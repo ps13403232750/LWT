@@ -94,9 +94,9 @@ namespace Services
         /// 采购结算详情分页
         /// </summary>
         /// <returns></returns>
-        public PageResult<Settle> ThsPageList(PageParams pageParams)
+        public PageResult<Orders> ThsPageList(PageParams pageParams)
         {
-            var list = OraclePaging.QuickPage<Settle>(pageParams);
+            var list = OraclePaging.QuickPage<Orders>(pageParams);
             return list;
         }
 

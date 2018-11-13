@@ -72,6 +72,37 @@ namespace LWT.Client.Controllers
         }
 
         /// <summary>
+        /// 额度详情分页
+        /// </summary>
+        /// <param name="pageParams"></param>
+        /// <returns></returns>
+        public string ThlPageList(PageParams pageParams, string BuyerName)
+        {
+            pageParams.TableName = "Limits";
+            var wherestr = "";
+            if (!string.IsNullOrEmpty(BuyerName))
+            {
+                wherestr = " and BuyerName like '%" + BuyerName + "%'";
+            }
+            pageParams.StrWhere = wherestr;
+            var list = Common.Client.GetApi("post", "Settle/ThlPageList", pageParams);
+            return list;
+        }
+
+        /// <summary>
+        /// 结算详情分页
+        /// </summary>
+        /// <param name="pageParams"></param>
+        /// <returns></returns>
+        public string ThsPageList(PageParams pageParams)
+        {
+            pageParams.TableName = "Orders";
+           
+            var list = Common.Client.GetApi("post", "Settle/ThsPageList", pageParams);
+            return list;
+        }
+
+        /// <summary>
         /// 采购结算列表详情显示
         /// </summary>
         /// <returns></returns>

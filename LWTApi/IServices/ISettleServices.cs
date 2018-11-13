@@ -42,7 +42,7 @@ namespace IServices
         /// 结算详情分页
         /// </summary>
         /// <returns></returns>
-        PageResult<Settle> ThsPageList(PageParams pageParams);
+        PageResult<Orders> ThsPageList(PageParams pageParams);
 
         /// <summary>
         /// 采购结算列表详情
