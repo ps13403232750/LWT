@@ -130,7 +130,7 @@ namespace LWTApi.Controllers
         /// <returns></returns>
         [Route("[action]")]
         [HttpGet]
-        public List<Category> GetClass()
+        public List<Category> GetCategory()
         {
             var data = userServices.GetCategory().ToList();
             return data;
@@ -168,6 +168,8 @@ namespace LWTApi.Controllers
         /// </summary>
         /// <param name="pageParams"></param>
         /// <returns></returns>
+        [Route("[action]")]
+        [HttpPost]
         public PageResult<SupplierHelper> GetSupplierPaged(PageParams pageParams)
         {
             return userServices.GetSupplierPageList(pageParams); 
@@ -234,6 +236,5 @@ namespace LWTApi.Controllers
             return userServices.GetPurchasePageList(pageParams);
         }
         #endregion
-
         }
 }

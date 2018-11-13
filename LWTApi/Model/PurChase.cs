@@ -24,12 +24,12 @@ namespace Model
         /// <summary>
         /// 年营业额
         /// </summary>
-        public string YearTurnove { get; set; }
+        public string Yearturnover { get; set; }
 
         /// <summary>
         /// 结算账期
         /// </summary>
-        public DateTime SettleDateTime { get; set; }
+        public string SettleDateTime { get; set; }
 
         /// <summary>
         /// 联系邮箱
