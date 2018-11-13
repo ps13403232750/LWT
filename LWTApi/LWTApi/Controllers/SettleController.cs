@@ -50,14 +50,52 @@ namespace LWTApi.Controllers
         }
 
         /// <summary>
-        /////采购结算列表
+        /////额度详情
         /// </summary>
         /// <returns></returns>
         [HttpGet]
         [Route("[action]")]
-        public ActionResult<List<Settle>> GetPurchaseSettle()
+        public ActionResult<List<Limits>> ThinMaLimite()
         {
-            return settleServices.GetPurchaseSettle().ToList();
+            return settleServices.ThinMaLimite().ToList();
+        }
+
+        /// <summary>
+        ///额度详情分页
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("[action]")]
+        public ActionResult<PageResult<Limits>> ThlPageList(PageParams pageParams)
+        {
+            var list = settleServices.ThlPageList(pageParams);
+            return list;
+        }
+
+        /// <summary>
+        ///结算详情分页
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("[action]")]
+        public ActionResult<PageResult<Settle>> ThsPageList(PageParams pageParams)
+        {
+            var list = settleServices.ThsPageList(pageParams);
+            return list;
+        }
+
+        [HttpPut]
+        [Route("[action]")]
+        /// <summary>
+        /// 额度审核状态
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="states"></param>
+        /// <returns></returns>
+        public ActionResult<bool> UpdateState(int id)
+        {
+            var list = settleServices.UpdateState(id, 1);
+            return list;
         }
 
         /// <summary>
@@ -73,6 +111,17 @@ namespace LWTApi.Controllers
         }
 
         /// <summary>
+        /////采购结算列表
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("[action]")]
+        public ActionResult<List<Settle>> GetPurchaseSettle()
+        {
+            return settleServices.GetPurchaseSettle().ToList();
+        }
+
+        /// <summary>
         /////采购结算列表详情
         /// </summary>
         /// <returns></returns>
@@ -81,31 +130,6 @@ namespace LWTApi.Controllers
         public ActionResult<List<Orders>> ThinPurState()
         {
             return settleServices.ThinPurState().ToList();
-        }
-
-        /// <summary>
-        /////额度详情
-        /// </summary>
-        /// <returns></returns>
-        [HttpGet]
-        [Route("[action]")]
-        public ActionResult<List<Limits>> ThinMaLimite()
-        {
-            return settleServices.ThinMaLimite().ToList();
-        }
-
-        [HttpPut]
-        [Route("[action]")]
-        /// <summary>
-        /// 额度审核状态
-        /// </summary>
-        /// <param name="id"></param>
-        /// <param name="states"></param>
-        /// <returns></returns>
-        public ActionResult<bool> UpdateState(int id)
-        {
-            var list = settleServices.UpdateState(id, 1);
-            return list;
         }
     }
 }

@@ -32,6 +32,26 @@ namespace Services
         }
 
         /// <summary>
+        /// 额度详情
+        /// </summary>
+        /// <returns></returns>
+        public List<Limits> ThinMaLimite()
+        {
+            var list = SqlSugarHelper<Limits>.FindAll();
+            return list;
+        }
+
+        /// <summary>
+        /// 额度详情分页
+        /// </summary>
+        /// <returns></returns>
+        public PageResult<Limits> ThlPageList(PageParams pageParams)
+        {
+            var list = OraclePaging.QuickPage<Limits>(pageParams);
+            return list;
+        }
+
+        /// <summary>
         /// 结算次数
         /// </summary>
         /// <returns></returns>
@@ -44,20 +64,9 @@ namespace Services
         /// 结算详情
         /// </summary>
         /// <returns></returns>
-
         public List<Orders> ThinPurState()
         {
             var list = SqlSugarHelper<Orders>.FindAll();
-            return list;
-        }
-
-        /// <summary>
-        /// 结算列表详情
-        /// </summary>
-        /// <returns></returns>
-        public List<PurchasePay> GetPurchasePay()
-        {
-            var list = SqlSugarHelper<PurchasePay>.FindAll();
             return list;
         }
 
@@ -82,12 +91,12 @@ namespace Services
         }
 
         /// <summary>
-        /// 额度详情
+        /// 采购结算详情分页
         /// </summary>
         /// <returns></returns>
-        public List<Limits> ThinMaLimite()
+        public PageResult<Settle> ThsPageList(PageParams pageParams)
         {
-            var list = SqlSugarHelper<Limits>.FindAll();
+            var list = OraclePaging.QuickPage<Settle>(pageParams);
             return list;
         }
 

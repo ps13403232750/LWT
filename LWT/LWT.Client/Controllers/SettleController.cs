@@ -70,6 +70,7 @@ namespace LWT.Client.Controllers
             var list = Common.Client.GetApi("post", "Settle/SettlePageList", pageParams);
             return list;
         }
+
         /// <summary>
         /// 采购结算列表详情显示
         /// </summary>

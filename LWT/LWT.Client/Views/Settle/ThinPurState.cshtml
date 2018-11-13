@@ -22,40 +22,8 @@
     <meta name="viewport" content="width=device-width" />
     <title>采购商对账详情</title>
     <link href="~/Content/lib/Bootstrap/bootstrap.min.css" rel="stylesheet" />
-
     <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
     <script type="text/javascript" src="js/jquery-jtumbler-1.0.1.min.js"></script>
-    <script type="text/javascript">
-        jQuery(function ($) {
-            // Initialize jTumbler
-            $(".radio-switch").jTumbler();
-            // Change color
-            $(".colors a").click(function () {
-                $(".colors li").removeClass("current");
-                var className = $(this).parent().attr("class");
-                $(this).parent().addClass("current");
-                $("#options-container").attr("class", className);
-                if (className === "jtumbler-white" || className === "jtumbler-light-gray" || className === "jtumbler-pink") {
-                    $("body").addClass("inverse");
-                } else {
-                    $("body").removeClass("inverse");
-                }
-                return false;
-            });
-            var isOn = true;
-            $("#toggle-jtumbler").click(function () {
-                isOn = !isOn;
-                if (!isOn) {
-                    $(".radio-switch").show();
-                    $(".jtumbler").hide();
-                } else {
-                    $(".radio-switch").hide();
-                    $(".jtumbler").show();
-                }
-                return false;
-            });
-        });
-    </script>
 </head>
 <body>
     <style>
@@ -217,11 +185,9 @@
                             <td>@item.Price</td>
                         </tr>
                     }
-
-</table>
-            </tbody>
-        </div>
-      
+                </tbody>
+              </table>
+        </div> 
     </div>
     <!--_footer 作为公共模版分离出去-->
     <script type="text/javascript" src="~/Content/lib/jquery/1.9.1/jquery.min.js"></script>
