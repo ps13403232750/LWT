@@ -22,7 +22,7 @@ namespace LWTApi.Controllers
 
         #region //权限模块
         /// <summary>
-        /// 权限列表信息显示
+        /// 获取全部菜单列表
         /// </summary>
         /// <returns></returns>
         [HttpGet]
@@ -45,17 +45,58 @@ namespace LWTApi.Controllers
         }
 
         /// <summary>
-        /// 用户列表分页
+        /// 修改权限信息
         /// </summary>
-        /// <param name="pageParams"></param>
         /// <returns></returns>
         [HttpPost]
         [Route("[action]")]
-        public ActionResult<PageResult<UsersHelper>> GetUsersPaged(PageParams pageParams)
+        public ActionResult<int> EditPower(Power power)
         {
-            var list = userServices.GetUsersPageList(pageParams);
+            var i = userServices.EditPower(power);
+            return i;
+        }
+
+        /// <summary>
+        /// 启停用权限
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("[action]")]
+        public ActionResult<int> PowerAbled(int status, int id)
+        {
+            var i = userServices.PowerAbled(status,id);
+            return i;
+        }
+
+        /// <summary>
+        /// 获取用户权限列表
+        /// </summary>
+        /// <param name="roleid"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("[action]")]
+        public ActionResult<List<Power>> GetUserPower(int roleid)
+        {
+            var list = userServices.GetUserPower(roleid);
             return list;
         }
+
+        /// <summary>
+        /// 获取父级权限列表
+        /// </summary>
+        /// <param name="roleid"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("[action]")]
+        public ActionResult<List<Power>> GetParentPower()
+        {
+            var list = userServices.GetParentPower();
+            return list;
+        }
+
+        #endregion
+
+        #region //角色模块
 
         /// <summary>
         /// 角色列表分页
@@ -79,20 +120,6 @@ namespace LWTApi.Controllers
         public ActionResult<List<Roles>> GetRoles()
         {
             return userServices.GetRoles().ToList();
-        }
-
-        /// <summary>
-        /// 添加用户信息
-        /// </summary>
-        /// <param name="user"></param>
-        /// <returns></returns>
-        // POST api/values
-        [Route("[action]")]
-        [HttpPost]
-        public int AddUser(Users user)
-        {
-            var i = userServices.Add(user);
-            return i;
         }
 
         /// <summary>
@@ -120,6 +147,38 @@ namespace LWTApi.Controllers
             var i = userServices.AddRoleAndPower(roleAndPowerHelper);
             return i;
         }
+
+        #endregion
+
+        #region //用户模块
+
+        /// <summary>
+        /// 用户列表分页
+        /// </summary>
+        /// <param name="pageParams"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("[action]")]
+        public ActionResult<PageResult<UsersHelper>> GetUsersPaged(PageParams pageParams)
+        {
+            var list = userServices.GetUsersPageList(pageParams);
+            return list;
+        }
+
+        /// <summary>
+        /// 添加用户信息
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns></returns>
+        // POST api/values
+        [Route("[action]")]
+        [HttpPost]
+        public int AddUser(Users user)
+        {
+            var i = userServices.Add(user);
+            return i;
+        }
+
         #endregion
 
         #region //三级类目模块
