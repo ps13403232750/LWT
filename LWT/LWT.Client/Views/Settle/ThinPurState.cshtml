@@ -26,6 +26,13 @@
     <script type="text/javascript" src="js/jquery-jtumbler-1.0.1.min.js"></script>
     <script src="~/js/vue.js"></script>
     <script src="~/js/axios.js"></script>
+    <script>
+        function Submit1() {
+            alert("发送成功！");
+            //成功后隐藏按钮
+            document.getElementById("Punthing").style.display = "none";
+        }
+    </script>
 </head>
 <body>
     <style>
@@ -219,8 +226,8 @@
             </div>
         </div>
         <div style="padding-left:25px;">
-            <div style="padding-left:800px;margin-top:5px;">
-                <input id="Button1" type="button" value="发送对账单" style="background-color:blue;color:white;text-align:center;" />
+            <div style="padding-left:760px;margin-top:5px;">
+                <input class='btn btn-success radius' id='Punthing' type='button' value='发送账单' onclick='Submit1()' />
             </div>
             <table class="table table-border table-bordered table-bg">
                 <thead>
@@ -243,7 +250,7 @@
                 </tbody>
             </table>
             <!--分页布局-->
-            <div style="width:50%;margin:auto;">
+            <div style="width:75%;margin:auto;">
                 <a class="btn btn-secondary-outline" v-on:click="firstpage">首页</a>
                 <a class="btn btn-secondary-outline" v-on:click="prevpage">上一页</a>
                 <span v-for="index in totalPage">
