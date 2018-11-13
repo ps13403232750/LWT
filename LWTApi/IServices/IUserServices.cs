@@ -13,7 +13,7 @@ namespace IServices
         /// 获取全部权限列表
         /// </summary>
         /// <returns></returns>
-        List<Power> GetAllPower();
+        List<Power> GetUserPower(int roleid);
 
         /// <summary>
         /// 获取权限列表
@@ -137,6 +137,26 @@ namespace IServices
         /// <param name="pageParams"></param>
         /// <returns></returns>
         PageResult<Purchase> GetPurchasePageList(PageParams pageParams);
+
+        /// <summary>
+        /// 修改菜单详情
+        /// </summary>
+        /// <param name="power"></param>
+        /// <returns></returns>
+        int EditPower(Power power);
+
+        /// <summary>
+        /// 启停用权限
+        /// </summary>
+        /// <param name="status"></param>
+        /// <returns></returns>
+        int PowerAbled(int status,int id);
+
+        /// <summary>
+        /// 获取全部父级权限
+        /// </summary>
+        /// <returns></returns>
+        List<Power> GetParentPower();
 
     }
 }
