@@ -11,11 +11,13 @@
     <script src="~/js/jquery-1.10.2.js"></script>
     <script src="~/js/axios.js"></script>
     <script src="~/js/vue.js"></script>
+    <link href="~/Content/lib/Bootstrap/bootstrap.min.css" rel="stylesheet" />
+ 
     <title>Add</title>
 </head>
 <body>
     <div>
-        <table id="app">
+        <table id="app" class="table table-bordered">
             <tr>
                 <td align="right">账号名称：</td>
                 <td><input id="name" type="text" v-model="UserName" /></td>
@@ -38,7 +40,7 @@
             </tr>
             <tr>
                 <td></td>
-                <td><input id="Button1" v-on:click="adduser" type="button" value="注册" /><input id="Button1" v-on:click="BackLogin" type="button" value="登录" /></td>
+                <td><input id="Button1" v-on:click="adduser" class="btn btn-primary" type="button" value="注册" />&nbsp;&nbsp;&nbsp;&nbsp;<input id="Button1" class="btn btn-danger" v-on:click="BackLogin" type="button" value="取消" /></td>
             </tr>
         </table>
     </div>

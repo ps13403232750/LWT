@@ -14,7 +14,7 @@ namespace Model
         /// <summary>
         /// 类目名称
         /// </summary>
-        public string CategoryName { get; set; }
+        public string ClassName { get; set; }
 
         /// <summary>
         /// 父级Id

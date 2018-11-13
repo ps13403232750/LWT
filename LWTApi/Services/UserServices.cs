@@ -205,6 +205,33 @@ namespace Services
 
         #endregion
 
+        #region //三级类目模块
+        /// <summary>
+        /// 获取类目信息
+        /// </summary>
+        /// <param name="classe"></param>
+        /// <returns></returns>
+        public List<Category> GetCategory()
+        {
+            var list = SqlSugarHelper<Category>.FindAll();
+            return list;
+        }
+
+        /// <summary>
+        /// 三级类目显示
+        /// </summary>
+        /// <param name="pageParams"></param>
+        /// <returns></returns>
+        public PageResult<Category> GetCategoryPageList(PageParams pageParams)
+        {
+            var list = OraclePaging.QuickPage<Category>(pageParams);
+            return list;
+        }
+
+
+
+        #endregion
+
         #region //合作伙伴管理模块
         /// <summary>
         /// 企业采购入驻
@@ -292,21 +319,35 @@ namespace Services
             return list;
         }
 
-        #endregion
-
-        #region //三级类目模块
         /// <summary>
-        /// 获取类目信息
+        /// 修改采购员信息
         /// </summary>
-        /// <param name="classe"></param>
+        /// <param name="purchase"></param>
         /// <returns></returns>
-        public List<Category> GetCategory()
+        public int EditPurchase(Purchase purchase)
         {
-            var list = SqlSugarHelper<Category>.FindAll();
+            return 1;
+            //string sql = string.Format($"update purchase set LinkManEmail = '{purchase.LinkManEmail}' , LinkManName = {purchase.LinkManName},LinkPhone = '{purchase.LinkPhone}', Logo = {purchase.Logo} where id = {power.Id}");
+           // var i = SqlSugarHelper<Power>.ExcuteBySQL(sql);
+           // return i;
+        }
+
+        /// <summary>
+        /// 获取品牌名称信息
+        /// </summary>
+        /// <param name="pageParams"></param>
+        /// <returns></returns>
+        public PageResult<Brand> GetBrandPageList(PageParams pageParams)
+        {
+            var list = OraclePaging.QuickPage<Brand>(pageParams);
             return list;
         }
 
+
+
         #endregion
+
+
 
     }
 }
