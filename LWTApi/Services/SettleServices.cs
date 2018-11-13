@@ -15,7 +15,7 @@ namespace Services
         /// 额度管理表分页
         /// </summary>
         /// <returns></returns>
-        public PageResult<Limits> GetLimitPageList(PageParams pageParams)
+        public PageResult<Limits> GetSettlePageList(PageParams pageParams)
         {
             var list = OraclePaging.QuickPage<Limits>(pageParams);
             return list;
@@ -65,9 +65,19 @@ namespace Services
         /// 采购结算列表
         /// </summary>
         /// <returns></returns>
-        public List<PurchaseSettle> GetPurchaseSettle()
+        public List<Settle> GetPurchaseSettle()
         {
-            var list = SqlSugarHelper<PurchaseSettle>.FindAll();
+            var list = SqlSugarHelper<Settle>.FindAll();
+            return list;
+        }
+
+        /// <summary>
+        /// 采购结算列表分页
+        /// </summary>
+        /// <returns></returns>
+        public PageResult<Settle> SettlePageList(PageParams pageParams)
+        {
+            var list = OraclePaging.QuickPage<Settle>(pageParams);
             return list;
         }
 
@@ -91,16 +101,6 @@ namespace Services
         {
             var result = GetSimpleInstance<Limits>().Update(it => new Limits() { State = states }, it => it.Id == id);
             return (result);
-        }
-
-        /// <summary>
-        /// 审批状态下拉
-        /// </summary>
-        /// <returns></returns>
-        public List<Limits> GetState()
-        {
-            var list = SqlSugarHelper<Limits>.FindAll();
-            return list;
         }
     }
 }

@@ -11,7 +11,7 @@ namespace IServices
         /// 额度管理表分页
         /// </summary>
         /// <returns></returns>
-        PageResult<Limits> GetLimitPageList(PageParams pageParams);
+        PageResult<Limits> GetSettlePageList(PageParams pageParams);
 
         /// <summary>
         /// 额度管理表
@@ -44,10 +44,17 @@ namespace IServices
         List<PurchasePay> GetPurchasePay();
 
         /// <summary>
+        /// 采购结算列表详情
+        /// </summary>
+        /// <param name="pageParams"></param>
+        /// <returns></returns>
+        PageResult<Settle> SettlePageList(PageParams pageParams);
+
+        /// <summary>
         /// 采购付款结算列表
         /// </summary>
         /// <returns></returns>
-        List<PurchaseSettle> GetPurchaseSettle();
+        List<Settle> GetPurchaseSettle();
 
         /// <summary>
         /// 修改审批状态
@@ -55,12 +62,6 @@ namespace IServices
         /// <param name="id"></param>
         /// <param name="states"></param>
         /// <returns></returns>
-        bool  UpdateState(int id, int states);
-
-        /// <summary>
-        ///审批状态下拉 
-        /// </summary>
-        /// <returns></returns>
-        List<Limits> GetState();
+        bool UpdateState(int id, int states);
     }
 }
