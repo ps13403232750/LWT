@@ -102,7 +102,7 @@
     <script type="text/javascript" src="~/Content/lib/laypage/1.2/laypage.js"></script>
 </body>
 </html>
-<!--
+<!-- 原始VUE数据操作--
     <script>
     var app = new Vue({
         el: '#app',
@@ -274,6 +274,7 @@
                     }
                 })
             },
+            //更新数据方法
             show: function (result) {
                 axios.get('http://localhost:60259/api/Supplier/GetGoods').then(function (res) {
                     result.dataList = res.data;

@@ -9,8 +9,36 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>HomePage</title>
+    <style>
+        .part {
+        width:300px;
+        height:200px;
+        float:left;
+        margin-top:20px;
+        margin-left:20px;
+        border:1px solid #000000;
+        background-color:aliceblue
+
+        }
+            .part p {
+            text-align:center;
+            }
+    </style>
 </head>
 <body>
-    <h1>今晚就刀你！</h1>
+    <div id="app">
+        <div class="part">
+            <p>今日订单数量：10</p>
+            <p> 总订单数：10000</p>
+        </div>
+        <div class="part">
+            <p>今日入驻商家：10</p>
+            <p>  总入驻商：10000</p>
+        </div>
+        <div class="part">
+            <p>今日销售额：10000</p>
+            <p> 总销售额：100000000</p>
+        </div>
+    </div>
 </body>
 </html>
