@@ -24,6 +24,8 @@
     <link href="~/Content/lib/Bootstrap/bootstrap.min.css" rel="stylesheet" />
     <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
     <script type="text/javascript" src="js/jquery-jtumbler-1.0.1.min.js"></script>
+    <script src="~/js/vue.js"></script>
+    <script src="~/js/axios.js"></script>
 </head>
 <body>
     <style>
@@ -32,139 +34,137 @@
         }
     </style>
     <div id="app">
-        <div style="padding-left:22px;padding-top:30px;">
-            <ul>
-                <li>
-                    <input id="" type="button" value="2015" onclick="options-container()" />
-                    <input id="" type="button" value="2017" />
-                </li>
-            </ul>
-        </div>
         <div class="page-container">
             <div id="tab-system" class="HuiTab">
                 <div class="tabBar cl">
-                    <span>第四次结算</span>
-                    <span>第三次结算</span>
-                    <span>第二次结算</span>
-                    <span>第一次结算</span>
-                </div>
-                <div class="tabCon">
-                    <div class="row cl" >
-                        <label class="form-label col-xs-4 col-sm-2">
-                            <span class="c-red">*</span>
-                            公司名称：
-                        </label>
-                        <div class="formControls col-xs-8 col-sm-9">
-                            <span class="c-red"></span>
-                            北京七彩公司
-                        </div>
-                    </div>
-                    <div class="row cl">
-                        <label class="form-label col-xs-4 col-sm-2">
-                            <span class="c-red">*</span>
-                            结算类型：
-                        </label>
-                        <div class="formControls col-xs-8 col-sm-9">
-                            季度
-                        </div>
-                    </div>
-                    <div class="row cl">
-                        <label class="form-label col-xs-4 col-sm-2">
-                            <span class="c-red">*</span>
-                            结算周期：
-                        </label>
-                        <div class="formControls col-xs-8 col-sm-9">
-                            2018年04月1日-2018年06月1日
-                        </div>
-                    </div>
-                    <div class="row cl">
-                        <label class="form-label col-xs-4 col-sm-2">
-                            <span class="c-red">*</span>
-                            订单数：
-                        </label>
-                        <div class="formControls col-xs-8 col-sm-9">
-                            98898
-                        </div>
-                    </div>
-                    <div class="row cl">
-                        <label class="form-label col-xs-4 col-sm-2">
-                            <span class="c-red">*</span>
-                            收款金额：
-                        </label>
-                        <div class="formControls col-xs-8 col-sm-9">
-                            $151500151.00元
-                        </div>
-                    </div>
+                    <span>2015</span>
+                    <span>2016</span>
                 </div>
                 <div class="tabCon">
                     <div class="row cl">
-                        <label class="form-label col-xs-4 col-sm-2">
-                            <span class="c-red">*</span>
-                            订单数量：
-                        </label>
-                        <div class="formControls col-xs-8 col-sm-9">
-                            8974笔
+                        <div class="tabBar cl">
+                            <span>第四次结算</span>
+                            <span>第三次结算</span>
+                            <span>第二次结算</span>
+                            <span>第一次结算</span>
+                        </div>
+                        <div class="tabCon">
+                            <div class="row cl">
+                                <label class="form-label col-xs-4 col-sm-2">
+                                    <span class="c-red">*</span>
+                                    公司名称：
+                                </label>
+                                <div class="formControls col-xs-8 col-sm-9">
+                                    <span class="c-red"></span>
+                                    北京七彩公司
+                                </div>
+                            </div>
+                            <div class="row cl">
+                                <label class="form-label col-xs-4 col-sm-2">
+                                    <span class="c-red">*</span>
+                                    结算类型：
+                                </label>
+                                <div class="formControls col-xs-8 col-sm-9">
+                                    季度
+                                </div>
+                            </div>
+                            <div class="row cl">
+                                <label class="form-label col-xs-4 col-sm-2">
+                                    <span class="c-red">*</span>
+                                    结算周期：
+                                </label>
+                                <div class="formControls col-xs-8 col-sm-9">
+                                    2018年04月1日-2018年06月1日
+                                </div>
+                            </div>
+                            <div class="row cl">
+                                <label class="form-label col-xs-4 col-sm-2">
+                                    <span class="c-red">*</span>
+                                    订单数：
+                                </label>
+                                <div class="formControls col-xs-8 col-sm-9">
+                                    98898
+                                </div>
+                            </div>
+                            <div class="row cl">
+                                <label class="form-label col-xs-4 col-sm-2">
+                                    <span class="c-red">*</span>
+                                    收款金额：
+                                </label>
+                                <div class="formControls col-xs-8 col-sm-9">
+                                    $151500151.00元
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tabCon">
+                            <div class="row cl">
+                                <label class="form-label col-xs-4 col-sm-2">
+                                    <span class="c-red">*</span>
+                                    订单数量：
+                                </label>
+                                <div class="formControls col-xs-8 col-sm-9">
+                                    8974笔
+                                </div>
+                            </div>
+                            <div class="row cl">
+                                <label class="form-label col-xs-4 col-sm-2">
+                                    <span class="c-red">*</span>
+                                    收款金额：
+                                </label>
+                                <div class="formControls col-xs-8 col-sm-9">
+                                    $888998898.00元
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tabCon">
+                            <div class="row cl">
+                                <label class="form-label col-xs-4 col-sm-2">
+                                    <span class="c-red">*</span>
+                                    订单数量：
+                                </label>
+                                <div class="formControls col-xs-8 col-sm-9">
+                                    5151笔
+                                </div>
+                            </div>
+                            <div class="row cl">
+                                <label class="form-label col-xs-4 col-sm-2">
+                                    <span class="c-red">*</span>
+                                    收款金额：
+                                </label>
+                                <div class="formControls col-xs-8 col-sm-9">
+                                    $75151598.00元
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tabCon">
+                            <div class="row cl">
+                                <label class="form-label col-xs-4 col-sm-2">
+                                    <span class="c-red">*</span>
+                                    订单数量：
+                                </label>
+                                <div class="formControls col-xs-8 col-sm-9">
+                                    2231笔
+                                </div>
+                            </div>
+                            <div class="row cl">
+                                <label class="form-label col-xs-4 col-sm-2">
+                                    <span class="c-red">*</span>
+                                    收款金额：
+                                </label>
+                                <div class="formControls col-xs-8 col-sm-9">
+                                    $61515598.00元
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="row cl">
-                        <label class="form-label col-xs-4 col-sm-2">
-                            <span class="c-red">*</span>
-                            收款金额：
-                        </label>
-                        <div class="formControls col-xs-8 col-sm-9">
-                            $888998898.00元
-                        </div>
-                    </div>
-                </div>
-                <div class="tabCon">
-                    <div class="row cl">
-                        <label class="form-label col-xs-4 col-sm-2">
-                            <span class="c-red">*</span>
-                            订单数量：
-                        </label>
-                        <div class="formControls col-xs-8 col-sm-9">
-                            5151笔
-                        </div>
-                    </div>
-                    <div class="row cl">
-                        <label class="form-label col-xs-4 col-sm-2">
-                            <span class="c-red">*</span>
-                            收款金额：
-                        </label>
-                        <div class="formControls col-xs-8 col-sm-9">
-                            $75151598.00元
-                        </div>
-                    </div>
-                </div>
-                <div class="tabCon">
-                    <div class="row cl">
-                        <label class="form-label col-xs-4 col-sm-2">
-                            <span class="c-red">*</span>
-                            订单数量：
-                        </label>
-                        <div class="formControls col-xs-8 col-sm-9">
-                            2231笔
-                        </div>
-                    </div>
-                    <div class="row cl">
-                        <label class="form-label col-xs-4 col-sm-2">
-                            <span class="c-red">*</span>
-                            收款金额：
-                        </label>
-                        <div class="formControls col-xs-8 col-sm-9">
-                            $61515598.00元
-                        </div>
-                    </div>
-                </div>
-                <div class="tabCon">
                 </div>
             </div>
         </div>
         <div style="padding-left:25px;">
-            <div style="padding-left:320px;margin-top:5px;">
-                <input id="Button1" type="button" value="发送对账单" style="background-color:blue;color:white" />
+            <div style="padding-left:800px;margin-top:5px;">
+                <input id="Button1" type="button" value="发送对账单" style="background-color:blue;color:white;text-align:center;"/>
             </div>
-            <table class="table table-border" style="width:400px;height:300px;">
+            <table class="table table-border table-bordered table-bg">
                 <thead>
                     <tr class="text-c">
                         <th>订单编号</th>
@@ -175,19 +175,28 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (var item in Model)
-                    {
-                        <tr class="text-c">
-                            <td>@item.OrderNum</td>
-                            <td>@item.OrderTime</td>
-                            <td>@item.Address</td>
-                            <td>@item.UserId</td>
-                            <td>@item.Price</td>
-                        </tr>
-                    }
+                    <tr class="text-c" v-for="item in dataList">
+                        <td>{{item.orderNum}}</td>
+                        <td>{{item.orderTime}}</td>
+                        <td>{{item.address}}</td>
+                        <td>{{item.userId}}</td>
+                        <td>{{item.price}}</td>
+                    </tr>
                 </tbody>
-              </table>
-        </div> 
+            </table>
+            <!--分页布局-->
+            <div style="width:50%;margin:auto;">
+                <a class="btn btn-secondary-outline" v-on:click="firstpage">首页</a>
+                <a class="btn btn-secondary-outline" v-on:click="prevpage">上一页</a>
+                <span v-for="index in totalPage">
+                    <a class="btn btn-secondary" v-if="index==currentpage">{{index}}</a>
+                    <a class="btn btn-secondary-outline" v-else v-on:click="thispage(index)">{{index}}</a>
+                </span>
+                <a class="btn btn-secondary-outline" v-on:click="nextpage">下一页</a>
+                <a class="btn btn-secondary-outline" v-on:click="lastpage">尾页</a>
+                <span style="color:dodgerblue;">共{{totalPage}}页,&nbsp;共{{totalCount}}条数据</span>
+            </div>
+        </div>
     </div>
     <!--_footer 作为公共模版分离出去-->
     <script type="text/javascript" src="~/Content/lib/jquery/1.9.1/jquery.min.js"></script>
@@ -210,6 +219,115 @@
                 index: 0
             });
         });
+    </script>
+    <script type="text/javascript">
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                totalCount: 0,
+                totalPage: 0,
+                currentpage: 1,
+                searchtxt: "",
+                dataList: null
+            },
+            mounted: function () {
+                var that = this;
+                axios.get('/Settle/ThsPageList')
+                    .then(function (res) {
+                        that.totalCount = res.data.totalCount;
+                        that.totalPage = res.data.totalPage;
+                        that.dataList = res.data.dataList;
+                    })
+            },
+            methods: {
+                firstpage: function () {
+                    var that = this;
+                    if (that.currentpage != 1) {
+                        that.currentpage = 1;
+                        axios({
+                            url: "/Settle/ThsPageList",
+                            method: "get",
+                            params: { 'CurPage': that.currentpage, 'BuyerName': that.searchtxt }
+                        }).then(function (res) {
+                            that.totalCount = res.data.totalCount;
+                            that.totalPage = res.data.totalPage;
+                            that.dataList = res.data.dataList;
+                        })
+                    }
+                },
+                nextpage: function () {
+                    var that = this;
+                    if (that.currentpage < that.totalPage) {
+                        that.currentpage += 1;
+                        axios({
+                            url: "/Settle/ThsPageList",
+                            method: "get",
+                            params: { 'CurPage': that.currentpage, 'StrWhere': that.searchtxt }
+                        }).then(function (res) {
+                            that.totalCount = res.data.totalCount;
+                            that.totalPage = res.data.totalPage;
+                            that.dataList = res.data.dataList;
+                        })
+                    }
+                },
+                thispage: function (res) {
+                    var that = this;
+                    that.currentpage = res;
+                    axios({
+                        url: "/Settle/ThsPageList",
+                        method: "get",
+                        params: { 'CurPage': that.currentpage, 'BuyerName': that.searchtxt }
+                    }).then(function (res) {
+                        that.totalCount = res.data.totalCount;
+                        that.totalPage = res.data.totalPage;
+                        that.dataList = res.data.dataList;
+                    })
+                },
+                prevpage: function () {
+                    var that = this;
+                    if (that.currentpage > 1) {
+                        that.currentpage -= 1;
+                        axios({
+                            url: "/Settle/ThsPageList",
+                            method: "get",
+                            params: { 'CurPage': that.currentpage, 'BuyerName': that.searchtxt }
+                        }).then(function (res) {
+                            that.totalCount = res.data.totalCount;
+                            that.totalPage = res.data.totalPage;
+                            that.dataList = res.data.dataList;
+                        })
+                    }
+                },
+                lastpage: function () {
+                    var that = this;
+                    if (that.currentpage != that.totalPage) {
+                        that.currentpage = that.totalPage;
+                        axios({
+                            url: "/Settle/ThsPageList",
+                            method: "get",
+                            params: { 'CurPage': that.currentpage, 'StrWhBuyerNameere': that.searchtxt }
+                        }).then(function (res) {
+                            that.totalCount = res.data.totalCount;
+                            that.totalPage = res.data.totalPage;
+                            that.dataList = res.data.dataList;
+                        })
+                    }
+                },
+                search: function () {
+                    var that = this;
+                    that.currentpage = 1;
+                    axios({
+                        url: "/Settle/ThsPageList",
+                        method: "get",
+                        params: { 'CurPage': that.currentpage, 'BuyerName': that.searchtxt }
+                    }).then(function (res) {
+                        that.totalCount = res.data.totalCount;
+                        that.totalPage = res.data.totalPage;
+                        that.dataList = res.data.dataList;
+                    })
+                }
+            }
+        })
     </script>
     <!--/请在上方写此页面业务相关的脚本-->
 </body>

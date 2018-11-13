@@ -78,7 +78,7 @@ namespace LWTApi.Controllers
         /// <returns></returns>
         [HttpPost]
         [Route("[action]")]
-        public ActionResult<PageResult<Settle>> ThsPageList(PageParams pageParams)
+        public ActionResult<PageResult<Orders>> ThsPageList(PageParams pageParams)
         {
             var list = settleServices.ThsPageList(pageParams);
             return list;
