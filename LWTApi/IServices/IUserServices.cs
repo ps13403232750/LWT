@@ -109,7 +109,6 @@ namespace IServices
         /// <returns></returns>
         PageResult<Brand> GetBrandPageList(PageParams pageParams);
 
-
         /// <summary>
         /// 获取所有用户分页列表
         /// </summary>
