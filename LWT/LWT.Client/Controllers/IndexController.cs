@@ -16,7 +16,7 @@ using LWT.Client.Models;
 
 namespace LWT.Client.Controllers
 {
-    
+
     public class IndexController : Controller
     {
         private IHostingEnvironment Environment { get; set; }
@@ -46,7 +46,7 @@ namespace LWT.Client.Controllers
         #endregion
 
         #region //权限模块
-        
+
         /// <summary>
         /// 权限信息维护
         /// </summary>
@@ -59,6 +59,7 @@ namespace LWT.Client.Controllers
         public string GetPowerList(PageParams pageParams)
         {
             pageParams.TableName = "Power";
+            pageParams.SortRow = "id";
             if (!string.IsNullOrEmpty(pageParams.StrWhere))
             {
                 pageParams.StrWhere = " and PowerName like '%" + pageParams.StrWhere + "%'";
@@ -68,24 +69,43 @@ namespace LWT.Client.Controllers
         }
 
         /// <summary>
-        /// 用户信息维护
+        /// 获取全部父级菜单
         /// </summary>
         /// <returns></returns>
-        public IActionResult UsersManage()
+        public string GetParentPower()
         {
-            return View(); 
-        }
-
-        public string GetUsersList(PageParams pageParams)
-        {
-            pageParams.TableName = "Users s join Roles r on s.roleid = r.roleid";
-            if (!string.IsNullOrEmpty(pageParams.StrWhere))
-            {
-                pageParams.StrWhere = "and UserName like '%" + pageParams.StrWhere + "%'";
-            }
-            var result = Common.Client.GetApi("post", "values/GetUsersPaged", pageParams);
+            var result = Common.Client.GetApi("get", "values/GetParentPower");
             return result;
         }
+
+        /// <summary>
+        /// 修改菜单信息
+        /// </summary>
+        /// <param name="power"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public int EditPower(Power power)
+        {
+            var i = Common.Client.GetApi("post", "values/EditPower",power);
+            return int.Parse(i);
+        }
+
+        /// <summary>
+        /// 启停用权限
+        /// </summary>
+        /// <param name="status"></param>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public int PowerAbled(int status, int id)
+        {
+            string url = string.Format($"values/PowerAbled?status={status}&id={id}");
+            var i = Common.Client.GetApi("get", url);
+            return int.Parse(i);
+        }
+
+        #endregion
+
+        #region //角色模块
 
         /// <summary>
         /// 用户信息维护
@@ -108,21 +128,6 @@ namespace LWT.Client.Controllers
         }
 
         /// <summary>
-        /// 注册用户
-        /// </summary>
-        /// <returns></returns>
-        public IActionResult Add()
-        {
-            return View();
-        }
-        [HttpPost]
-        public int Add(Users user)
-        {
-            var data = Common.Client.GetApi("Post", "Values/AddUser",user);
-            return int.Parse(data);
-        }
-
-        /// <summary>
         /// 根据角色添加权限
         /// </summary>
         /// <returns></returns>
@@ -134,7 +139,7 @@ namespace LWT.Client.Controllers
         [HttpPost]
         public int AddRole(RoleAndPowerHelper roleAndPowerHelper)
         {
-            var data = Common.Client.GetApi("post", "Values/AddRoleAndPower",roleAndPowerHelper);
+            var data = Common.Client.GetApi("post", "Values/AddRoleAndPower", roleAndPowerHelper);
             return int.Parse(data);
         }
 
@@ -152,6 +157,46 @@ namespace LWT.Client.Controllers
             var data = Common.Client.GetApi("post", "Values/AddRole", roles);
             return int.Parse(data);
         }
+
+        #endregion
+
+        #region //用户模块
+
+        /// <summary>
+        /// 用户信息维护
+        /// </summary>
+        /// <returns></returns>
+        public IActionResult UsersManage()
+        {
+            return View();
+        }
+
+        public string GetUsersList(PageParams pageParams)
+        {
+            pageParams.TableName = "Users s join Roles r on s.roleid = r.roleid";
+            if (!string.IsNullOrEmpty(pageParams.StrWhere))
+            {
+                pageParams.StrWhere = "and UserName like '%" + pageParams.StrWhere + "%'";
+            }
+            var result = Common.Client.GetApi("post", "values/GetUsersPaged", pageParams);
+            return result;
+        }
+
+        /// <summary>
+        /// 注册用户
+        /// </summary>
+        /// <returns></returns>
+        public IActionResult Add()
+        {
+            return View();
+        }
+        [HttpPost]
+        public int Add(Users user)
+        {
+            var data = Common.Client.GetApi("Post", "Values/AddUser", user);
+            return int.Parse(data);
+        }
+
         #endregion
 
         #region //合作伙伴管理模块
@@ -164,7 +209,7 @@ namespace LWT.Client.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult AddSuppliers(Supplier supplier,IFormFile formFile)
+        public IActionResult AddSuppliers(Supplier supplier, IFormFile formFile)
         {
             // 文件大小
             //long size = 0;
@@ -194,7 +239,7 @@ namespace LWT.Client.Controllers
             {
                 return Content("<script>alert('添加供应商入驻失败！请联系客服，核对重要信息');location.href='/index/SupplierManage'</script>", "text/html;charset=utf-8");
             }
-            
+
         }
 
         /// <summary>
@@ -316,6 +361,6 @@ namespace LWT.Client.Controllers
         //}
         #endregion
 
-        
+
     }
 }

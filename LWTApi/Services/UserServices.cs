@@ -12,6 +12,77 @@ namespace Services
     {
 
         #region //权限模块
+
+        /// <summary>
+        /// 获取权限列表信息
+        /// </summary>
+        /// <returns></returns>
+        public List<Power> GetUserPower(int roleid)
+        {
+            string sql = string.Format($"select b.* from roleandpower a, power b where a.id = {roleid} and a.roleid = b.id and status = 1  order by b.sort,b.id");
+            var list = SqlSugarHelper<Power>.GetListBySQL(sql);
+            return list;
+        }
+
+        /// <summary>
+        /// 权限列表分页
+        /// </summary>
+        /// <param name="pageParams"></param>
+        /// <returns></returns>
+        public PageResult<Power> GetPowerPageList(PageParams pageParams)
+        {
+            var list = OraclePaging.QuickPage<Power>(pageParams);
+            return list;
+        }
+        
+        /// <summary>
+        /// 获取权限导航菜单
+        /// </summary>
+        /// <returns></returns>
+        public List<Power> GetPower()
+        {
+            var list = SqlSugarHelper<Power>.FindAll();
+            return list;
+        }
+
+        /// <summary>
+        /// 获取权限导航菜单
+        /// </summary>
+        /// <returns></returns>
+        public List<Power> GetParentPower()
+        {
+            var list = SqlSugarHelper<Power>.FindByClause(m=>m.Pid == 0,"");
+            return list;
+        }
+
+        /// <summary>
+        /// 编辑权限信息
+        /// </summary>
+        /// <param name="power"></param>
+        /// <returns></returns>
+        public int EditPower(Power power)
+        {
+            string sql = string.Format($"update power set powername = '{power.PowerName}' , pid = {power.Pid},url = '{power.Url}', sort = {power.Sort} where id = {power.Id}");
+            var i = SqlSugarHelper<Power>.ExcuteBySQL(sql);
+            return i;
+        }
+
+        /// <summary>
+        /// 启停用权限
+        /// </summary>
+        /// <param name="status"></param>
+        /// <returns></returns>
+        public int PowerAbled(int status,int id)
+        {
+            string sql = string.Format($"update power set status = {status} where id = {id}");
+            var i = SqlSugarHelper<Power>.ExcuteBySQL(sql);
+            return i;
+        }
+
+        #endregion
+
+        #region 用户模块
+
         /// <summary>
         /// 添加用户
         /// </summary>
@@ -20,17 +91,6 @@ namespace Services
         public int Add(Users user)
         {
             var i = SqlSugarHelper<Users>.Insert(user);
-            return i;
-        }
-
-        /// <summary>
-        /// 添加角色
-        /// </summary>
-        /// <param name="roles"></param>
-        /// <returns></returns>
-        public int AddRole(Roles roles)
-        {
-            var i = SqlSugarHelper<Roles>.Insert(roles);
             return i;
         }
 
@@ -46,27 +106,6 @@ namespace Services
         }
 
         /// <summary>
-        /// 获取权限列表信息
-        /// </summary>
-        /// <returns></returns>
-        public List<Power> GetAllPower()
-        {
-            var list = SqlSugarHelper<Power>.FindAll();
-            return list;
-        }
-
-        /// <summary>
-        /// 权限列表分页
-        /// </summary>
-        /// <param name="pageParams"></param>
-        /// <returns></returns>
-        public PageResult<Power> GetPowerPageList(PageParams pageParams)
-        {
-            var list = OraclePaging.QuickPage<Power>(pageParams);
-            return list;
-        }
-
-        /// <summary>
         /// 用户列表分页
         /// </summary>
         /// <param name="pageParams"></param>
@@ -74,27 +113,6 @@ namespace Services
         public PageResult<UsersHelper> GetUsersPageList(PageParams pageParams)
         {
             var list = OraclePaging.QuickPage<UsersHelper>(pageParams);
-            return list;
-        }
-
-        /// <summary>
-        /// 显示所有角色信息
-        /// </summary>
-        /// <param name="pageParams"></param>
-        /// <returns></returns>
-        public PageResult<Roles> GetRolesPageList(PageParams pageParams)
-        {
-            var list = OraclePaging.QuickPage<Roles>(pageParams);
-            return list;
-        }
-
-        /// <summary>
-        /// 获取用户角色的所有信息
-        /// </summary>
-        /// <returns></returns>
-        public List<Roles> GetRoles()
-        {
-            var list = SqlSugarHelper<Roles>.FindAll();
             return list;
         }
 
@@ -136,13 +154,39 @@ namespace Services
             return i;
         }
 
+        #endregion
+
+        #region 角色模块
+
         /// <summary>
-        /// 获取权限导航菜单
+        /// 添加角色
+        /// </summary>
+        /// <param name="roles"></param>
+        /// <returns></returns>
+        public int AddRole(Roles roles)
+        {
+            var i = SqlSugarHelper<Roles>.Insert(roles);
+            return i;
+        }
+
+        /// <summary>
+        /// 显示所有角色信息
+        /// </summary>
+        /// <param name="pageParams"></param>
+        /// <returns></returns>
+        public PageResult<Roles> GetRolesPageList(PageParams pageParams)
+        {
+            var list = OraclePaging.QuickPage<Roles>(pageParams);
+            return list;
+        }
+
+        /// <summary>
+        /// 获取用户角色的所有信息
         /// </summary>
         /// <returns></returns>
-        public List<Power> GetPower()
+        public List<Roles> GetRoles()
         {
-            var list = SqlSugarHelper<Power>.FindAll();
+            var list = SqlSugarHelper<Roles>.FindAll();
             return list;
         }
 
@@ -248,8 +292,6 @@ namespace Services
             var list = SqlSugarHelper<Category>.FindAll();
             return list;
         }
-
-      
 
         #endregion
 
