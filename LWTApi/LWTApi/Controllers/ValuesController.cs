@@ -51,9 +51,22 @@ namespace LWTApi.Controllers
         /// <returns></returns>
         [HttpPost]
         [Route("[action]")]
-        public ActionResult<PageResult<Users>> GetUsersPaged(PageParams pageParams)
+        public ActionResult<PageResult<UsersHelper>> GetUsersPaged(PageParams pageParams)
         {
             var list = userServices.GetUsersPageList(pageParams);
+            return list;
+        }
+
+        /// <summary>
+        /// 角色列表分页
+        /// </summary>
+        /// <param name="pageParams"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("[action]")]
+        public ActionResult<PageResult<Roles>> GetRolesPaged(PageParams pageParams)
+        {
+            var list = userServices.GetRolesPageList(pageParams);
             return list;
         }
 
@@ -151,6 +164,16 @@ namespace LWTApi.Controllers
         }
 
         /// <summary>
+        /// 获取所有供应商信息
+        /// </summary>
+        /// <param name="pageParams"></param>
+        /// <returns></returns>
+        public PageResult<SupplierHelper> GetSupplierPaged(PageParams pageParams)
+        {
+            return userServices.GetSupplierPageList(pageParams); 
+        }
+
+        /// <summary>
         /// 供应商入驻
         /// </summary>
         /// <param name="supplier"></param>
@@ -186,7 +209,31 @@ namespace LWTApi.Controllers
         {
             return userServices.GetAreas();
         }
-            #endregion
+
+        /// <summary>
+        /// 添加企业采购员
+        /// </summary>
+        /// <param name="purchase"></param>
+        /// <returns></returns>
+        [Route("[action]")]
+        [HttpPost]
+        public int AddPurChase(Purchase purchase)
+        {
+            return userServices.AddPurChase(purchase);
+        }
+
+        /// <summary>
+        /// 企业采购员分页显示
+        /// </summary>
+        /// <param name="pageParams"></param>
+        /// <returns></returns>
+        [Route("[action]")]
+        [HttpGet]
+        public PageResult<Purchase> GetPurchasePaged(PageParams pageParams)
+        {
+            return userServices.GetPurchasePageList(pageParams);
+        }
+        #endregion
 
         }
 }

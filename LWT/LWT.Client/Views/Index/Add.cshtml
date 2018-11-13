@@ -69,7 +69,8 @@
                         url: '/Index/Add',
                         data: params
                     }).then(function (res) {
-                        alert(res.data);
+                        alert('添加成功！');
+                        location.href('/index/UsersManage');
                     });
                 },
                 BackLogin: function () { }

@@ -9,7 +9,7 @@ namespace Model
         /// <summary>
         /// 品牌主键ID
         /// </summary>
-        public int Id { get; set; }
+        public int BId { get; set; }
 
         /// <summary>
         /// 品牌名称

@@ -71,9 +71,20 @@ namespace Services
         /// </summary>
         /// <param name="pageParams"></param>
         /// <returns></returns>
-        public PageResult<Users> GetUsersPageList(PageParams pageParams)
+        public PageResult<UsersHelper> GetUsersPageList(PageParams pageParams)
         {
-            var list = OraclePaging.QuickPage<Users>(pageParams);
+            var list = OraclePaging.QuickPage<UsersHelper>(pageParams);
+            return list;
+        }
+
+        /// <summary>
+        /// 显示所有角色信息
+        /// </summary>
+        /// <param name="pageParams"></param>
+        /// <returns></returns>
+        public PageResult<Roles> GetRolesPageList(PageParams pageParams)
+        {
+            var list = OraclePaging.QuickPage<Roles>(pageParams);
             return list;
         }
 
@@ -84,17 +95,6 @@ namespace Services
         public List<Roles> GetRoles()
         {
             var list = SqlSugarHelper<Roles>.FindAll();
-            return list;
-        }
-
-        /// <summary>
-
-        /// 获取品牌的信息
-        /// </summary>
-        /// <returns></returns>
-        public List<Brand> GetBrand()
-        {
-            var list = SqlSugarHelper<Brand>.FindAll();
             return list;
         }
 
@@ -117,8 +117,10 @@ namespace Services
         {
             int name = roleAndPowerHelper.Id;
             string ids = roleAndPowerHelper.RoleId;
-            RoleAndPower roleAndPower = new RoleAndPower();
-            roleAndPower.Id = name;
+            RoleAndPower roleAndPower = new RoleAndPower
+            {
+                Id = name
+            };
             string idss = roleAndPower.RoleId.ToString();
             idss = ids.ToString();
             var result = idss.Split(',');
@@ -133,7 +135,6 @@ namespace Services
             }
             return i;
         }
-
 
         /// <summary>
         /// 获取权限导航菜单
@@ -158,8 +159,6 @@ namespace Services
             var i = SqlSugarHelper<Purchase>.Insert(purchase);
             return i;
         }
-
-     
 
         /// <summary>
         /// 供应商入驻
@@ -192,6 +191,50 @@ namespace Services
             var list = SqlSugarHelper<Area>.FindAll();
             return list;
         }
+
+        /// <summary>
+        /// 获取品牌的信息
+        /// </summary>
+        /// <returns></returns>
+        public List<Brand> GetBrand()
+        {
+            var list = SqlSugarHelper<Brand>.FindAll();
+            return list;
+        }
+
+        /// <summary>
+        /// 获取所有供应商信息
+        /// </summary>
+        /// <param name="pageParams"></param>
+        /// <returns></returns>
+        public PageResult<SupplierHelper> GetSupplierPageList(PageParams pageParams)
+        {
+            var list = OraclePaging.QuickPage<SupplierHelper>(pageParams);
+            return list;
+        }
+
+        /// <summary>
+        /// 添加企业采购员
+        /// </summary>
+        /// <param name="purchase"></param>
+        /// <returns></returns>
+        public int AddPurChase(Purchase purchase)
+        {
+            var i = SqlSugarHelper<Purchase>.Insert(purchase);
+            return i;
+        }
+
+        /// <summary>
+        /// 企业采购员分页显示
+        /// </summary>
+        /// <param name="pageParams"></param>
+        /// <returns></returns>
+        public PageResult<Purchase> GetPurchasePageList(PageParams pageParams)
+        {
+            var list = OraclePaging.QuickPage<Purchase>(pageParams);
+            return list;
+        }
+
         #endregion
 
         #region //三级类目模块
@@ -205,6 +248,9 @@ namespace Services
             var list = SqlSugarHelper<Category>.FindAll();
             return list;
         }
+
+      
+
         #endregion
 
     }

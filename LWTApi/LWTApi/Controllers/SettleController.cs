@@ -27,28 +27,26 @@ namespace LWTApi.Controllers
         }
 
         /// <summary>
-        ///额度管理表显示 
+        /// 额度管理表
         /// </summary>
         /// <returns></returns>
         [HttpGet]
         [Route("[action]")]
-        public ActionResult<List<Limit>> GetLimit()
+        public ActionResult<List<Limits>> GetLimit()
         {
-            var list = settleServices.GetLimit().ToList();
-            return list;
+            return settleServices.GetLimit().ToList();
         }
 
         /// <summary>
-        ///额度管理表查询
+        ///额度管理表分页
         /// </summary>
         /// <returns></returns>
-        [HttpGet]
+        [HttpPost]
         [Route("[action]")]
-        public ActionResult <List<Limit>> Inquire(string Name)
+        public ActionResult<PageResult<Limits>> GetLimitPageList(PageParams pageParams)
         {
-            var db = BaseDB.GetInstance();
-            var entities = db.Queryable<Limit>().Where(m=>m.BuyerName.Contains(Name)).ToList();
-            return entities;
+            var list = settleServices.GetSettlePageList(pageParams);
+            return list;
         }
 
         /// <summary>
@@ -61,14 +59,25 @@ namespace LWTApi.Controllers
         {
             return settleServices.GetPurchaseSettle().ToList();
         }
-  
+
+        /// <summary>
+        ///采购结算列表分页
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("[action]")]
+        public ActionResult<PageResult<PurchaseSettle>> SettlePageList(PageParams pageParams)
+        {
+            var list = settleServices.SettlePageList(pageParams);
+            return list;
+        }
+
         /// <summary>
         /////采购结算列表详情
         /// </summary>
         /// <returns></returns>
         [HttpGet]
         [Route("[action]")]
-
         public ActionResult<List<Orders>> ThinPurState()
         {
             return settleServices.ThinPurState().ToList();
@@ -80,7 +89,7 @@ namespace LWTApi.Controllers
         /// <returns></returns>
         [HttpGet]
         [Route("[action]")]
-        public ActionResult<List<Limit>> ThinMaLimite()
+        public ActionResult<List<Limits>> ThinMaLimite()
         {
             return settleServices.ThinMaLimite().ToList();
         }
@@ -97,17 +106,6 @@ namespace LWTApi.Controllers
         {
             var list = settleServices.UpdateState(id, 1);
             return list;
-        }
-
-        /// <summary>
-        /// 获取额度审批状态下拉
-        /// </summary>
-        /// <returns></returns>
-        [Route("[action]")]
-        [HttpGet]
-        public List<Limit> GetState()
-        {
-            return settleServices.GetState();
         }
     }
 }

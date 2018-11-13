@@ -26,10 +26,12 @@ namespace Common
         public static PageResult<T> QuickPage<T>(PageParams pageParams)
         {
             OracleConnection conn = new OracleConnection("Data Source=169.254.195.158/orcl;User ID=scott;Password=tiger");
-            OracleCommand cmd = new OracleCommand();
-            cmd.Connection = conn;
-            cmd.CommandText = "prc_query";
-            cmd.CommandType = CommandType.StoredProcedure;
+            OracleCommand cmd = new OracleCommand
+            {
+                Connection = conn,
+                CommandText = "prc_query",
+                CommandType = CommandType.StoredProcedure
+            };
 
             cmd.Parameters.Add("p_tableName", OracleDbType.Varchar2, 50); //表 名
             cmd.Parameters["p_tableName"].Direction = ParameterDirection.Input;
@@ -70,11 +72,13 @@ namespace Common
             OracleDataAdapter adapter = new OracleDataAdapter(cmd);
             adapter.Fill(Ds);
             conn.Close();
-            PageResult<T> pageResult = new PageResult<T>();
-            //总记录数
-            pageResult.TotalPage= Convert.ToInt32(Math.Ceiling(Convert.ToDouble(cmd.Parameters["p_totalPages"].Value.ToString())));
-            //总页数
-            pageResult.TotalCount= int.Parse(cmd.Parameters["p_totalRecords"].Value.ToString());
+            PageResult<T> pageResult = new PageResult<T>
+            {
+                //总记录数
+                TotalPage = Convert.ToInt32(Math.Ceiling(Convert.ToDouble(cmd.Parameters["p_totalPages"].Value.ToString()))),
+                //总页数
+                TotalCount = int.Parse(cmd.Parameters["p_totalRecords"].Value.ToString())
+            };
             //返回的表
             DataTable dt = Ds.Tables[0];
             pageResult.DataList = JsonConvert.DeserializeObject<List<T>>(JsonConvert.SerializeObject(dt));

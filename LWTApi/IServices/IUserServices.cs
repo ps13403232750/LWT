@@ -100,13 +100,43 @@ namespace IServices
         /// </summary>
         /// <param name="pageParams"></param>
         /// <returns></returns>
-        PageResult<Users> GetUsersPageList(PageParams pageParams);
+        PageResult<UsersHelper> GetUsersPageList(PageParams pageParams);
+
+
+        /// <summary>
+        /// 获取所有用户分页列表
+        /// </summary>
+        /// <param name="pageParams"></param>
+        /// <returns></returns>
+        PageResult<Roles> GetRolesPageList(PageParams pageParams);
 
         /// <summary>
         /// 获取区域信息
         /// </summary>
         /// <returns></returns>
         List<Area> GetAreas();
+
+
+        /// <summary>
+        /// 获取所有供应商分页列表
+        /// </summary>
+        /// <param name="pageParams"></param>
+        /// <returns></returns>
+        PageResult<SupplierHelper> GetSupplierPageList(PageParams pageParams);
+
+        /// <summary>
+        /// 企业采购员入驻
+        /// </summary>
+        /// <param name="supplier"></param>
+        /// <returns></returns>
+        int AddPurChase(Purchase purchase);
+
+        /// <summary>
+        /// 获取所有供应商分页列表
+        /// </summary>
+        /// <param name="pageParams"></param>
+        /// <returns></returns>
+        PageResult<Purchase> GetPurchasePageList(PageParams pageParams);
 
     }
 }

@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace LWT.Model
+namespace Model
 {
-   public class Supplier
+   public class SupplierHelper
     {
         /// <summary>
         /// 主键id
@@ -59,7 +59,7 @@ namespace LWT.Model
         /// <summary>
         /// 品牌
         /// </summary>
-        public int Brand { get; set; }
+        public string Brand { get; set; }
 
         /// <summary>
         /// 销售区域
@@ -75,5 +75,15 @@ namespace LWT.Model
         /// 联系电话
         /// </summary>
         public string PhoneNumber { get; set; }
+
+        /// <summary>
+        /// 品牌名称
+        /// </summary>
+        public string BrandName { get; set; }
+
+        /// <summary>
+        /// 地域名称
+        /// </summary>
+        public string AreaName { get; set; }
     }
 }
