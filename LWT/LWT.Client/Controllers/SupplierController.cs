@@ -15,17 +15,14 @@ namespace LWT.Client.Controllers
     public class SupplierController : Controller
     {
         private IHostingEnvironment Environment { get; set; }
+        #region  商品信息
+
+        
         //显示商品视图
         public IActionResult Index()
         {
             var getgoods = Common.Client.GetApi("get", "Supplier/GetGoods");
             return View(JsonConvert.DeserializeObject<List<Goods>>(getgoods));
-        }
-
-        //审核商品视图
-        public IActionResult ReviewOfGoods()
-        {
-            return View();
         }
 
         /// <summary>
@@ -37,16 +34,10 @@ namespace LWT.Client.Controllers
             return result;
         }
 
-        /// <summary>
-        ///商品表分页显示 
-        /// </summary>
-        /// <param name="pageParams"></param>
-        /// <returns></returns>
-        public string PageGoods(PageParams pageParams)
+        //审核商品视图
+        public IActionResult ReviewOfGoods()
         {
-            pageParams.TableName = "Goods";
-            var result = Common.Client.GetApi("post", "Supplier/PageGoods", pageParams);
-            return result;
+            return View();
         }
 
         /// <summary>
@@ -60,42 +51,28 @@ namespace LWT.Client.Controllers
             return result;
         }
 
-        //订单显示视图
-        public IActionResult Order()
-        {
-            return View();
-        }
-
-        //订单从表显示视图
-        public IActionResult OrderList(int OrderNum)
-        {
-            ViewBag.OrderNum = OrderNum;
-            return View();
-        }
-
         /// <summary>
-        ///订单表分页显示 
+        ///商品表分页显示 
         /// </summary>
         /// <param name="pageParams"></param>
         /// <returns></returns>
-        public string PageOrders(PageParams pageParams)
+        public string PageGoods(PageParams pageParams,string Name, int State=2)
         {
-            pageParams.TableName = "Orders";
-            var result = Common.Client.GetApi("post", "Supplier/PageOrders", pageParams);
+            pageParams.TableName = "Goods";
+
+            var wherestr = "";
+            if (!string.IsNullOrEmpty(Name))
+            {
+                wherestr = " and Name like '%" + Name + "%'";
+            }
+            if (State == 0 || State == 1)
+            {
+                wherestr = " and State = " + State;
+            }
+            pageParams.StrWhere = wherestr;
+            var result = Common.Client.GetApi("post", "Supplier/PageGoods", pageParams);
             return result;
         }
-
-        /// <summary>
-        /// 审核商品信息
-        /// </summary>
-        /// <param name="Id"></param>
-        /// <returns></returns>
-        public string OrderLists(int OrderNum)
-        {
-            var result = Common.Client.GetApi("Get", "Supplier/GetOrderList?OrderNum=" + OrderNum);
-            return result;
-        }
-
         //添加商品视图
         public IActionResult AddGoods()
         {
@@ -140,7 +117,57 @@ namespace LWT.Client.Controllers
                 return Content("<script>alert('添加商品失败！请联系客服，核对重要信息');location.href='/Supplier/AddGoods'</script>", "text/html;charset=utf-8");
             }
         }
+        #endregion
 
+        #region 订单相关
+
+        //订单显示视图
+        public IActionResult Order()
+        {
+            return View();
+        }
+
+        //订单从表显示视图
+        public IActionResult OrderList(int OrderNum)
+        {
+            ViewBag.OrderNum = OrderNum;
+            return View();
+        }
+
+
+        /// <summary>
+        /// 获取订单从表信息
+        /// </summary>
+        /// <param name="Id"></param>
+        /// <returns></returns>
+        public string OrderLists(int OrderNum)
+        {
+            var result = Common.Client.GetApi("Get", "Supplier/GetOrderList?OrderNum=" + OrderNum);
+            return result;
+        }
+
+        /// <summary>
+        ///订单表分页显示 
+        /// </summary>
+        /// <param name="pageParams"></param>
+        /// <returns></returns>
+        public string PageOrders(PageParams pageParams, string StrWhere)
+        {
+            pageParams.TableName = "Orders";
+
+            if (!string.IsNullOrEmpty(StrWhere))
+            {
+                pageParams.StrWhere = " and OrderNum like '%" + StrWhere + "%'";
+            }
+            var result = Common.Client.GetApi("post", "Supplier/PageOrders", pageParams);
+            return result;
+        }
+
+        #endregion
+
+        #region 数据统计
+
+        
         //数据统计视图
         public IActionResult OrderStatistics()
         {
@@ -157,5 +184,6 @@ namespace LWT.Client.Controllers
             var result = Common.Client.GetApi("Get", "Supplier/CountOrder?OrderTime=" + OrderTime);
             return result;
         }
+        #endregion
     }
 }

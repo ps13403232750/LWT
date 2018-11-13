@@ -1,5 +1,4 @@
-﻿8
-@{
+﻿@{
     Layout = null;
 }
 @model List<LWT.Model.Goods>
@@ -16,11 +15,32 @@
     <link href="~/lib/bootstrap/dist/css/bootstrap-theme.css" rel="stylesheet" />
 
 
+    <link href="~/Content/static/h-ui/css/H-ui.css" rel="stylesheet" />
+    <link href="~/Content/static/h-ui.admin/css/H-ui.admin.css" rel="stylesheet" />
+    <link href="~/Content/lib/Hui-iconfont/1.0.8/iconfont.css" rel="stylesheet" />
+    <link href="~/Content/static/h-ui.admin/skin/default/skin.css" rel="stylesheet" />
+    <script src="~/js/vue.js"></script>
+    <script src="~/js/axios.js"></script>
     @*<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
         <script src="https://unpkg.com/axios/dist/axios.min.js"></script>*@
 </head>
 <body>
     <div id="app">
+        <div class="cl pd-5 bg-1 bk-gray mt-20">
+            <span class="text-c">
+                <input type="text" placeholder="请输入商品名称" style="height:26px;" v-model="searchtxt" />
+                <span>
+                    <span>审批状态:</span><select name="values" v-model="selectval" id="select">
+                        <option value="2">---请选择---</option>
+                        <option value="0">未审核</option>
+                        <option value="1">已审核</option>
+                    </select>
+                </span>
+                <button v-on:click="search" type="button" class="btn btn-success">
+                    <i class="Hui-iconfont">&#xe665;</i> 搜用户
+                </button>
+            </span> <span class="r">共有数据：<strong>{{totalCount}}</strong>条</span>
+        </div>
         <table class="table table-bordered table-border table-hover table-striped">
             <tr>
                 <td> 编号 </td>
@@ -48,14 +68,14 @@
                 <td>{{item.price}}</td>
                 <td>{{item.inventory}}</td>
                 <template v-if="item.state==0">
-                    <td style="color:#ff0000">待审核</td>
+                    <td style="color:#808080">待审核</td>
                 </template>
                 <template v-else-if="item.state==1">
-                    <td style="color:#00ffff">审核通过</td>
+                    <td style="color:#ff0000">审核通过</td>
                 </template>
                 <td>{{item.isable}}</td>
                 <td>
-                    <a href="javascript:;" v-on:click="edituser(item.id)"> 通过 </a>
+                    <a href="javascript:;" v-on:click="edituser(item.id)"> <i style="color:#ff0000">通过</i> </a>
                 </td>
             </tr>
         </table>
@@ -72,9 +92,17 @@
             <a class="btn btn-secondary-outline" v-on:click="lastpage">尾页</a>
         </div>
     </div>
+
+    <!--_footer 作为公共模版分离出去-->
+    <script src="~/Content/lib/jquery/1.9.1/jquery.js"></script>
+    <script src="~/Content/lib/layer/2.4/layer.js"></script>
+    <script src="~/Content/static/h-ui/js/H-ui.min.js"></script>
+    <script src="~/Content/static/h-ui.admin/js/H-ui.admin.js"></script> <!--/_footer 作为公共模版分离出去-->
+    <!--请在下方写此页面业务相关的脚本-->
+    <script type="text/javascript" src="~/Content/lib/laypage/1.2/laypage.js"></script>
 </body>
 </html>
-@*
+<!--
     <script>
     var app = new Vue({
         el: '#app',
@@ -115,9 +143,9 @@
             }
         }
     })
-
 </script>
-    *@
+
+    -->
 
 <script type="text/javascript">
     var vm = new Vue({
@@ -223,7 +251,7 @@
                 axios({
                     url: "/Supplier/PageGoods",
                     method: "get",
-                    params: { 'CurPage': that.currentpage, 'StrWhere': that.searchtxt }
+                    params: { 'CurPage': that.currentpage, 'Name': that.searchtxt, 'State': that.selectval }
                 }).then(function (res) {
                     that.totalCount = res.data.totalCount;
                     that.totalPage = res.data.totalPage;
