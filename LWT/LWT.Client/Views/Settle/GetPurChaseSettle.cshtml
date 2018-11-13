@@ -38,15 +38,26 @@
                 </tr>
                 @foreach (var item in Model)
                 {
-                <tr  class="text-c">
-                    <td>@item.Id</td>
-                    <td>@item.BuyerName</td>
-                    <td>@item.SettleMeny</td>
-                    <td>@(item.State == 0 ? "未审核" : "已审核" )</td>
-                    <td class="td-manage"><span class="label label-info" style="background-color:cornflowerblue;"><a title="结算详情" href="javascript:;" onclick="admin_edit('结算详情','/Settle/ThinPurState/','2','900','600')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont" style="color:white;">[查看]</i></a> </span></td>
-                </tr>
+                    <tr class="text-c">
+                        <td>@item.Id</td>
+                        <td>@item.BuyerName</td>
+                        <td>@item.SettleMeny</td>
+                        <td>@(item.State == 0 ? "未审核" : "已审核" )</td>
+                        <td class="td-manage"><span class="label label-info" style="background-color:cornflowerblue;"><a title="结算详情" href="javascript:;" onclick="admin_edit('结算详情','/Settle/ThinPurState/','2','900','600')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont" style="color:white;">[查看]</i></a> </span></td>
+                    </tr>
                 }
             </table>
+            <!--分页布局-->
+            <div style="width:50%;margin:auto;">
+                <a class="btn btn-secondary-outline" v-on:click="firstpage">首页</a>
+                <a class="btn btn-secondary-outline" v-on:click="prevpage">上一页</a>
+                <span v-for="index in totalPage">
+                    <a class="btn btn-secondary" v-if="index==currentpage">{{index}}</a>
+                    <a class="btn btn-secondary-outline" v-else v-on:click="thispage(index)">{{index}}</a>
+                </span>
+                <a class="btn btn-secondary-outline" v-on:click="nextpage">下一页</a>
+                <a class="btn btn-secondary-outline" v-on:click="lastpage">尾页</a>
+            </div>
         </div> 
     </div>
     <!--_footer 作为公共模版分离出去-->

@@ -54,6 +54,23 @@ namespace LWT.Client.Controllers
         }
 
         /// <summary>
+        /// 采购结算列表分页
+        /// </summary>
+        /// <param name="pageParams"></param>
+        /// <returns></returns>
+        public string SettlePageList(PageParams pageParams, string BuyerName)
+        {
+            pageParams.TableName = "PurchaseSettle";
+            var wherestr = "";
+            if (!string.IsNullOrEmpty(BuyerName))
+            {
+                wherestr = " and BuyerName like '%" + BuyerName + "%'";
+            }
+            pageParams.StrWhere = wherestr;
+            var list = Common.Client.GetApi("post", "Settle/SettlePageList", pageParams);
+            return list;
+        }
+        /// <summary>
         /// 采购结算列表详情显示
         /// </summary>
         /// <returns></returns>
@@ -81,15 +98,6 @@ namespace LWT.Client.Controllers
         public string UpdateState(int id)
         {
             var result = Common.Client.GetApi("Put", "Settle/UpdateState?Id=" + id);
-            return result;
-        }
-
-        /// <summary>
-        /// 获取额度表审批状态的下拉
-        /// </summary>
-        public string GetState()
-        {
-            string result = Common.Client.GetApi("Get", "Settle/GetState");
             return result;
         }
     }
