@@ -26,7 +26,7 @@ namespace LWT.Client.Controllers
                 //当前请求的用户身份是否合法
                 if (HttpContext.User.Identity.IsAuthenticated)
                 {
-                    var strUserData = User.Claims.ToList().Where(m => m.Type == "userinfo").First().Value;
+                    var strUserData = User.Claims.ToList().Where(m => m.Type == "userinfo").FirstOrDefault().Value;
                     
                     _loginInfo = JsonConvert.DeserializeObject<UserData>(strUserData);
 
@@ -42,18 +42,18 @@ namespace LWT.Client.Controllers
         /// <param name="filterContext"></param>
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
+            //HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
             ViewBag.LoginInfo = LoginInfo;
             base.OnActionExecuting(filterContext);
         }
 
         public static void WriteDataToCookieAsync(UserData userData,HttpContext httpContext)
         {
-            //将实体对象序列化为json字符串
-            var strUserData = JsonConvert.SerializeObject(userData);
-
+            string strUserData = JsonConvert.SerializeObject(userData);
             //构造ClaimsIdentity 对象
             var identity = new ClaimsIdentity(CookieAuthenticationDefaults.AuthenticationScheme);
             //创建 Claim 类型,传入 ClaimsIdentity 中
+            identity.AddClaim(new Claim("userrole", userData.RoleId.ToString()));
             identity.AddClaim(new Claim("userinfo", strUserData));
 
             //创建ClaimsPrincipal对象,传入ClaimsIdentity 对象,调用HttpContext.SignInAsync完成登录
