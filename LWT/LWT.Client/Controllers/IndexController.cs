@@ -17,9 +17,12 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 
+using LWT.Client.Filter;
+
 namespace LWT.Client.Controllers
 {
-   // [Authorize]
+    [Authorize]
+    
     public class IndexController : BaseController
     {
         private IHostingEnvironment Environment { get; set; }
@@ -39,7 +42,7 @@ namespace LWT.Client.Controllers
        
         public IActionResult Index()
         {
-            string getpower = Common.Client.GetApi("get", "Values/GetPower");
+            string getpower = RedisHelper.Get("powerlist");
             return View(JsonConvert.DeserializeObject<List<Power>>(getpower));
         }
 
@@ -55,6 +58,7 @@ namespace LWT.Client.Controllers
         /// 权限信息维护
         /// </summary>
         /// <returns></returns>
+        [AuthorizationAttributecs]
         public IActionResult PowerManage()
         {
             return View();
