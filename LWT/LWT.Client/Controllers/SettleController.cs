@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 namespace LWT.Client.Controllers
 {
+    // [Authorize]
     public class SettleController : BaseController
     {
         /// <summary>
