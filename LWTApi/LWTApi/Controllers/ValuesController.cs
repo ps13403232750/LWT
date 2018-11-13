@@ -179,6 +179,20 @@ namespace LWTApi.Controllers
             return i;
         }
 
+        /// <summary>
+        /// 用户登录
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="pwd"></param>
+        /// <returns></returns>
+        [Route("[action]")]
+        [HttpGet]
+        public ActionResult<UserData> Login(string name="张三",string pwd="123456")
+        {
+            var result = userServices.Login(name,pwd);
+            return result;
+        }
+
         #endregion
 
         #region //三级类目模块

@@ -106,6 +106,19 @@ namespace Services
         }
 
         /// <summary>
+        /// 用户登录
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="pwd"></param>
+        /// <returns></returns>
+        public UserData Login(string name,string pwd)
+        {
+            string sql = string.Format($"select a.id,a.roleid,a.username,b.rolename from users a,roles b where a.roleid=b.roleid and a.username = '{name}' and a.userpwd = '{pwd}'");
+            var result = SqlSugarHelper<UserData>.GetEntityBySQL(sql);
+            return result;
+        }
+
+        /// <summary>
         /// 用户列表分页
         /// </summary>
         /// <param name="pageParams"></param>

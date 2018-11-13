@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.Text;
 
-using LWT.Model;
-
-namespace LWT.Client.Models
+namespace Model
 {
     public class UserData
     {
@@ -26,6 +23,5 @@ namespace LWT.Client.Models
         /// 用户角色ID
         /// </summary>
         public int RoleId { get; set; }
-
     }
 }
