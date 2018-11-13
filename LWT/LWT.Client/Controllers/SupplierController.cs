@@ -12,7 +12,7 @@ using LWT.Client.Models;
 
 namespace LWT.Client.Controllers
 {
-    public class SupplierController : Controller
+    public class SupplierController : BaseController
     {
         private IHostingEnvironment Environment { get; set; }
         #region  商品信息

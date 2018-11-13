@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 namespace LWT.Client.Controllers
 {
-    public class SettleController : Controller
+    public class SettleController : BaseController
     {
         /// <summary>
         /// 额度管理表
