@@ -32,6 +32,32 @@ namespace LWTApi.Controllers
         {
             var result = _supplierServices.Goods().ToList();
             return result;
+        }       
+
+        /// <summary>
+        /// 用户列表分页
+        /// </summary>
+        /// <param name="pageParams"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("[action]")]
+        public ActionResult<PageResult<Goods>> PageGoods(PageParams pageParams)
+        {
+            var list = _supplierServices.PageGoods(pageParams);
+            return list;
+        }
+
+        /// <summary>
+        /// 订单列表分页
+        /// </summary>
+        /// <param name="pageParams"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("[action]")]
+        public ActionResult<PageResult<Orders>> PageOrders(PageParams pageParams)
+        {
+            var list = _supplierServices.PageOrders(pageParams);
+            return list;
         }
 
         /// <summary>
@@ -63,10 +89,10 @@ namespace LWTApi.Controllers
         /// <summary>
         /// 获取订单从表数据
         /// </summary>
-        /// <returns></returns>
+        /// <returns></returns>1
         [HttpGet]
         [Route("[action]")]
-        public ActionResult<List<OrderList>> GetOrderList(int OrderNum)
+        public ActionResult<List<OrderList>> GetOrderList(string OrderNum)
         {
             var result = _supplierServices.GetOrderList(OrderNum).ToList();
             return result;
@@ -74,6 +100,7 @@ namespace LWTApi.Controllers
 
         /// <summary>
         /// 添加新商品
+        /// 
         /// </summary>
         /// <returns></returns>
         [HttpPost]
@@ -83,5 +110,14 @@ namespace LWTApi.Controllers
             var result = _supplierServices.AddGoods(goods);
             return result;
         }
+
+        [HttpGet]
+        [Route("[action]")]
+        public int CountOrder(string OrderTime)
+        {
+            var result = _supplierServices.CountOrder(OrderTime);
+            return result;
+        }
+
     } 
 }
