@@ -317,7 +317,7 @@ namespace LWT.Client.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult AddPurChase(Purchase purchase,IFormFile formFile)
+        public int AddPurChase(Purchase purchase,IFormFile formFile)
         {
             // 文件大小
             //long size = 0;
@@ -341,11 +341,11 @@ namespace LWT.Client.Controllers
                     // 清空缓冲区数据
                     fs.Flush();
                 }
-                return Content("<script>alert('企业采购入驻成功');location.href='/index/SupplierManage'</script>", "text/html;charset=utf-8");
+                return 1;
             }
             else
             {
-                return Content("<script>alert('企业采购入驻失败！请联系客服，核对重要信息');location.href='/Center/Index'</script>", "text/html;charset=utf-8");
+                return 0;
             }
 
         }
